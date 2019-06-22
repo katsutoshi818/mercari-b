@@ -37,7 +37,7 @@ Things you may want to cover:
 |first_name_katakana|string|null: false|
 |birthday|integer|null: false|
 |postal_code|integer||
-|prefecture|string?||
+|prefecture|??||
 |city|string||
 |address|string||
 |building|string||
@@ -61,28 +61,48 @@ Things you may want to cover:
 - has_many :products
 - has_many :favorites
 - has_many :evaluations
-- has_many :comment
-- has_many :point
+- has_many :comments
+- has_many :points
 
 
 ## productsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|null: false, foreign_key: true|
-|name|integer|null: false, foreign_key: true|
+|id|integer|null: false|
+|product_name|string|null: false|
+|seller_user_id|reference|foreign_key: true|
+|buyer_user_id|reference|foreign_key: true|
+|brand_id|reference|foreign_key: true|
+|low_category_id|referene|foreign_key: true|
+|mid_category_id|referene|foreign_key: true|
+|high_category_id|referene|foreign_key: true|
+|introduction|text||
+|product_size|??|null: false|
+|product_state|??|null: false|
+|who_pays_shipping_fee|??|null: false|
+|seller_prefecture|??|null: false|
+|days_to_ship|??|null: false|
+|price|integer|null: false|
+|trade_state|integer|null: false|
 
 ### Association
-- belongs_to :group
-- belongs_to :user
+- belongs_to :seller_user, class_name: 'User', foreign_key: 'seller_user_id'
+- belongs_to :buyer_user, class_name: 'User', foreign_key: 'buyer_user_id'
+- belongs_to :brand
+- belongs_to :top_category
+- belongs_to :mid_category
+- belongs_to :low_category
+- has_many :comments
+- has_many :product_images
 
 
 ## favoritesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|null: false, foreign_key: true|
-|name|integer|null: false, foreign_key: true|
+|id|integer|null: false|
+|name|integer|null: false|
 
 ### Association
 - belongs_to :group
