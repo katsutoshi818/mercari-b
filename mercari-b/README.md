@@ -109,6 +109,19 @@ Things you may want to cover:
 - belongs_to :user
 - belongs_to :product
 
+## ratesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer|null: false, unique: true|
+|rater_user_id|reference|foreign_key: true|
+|rated_user_id|reference|foreign_key: true|
+|comment|text|null: false|
+|rate|integer|null: false|
+
+### Association
+- belongs_to :rater_user, class_name: 'User', foreign_key: 'rater_user_id'
+- belongs_to :rated_user, class_name: 'User', foreign_key: 'rated_user_id'
 
 
 ## favoritesテーブル
