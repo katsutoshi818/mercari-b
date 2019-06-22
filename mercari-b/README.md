@@ -123,6 +123,16 @@ Things you may want to cover:
 - belongs_to :rater_user, class_name: 'User', foreign_key: 'rater_user_id'
 - belongs_to :rated_user, class_name: 'User', foreign_key: 'rated_user_id'
 
+## pointsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|id|integer|null: false, unique: true|
+|user_id|reference|foreign_key: true|
+|given_point|integer|null: false|
+|remark|string||
+
+### Association
+- belongs_to :user
 
 ## favoritesテーブル
 
