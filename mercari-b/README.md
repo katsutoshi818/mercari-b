@@ -34,10 +34,10 @@ Things you may want to cover:
 |first_name|string|null: false|
 |last_name|string|null: false|
 |first_name_katakana|string|null: false|
-|first_name_katakana|string|null: false|
+|last_name_katakana|string|null: false|
 |birthday|integer|null: false|
 |postal_code|integer||
-|prefecture|??||
+|prefecture|integer||
 |city|string||
 |address|string||
 |building|string||
@@ -45,7 +45,7 @@ Things you may want to cover:
 |addressee_first_name|string|null: false|
 |addressee_last_name|string|null: false|
 |addressee_first_name_katakana|string|null: false|
-|addressee_first_name_katakana|string|null: false|
+|addressee_last_name_katakana|string|null: false|
 |addressee_birthday|integer|null: false|
 |addressee_postal_code|integer|null: false|
 |addressee_prefecture|string?|null: false|
@@ -60,7 +60,7 @@ Things you may want to cover:
 ### Association
 - has_many :products
 - has_many :favorites
-- has_many :evaluations
+- has_many :rates
 - has_many :comments
 - has_many :points
 - has_many :products, through: :favorites
@@ -71,19 +71,19 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |id|integer|null: false, unique: true|
-|product_name|string|null: false|
 |seller_user_id|reference|foreign_key: true|
 |buyer_user_id|reference|foreign_key: true|
 |brand_id|reference|foreign_key: true|
 |low_category_id|referene|foreign_key: true|
 |mid_category_id|referene|foreign_key: true|
 |high_category_id|referene|foreign_key: true|
+|product_name|string|null: false|
 |introduction|text||
-|product_size|??|null: false|
-|product_state|??|null: false|
-|who_pays_shipping_fee|??|null: false|
-|seller_prefecture|??|null: false|
-|days_to_ship|??|null: false|
+|product_size|integer|null: false|
+|product_state|integer|null: false|
+|who_pays_shipping_fee|integer|null: false|
+|seller_prefecture|integer|null: false|
+|days_to_ship|integer|null: false|
 |price|integer|null: false|
 |trade_state|integer|null: false|
 
@@ -91,7 +91,7 @@ Things you may want to cover:
 - belongs_to :seller_user, class_name: 'User', foreign_key: 'seller_user_id'
 - belongs_to :buyer_user, class_name: 'User', foreign_key: 'buyer_user_id'
 - belongs_to :brand
-- belongs_to :top_category
+- belongs_to :high_category
 - belongs_to :mid_category
 - belongs_to :low_category
 - has_many :comments
@@ -131,7 +131,7 @@ Things you may want to cover:
 |id|integer|null: false, unique: true|
 |user_id|reference|foreign_key: true|
 |given_point|integer|null: false|
-|remark|string||
+|remarks|string||
 
 ### Association
 - belongs_to :user
@@ -147,3 +147,77 @@ Things you may want to cover:
 ### Association
 - belongs_to :user
 - belongs_to :product
+
+
+## brandsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer|null: false, unique: true|
+|high_category_id|reference|foreign_key: true|
+|brand_name|string|null: false, unique: true|
+
+### Association
+- belongs_to :high_category
+- has_many :products
+
+
+## high_categoriesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer|null: false, unique: true|
+|category_name|string|null: false, unique: true|
+
+### Association
+- has_many :brands
+- has_many :products
+- has_many :mid_categories
+
+
+## mid_categoriesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer|null: false, unique: true|
+|high_category_id|reference|foreign_key: true|
+|category_name|string|null: false, unique: true|
+
+### Association
+- has_many :products
+- has_many :low_categories
+- belongs_to :high_category
+
+
+## low_categoriesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer|null: false, unique: true|
+|mid_category_id|reference|foreign_key: true|
+|category_name|string|null: false, unique: true|
+
+### Association
+- has_many :products
+- belongs_to :mid_categories
+
+
+## product_imagesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer|null: false, unique: true|
+|product_id|reference|foreign_key: true|
+|image|string|null: false, unique: true|
+
+### Associations
+- belongs_to :product
+
+
+## newsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer|null: false, unique: true|
+|title|string|null: false|
+|article|text||
