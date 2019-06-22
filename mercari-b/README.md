@@ -63,6 +63,7 @@ Things you may want to cover:
 - has_many :evaluations
 - has_many :comments
 - has_many :points
+- has_many :products, through: :favorites
 
 
 ## productsテーブル
@@ -95,6 +96,7 @@ Things you may want to cover:
 - belongs_to :low_category
 - has_many :comments
 - has_many :product_images
+- has_many :users, through: :favorites
 
 ## commentsテーブル
 
@@ -139,8 +141,9 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |id|integer|null: false, unique: true|
-|name|integer|null: false|
+|user_id|reference|foreign_key: true|
+|product_id|reference|foreign_key: true|
 
 ### Association
-- belongs_to :group
 - belongs_to :user
+- belongs_to :product
