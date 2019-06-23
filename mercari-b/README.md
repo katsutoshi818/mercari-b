@@ -30,6 +30,24 @@ Things you may want to cover:
 |nickname|string|null: false|
 |email|string|null: false, unique: true|
 |password|string|null: false|
+|phone_number|integer|null: false|
+
+### Association
+- has_many :products
+- has_many :favorites
+- has_many :rates
+- has_many :comments
+- has_many :points
+- has_many :products, through: :favorites
+- has_one :addressee
+- has_one :profile
+
+
+## profilesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user_id|reference|foreign_key: true|
 |first_name|string|null: false|
 |last_name|string|null: false|
 |first_name_katakana|string|null: false|
@@ -40,25 +58,19 @@ Things you may want to cover:
 |city|string||
 |address|string||
 |building|string||
-|phone_number|integer|null: false|
 |introduction|text||
 |avatar|string||
 |point|integer|null: false|
 
-### Association
-- has_many :products
-- has_many :favorites
-- has_many :rates
-- has_many :comments
-- has_many :points
-- has_many :products, through: :favorites
-- has_one :addressees
+### Associations
+- belongs_to :user
 
 
-## addressees
+## addresseesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
+|user_id|reference|foreign_key: true|
 |first_name|string|null: false|
 |last_name|string|null: false|
 |first_name_katakana|string|null: false|
@@ -73,6 +85,7 @@ Things you may want to cover:
 
 ### Associations
 - belongs_to :users
+
 
 ## productsテーブル
 
