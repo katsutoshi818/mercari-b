@@ -21,6 +21,13 @@ development:
   <<: *default
   database: mercari-b_development
 
+production:
+  <<: *default
+  database: ~~~（それぞれのアプリケーション名によって異なっています。こちらは編集しないでください）
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
+
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
