@@ -23,7 +23,7 @@ development:
 
 production:
   <<: *default
-  database: ~~~（それぞれのアプリケーション名によって異なっています。こちらは編集しないでください）
+  database: mercari_production
   username: root
   password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
