@@ -27,6 +27,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
+|id|integer|null: false, unique: true|
 |nickname|string|null: false|
 |email|string|null: false, unique: true|
 |password|string|null: false|
@@ -69,12 +70,13 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
+|id|integer|null: false, unique: true|
 |seller_user_id|reference|foreign_key: true|
 |buyer_user_id|reference|foreign_key: true|
 |brand_id|reference|foreign_key: true|
-|low_category_id|reference|foreign_key: true|
-|mid_category_id|reference|foreign_key: true|
-|high_category_id|reference|foreign_key: true|
+|low_category_id|referene|foreign_key: true|
+|mid_category_id|referene|foreign_key: true|
+|high_category_id|referene|foreign_key: true|
 |product_name|string|null: false|
 |introduction|text|null: false|
 |product_size|integer||
@@ -100,6 +102,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
+|id|integer|null: false, unique: true|
 |user_id|reference|foreign_key: true|
 |product_id|reference|foreign_key: true|
 |comment|text|null: false|
@@ -112,6 +115,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
+|id|integer|null: false, unique: true|
 |rater_user_id|reference|foreign_key: true|
 |rated_user_id|reference|foreign_key: true|
 |comment|text|null: false|
@@ -124,6 +128,7 @@ Things you may want to cover:
 ## pointsテーブル
 |Column|Type|Options|
 |------|----|-------|
+|id|integer|null: false, unique: true|
 |user_id|reference|foreign_key: true|
 |given_point|integer|null: false|
 |remarks|string||
@@ -135,6 +140,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
+|id|integer|null: false, unique: true|
 |user_id|reference|foreign_key: true|
 |product_id|reference|foreign_key: true|
 
@@ -147,6 +153,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
+|id|integer|null: false, unique: true|
 |high_category_id|reference|foreign_key: true|
 |brand_name|string|null: false, unique: true|
 
@@ -159,6 +166,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
+|id|integer|null: false, unique: true|
 |category_name|string|null: false, unique: true|
 
 ### Association
@@ -171,6 +179,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
+|id|integer|null: false, unique: true|
 |high_category_id|reference|foreign_key: true|
 |category_name|string|null: false, unique: true|
 
@@ -184,6 +193,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
+|id|integer|null: false, unique: true|
 |mid_category_id|reference|foreign_key: true|
 |category_name|string|null: false, unique: true|
 |size_type|integer|null: false|
@@ -197,6 +207,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
+|id|integer|null: false, unique: true|
 |product_id|reference|foreign_key: true|
 |image|string|null: false, unique: true|
 
@@ -208,10 +219,11 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
+|id|integer|null: false, unique: true|
 |title|string|null: false|
 |article|text||
 
-### Associations
+### Assosiations
 - なし
 
 
@@ -219,6 +231,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
+|id|integer|null: false, unique: true|
 |prefecture|string|null: false, unique: true|
 
 ### Associations
