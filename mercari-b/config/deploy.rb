@@ -1,8 +1,8 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
 
-set :application, "mercari-b"
-set :repo_url, "git@example.com:katsutoshi818/mercari-b.git"
+set :application, "mercari-b/mercari-b"
+set :repo_url, "https://github.com/katsutoshi818/mercari-b"
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
