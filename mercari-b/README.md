@@ -48,7 +48,7 @@ Things you may want to cover:
 |addressee_last_name_katakana|string|null: false|
 |addressee_birthday|integer|null: false|
 |addressee_postal_code|integer|null: false|
-|addressee_prefecture|string?|null: false|
+|addressee_prefecture|integer|null: false|
 |addressee_city|string|null: false|
 |addressee_address|string|null: false|
 |addressee_building|string|null: false|
@@ -221,3 +221,17 @@ Things you may want to cover:
 |id|integer|null: false, unique: true|
 |title|string|null: false|
 |article|text||
+
+### Assosiations
+- なし
+
+## prefectureテーブル（active_hash)
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer|null: false, unique: true|
+|prefecture|string|null: false, unique: true|
+
+
+#### 説明
+都道府県名データを格納します。DBにテーブル作成せず、prefectureモデルを作成しactive_hashを使ってデータを保管します。
