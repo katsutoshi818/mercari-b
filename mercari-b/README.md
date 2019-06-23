@@ -78,8 +78,8 @@ Things you may want to cover:
 |mid_category_id|referene|foreign_key: true|
 |high_category_id|referene|foreign_key: true|
 |product_name|string|null: false|
-|introduction|text||
-|product_size|integer|null: false|
+|introduction|text|null: false|
+|product_size|integer||
 |product_state|integer|null: false|
 |who_pays_shipping_fee|integer|null: false|
 |seller_prefecture|integer|null: false|
@@ -196,6 +196,7 @@ Things you may want to cover:
 |id|integer|null: false, unique: true|
 |mid_category_id|reference|foreign_key: true|
 |category_name|string|null: false, unique: true|
+|size_type|integer|null: false|
 
 ### Association
 - has_many :products
@@ -225,6 +226,7 @@ Things you may want to cover:
 ### Assosiations
 - なし
 
+
 ## prefectureテーブル（active_hash)
 
 |Column|Type|Options|
@@ -232,6 +234,8 @@ Things you may want to cover:
 |id|integer|null: false, unique: true|
 |prefecture|string|null: false, unique: true|
 
+### Associations
+- なし
 
 #### 説明
 都道府県名データを格納します。DBにテーブル作成せず、prefectureモデルを作成しactive_hashを使ってデータを保管します。
