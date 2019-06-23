@@ -55,7 +55,6 @@ Things you may want to cover:
 |avatar|string||
 |point|integer|null: false|
 
-
 ### Association
 - has_many :products
 - has_many :favorites
