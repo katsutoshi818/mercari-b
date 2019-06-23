@@ -74,9 +74,9 @@ Things you may want to cover:
 |seller_user_id|reference|foreign_key: true|
 |buyer_user_id|reference|foreign_key: true|
 |brand_id|reference|foreign_key: true|
-|low_category_id|referene|foreign_key: true|
-|mid_category_id|referene|foreign_key: true|
-|high_category_id|referene|foreign_key: true|
+|low_category_id|reference|foreign_key: true|
+|mid_category_id|reference|foreign_key: true|
+|high_category_id|reference|foreign_key: true|
 |product_name|string|null: false|
 |introduction|text|null: false|
 |product_size|integer||
@@ -223,7 +223,7 @@ Things you may want to cover:
 |title|string|null: false|
 |article|text||
 
-### Assosiations
+### Associations
 - なし
 
 
