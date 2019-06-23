@@ -41,16 +41,6 @@ Things you may want to cover:
 |address|string||
 |building|string||
 |phone_number|integer|null: false|
-|addressee_first_name|string|null: false|
-|addressee_last_name|string|null: false|
-|addressee_first_name_katakana|string|null: false|
-|addressee_last_name_katakana|string|null: false|
-|addressee_birthday|integer|null: false|
-|addressee_postal_code|integer|null: false|
-|addressee_prefecture|integer|null: false|
-|addressee_city|string|null: false|
-|addressee_address|string|null: false|
-|addressee_building|string|null: false|
 |introduction|text||
 |avatar|string||
 |point|integer|null: false|
@@ -62,7 +52,27 @@ Things you may want to cover:
 - has_many :comments
 - has_many :points
 - has_many :products, through: :favorites
+- has_one :addressees
 
+
+## addressees
+
+|Column|Type|Options|
+|------|----|-------|
+|first_name|string|null: false|
+|last_name|string|null: false|
+|first_name_katakana|string|null: false|
+|last_name_katakana|string|null: false|
+|birthday|integer|null: false|
+|postal_code|integer|null: false|
+|prefecture|integer|null: false|
+|city|string|null: false|
+|address|string|null: false|
+|building|string||
+|phonenumber|integer||
+
+### Associations
+- belongs_to :users
 
 ## productsテーブル
 
