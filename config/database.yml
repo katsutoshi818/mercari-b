@@ -54,8 +54,4 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: mercari-b_production
-  username: mercari-b
-  password: <%= ENV['MERCARI-B_DATABASE_PASSWORD'] %>
+
