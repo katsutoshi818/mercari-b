@@ -94,9 +94,7 @@ Things you may want to cover:
 |seller_user_id|reference|foreign_key: true|
 |buyer_user_id|reference|foreign_key: true|
 |brand_id|reference|foreign_key: true|
-|low_category_id|reference|foreign_key: true|
-|mid_category_id|reference|foreign_key: true|
-|high_category_id|reference|foreign_key: true|
+|category_id|reference|foreign_key: true|
 |product_name|string|null: false|
 |introduction|text|null: false|
 |product_size|integer||
@@ -111,9 +109,7 @@ Things you may want to cover:
 - belongs_to :seller_user, class_name: 'User', foreign_key: 'seller_user_id'
 - belongs_to :buyer_user, class_name: 'User', foreign_key: 'buyer_user_id'
 - belongs_to :brand
-- belongs_to :high_category
-- belongs_to :mid_category
-- belongs_to :low_category
+- belongs_to :category
 - has_many :comments
 - has_many :product_images
 - has_many :users, through: :favorites
@@ -169,50 +165,24 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|high_category_id|reference|foreign_key: true|
+|category_id|reference|foreign_key: true|
 |brand_name|string|null: false, unique: true|
 
 ### Association
-- belongs_to :high_category
+- belongs_to :category
 - has_many :products
 
 
-## high_categoriesテーブル
+## categoriesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |category_name|string|null: false, unique: true|
+|ancestry|||
 
 ### Association
 - has_many :brands
 - has_many :products
-- has_many :mid_categories
-
-
-## mid_categoriesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|high_category_id|reference|foreign_key: true|
-|category_name|string|null: false, unique: true|
-
-### Association
-- has_many :products
-- has_many :low_categories
-- belongs_to :high_category
-
-
-## low_categoriesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|mid_category_id|reference|foreign_key: true|
-|category_name|string|null: false, unique: true|
-|size_type|integer|null: false|
-
-### Association
-- has_many :products
-- belongs_to :mid_categories
 
 
 ## product_imagesテーブル
