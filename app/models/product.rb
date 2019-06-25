@@ -4,8 +4,8 @@ class Product < ApplicationRecord
   belongs_to :brand
   belongs_to :category
   has_many :comments
-  has_many :product_images
-  has_many :users, through: :favorits
+  has_many :product_images, dependent: :destroy
+  has_many :users, through: :favorites
   validates :product_name, presence: true
   validates :introduction, presence: true
   validates :product_state, presence: true
