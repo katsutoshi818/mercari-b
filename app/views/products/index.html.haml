@@ -1,1 +1,27 @@
-ああああ
+=  render partial: 'layouts/header'
+.contents
+  %section.head_pict
+    =link_to do
+      = image_tag "/assets/header.png", alt: "heading", class: "heading_pict"
+  %section.pick_up
+    %h2.pick_head ピックアップカテゴリー
+    %section.items_box
+      %h3.pick_category
+        =link_to "新着アイテム"
+      = render partial: "items"
+      = render partial: "items"
+      = render partial: "items"
+      = render partial: "items"
+      = render partial: "items"
+      = render partial: "items"
+      = render partial: "items"
+      = render partial: "items"
+.footer
+  .foot_pict
+    = image_tag "/assets/footer.png", alt: "heading", class: "foot_pict"
+  .footing
+    = image_tag "/assets/footer2.png", alt: "heading", class: "foot_pict_2"
+    = link_to do
+      .sell_link
+        %div 出品
+        %i.fas.fa-camera
