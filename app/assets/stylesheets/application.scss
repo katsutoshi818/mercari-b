@@ -14,6 +14,10 @@
  *= require_self
  */
  @import "./reset";
- @import "font-awesome";
- @import "variable";
- @import "font-size";
+ @import "config/variable";
+ @import "config/font-size";
+ @import "mixin/clearfix";
+ @import "modules/header";
+ @import "modules/footer";
+ @import "items";
+ @import "top";
