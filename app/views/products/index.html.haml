@@ -6,7 +6,7 @@
   %section.pick_up
     %h2.pick_head ピックアップカテゴリー
     %section.items_box
-      %h3.pick_category
+      %h3.pick_up__category
         =link_to "新着アイテム"
       = render partial: "items"
       = render partial: "items"
@@ -17,11 +17,11 @@
       = render partial: "items"
       = render partial: "items"
 .footer
-  .foot_pict
+  .footer_pict
     = image_tag "/assets/footer.png", alt: "heading", class: "foot_pict"
-  .footing
+  .footer_text
     = image_tag "/assets/footer2.png", alt: "heading", class: "foot_pict_2"
     = link_to do
       .sell_link
-        %div 出品
+        %p 出品
         %i.fas.fa-camera

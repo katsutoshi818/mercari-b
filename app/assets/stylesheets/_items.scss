@@ -1,71 +1,8 @@
 .items_table {
   height: 330px;
   margin: 0 auto;
-  .item_box {
-    width: 213px;
-    margin: 0 0 0 20px;
-    float: left;
-    background-color: $white;
-
-    .index_text{
-      height: 100px;
-      padding-left: 15px;
-      padding-top: 5px;
-      
-      h4 {
-        font-size: 16px;
-        color: $black;
-        height: 3em;
-        word-wrap: break-word;
-        overflow: hidden;
-        position: relative;
-      }
-      .index_price{
-        width: 70%;
-        font-size: 17px;
-        color: $black;
-        padding-top: 10px;
-        float: left;
-      }
-
-      .heart-box {
-        height: 30px;
-        width: 30%;
-        float: right;
-        padding-top: 10px;
-        box-sizing: border-box;
-        line-height: 25px;
-        
-        i {
-          font-size: $font_sentence;
-          color: $lightgray;
-          padding-left: 5px;
-          font-weight: 400;
-        }
-
-        span {
-          font-size: $font_menu;
-          color: $black;
-        }
-
-      }
-      .index_tax{
-        font-size: 10px;
-        color: $black;
-        padding-bottom: 10px;
-      }
-    }
-    .index_pict {
-      width: 213px;
-      height: 220px;
-    }
-    .index_box {
-      height: 100px;
-      padding: 16px;
-    }
-  }
+  
 }
-
 h4::after {
 content: '';
 position: absolute;
@@ -75,7 +12,6 @@ width: 50%;
 right: 0;
 bottom: 0;
 display: block;
-
 }
 .category_link {
   height: 64px;
@@ -87,5 +23,72 @@ display: block;
   p {
     font-size: $font_menu;
     color: $lightblue;
+  }
+}
+
+.item_box {
+  width: 213px;
+  margin: 0 0 0 20px;
+  float: left;
+  background-color: $white;
+  .index_text{
+    height: 100px;
+    padding-top: 5px;
+    
+    h4 {
+      font-size: 16px;
+      color: $black;
+      height: 3em;
+      word-wrap: break-word;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    
+    
+  }
+  .items__pict {
+    width: 213px;
+    height: 220px;
+  }
+  
+}
+
+.index_tax{
+  font-size: 10px;
+  color: $black;
+  padding-bottom: 10px;
+}
+
+.index_info__price{
+  width: 70%;
+  font-size: 17px;
+  color: $black;
+  padding-top: 10px;
+  float: left;
+}
+
+.index_box {
+  height: 100px;
+  padding: 16px;
+}
+
+.index_info__box {
+  height: 30px;
+  width: 30%;
+  float: right;
+  padding-top: 10px;
+  box-sizing: border-box;
+  line-height: 25px;
+  
+  i {
+    font-size: $font_sentence;
+    color: $lightgray;
+    padding-left: 5px;
+    font-weight: 400;
+  }
+  span {
+    font-size: $font_menu;
+    color: $black;
   }
 }
