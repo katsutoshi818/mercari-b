@@ -1,0 +1,49 @@
+.items_table
+  .item_box
+    %section.items
+      = link_to do
+        = image_tag "/assets/cat1.png",size: "213*220", alt: "商品写真", class: "index_pict"
+        .index_text
+          %h4 あかさたなストロングだふふふふふふふふふふふふふふふふふふ
+          .index_price-big
+            .index_price ¥ 2000
+            .heart-box
+              %i.far.fa-heart
+                %span 99
+          .index_tax (税込)
+  .item_box
+    .change_a_tag
+      %section.items
+        = link_to do
+          = image_tag "/assets/cat1.png",size: "213*220", alt: "商品写真", class: "index_pict"
+        .index_text
+          %h4 品名
+          .index_price-big
+            .index_price ¥ 2000
+            .heart-box
+          .index_tax (税込)
+  .item_box
+    .change_a_tag
+      %section.items
+        = link_to do
+          = image_tag "/assets/IMG_0002.jpg",size: "213*220", alt: "商品写真", class: "index_pict"
+          .index_text
+            %h4 品名
+            .index_price-big
+              .index_price ¥ 2000
+              .heart-box
+            .index_tax (税込)
+  .item_box
+    .change_a_tag
+      %section.items
+        = link_to do
+          = image_tag "/assets/IMG_0052.jpg",size: "213*220", alt: "商品写真", class: "index_pict"
+          .index_text
+            %h4 品名
+            .index_price-big
+              .index_price ¥ 2000
+              .heart-box
+            .index_tax (税込)
+.category_link
+  =link_to do
+    %p すべての商品を見る
