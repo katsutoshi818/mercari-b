@@ -11,4 +11,6 @@ class User < ApplicationRecord
   has_many :products, through: :favorits
   has_one :addressee
   has_one :profile
+  validates :nickname, presence: true
+  validates :phone_number, presence: true
 end
