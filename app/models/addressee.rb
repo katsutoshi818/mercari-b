@@ -1,0 +1,2 @@
+class Addressee < ApplicationRecord
+end
