@@ -1,0 +1,92 @@
+root {
+  cursor: auto;
+}
+html {
+  height: 100%;
+  overflow-y: auto;
+  font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+}
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+h2 {
+  font-size: $font_pickup;
+  color: $black;
+  font-weight: bold;
+}
+h3 {
+  font-size: $font_title;
+  color: $lightblue;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.contents {
+  width: 100%;
+  background-color: #f5f5f5;
+  
+}
+
+
+.pick_up {
+  padding: 40px 0;
+
+}
+.pick_head {
+  text-align: center;
+}
+
+.items_box {
+  width: 940px;
+  margin: 0 auto;
+  a{
+    color: $lightblue;
+  }
+  .pick_up__category{
+    text-align: center;
+    margin: 26px 11px;
+  }
+  
+}
+
+.heading_pict {
+  height: 390px;
+   width: 100%;
+}
+
+.footer_pict {
+  height: 260px;
+  width: 100%;
+}
+
+.sell_link {
+  bottom: 32px;
+  right: 32px;
+  height:160px;
+  width:160px;
+  border-radius:50%;
+  line-height:50px;
+  text-align:center;
+  background-color: $red;
+  position: fixed;
+  p{
+    height: 22px;
+    font-size: 22px;
+    color: $white;
+    margin-top: 20px;
+  }
+  i{
+    font-size: 65px;
+    color: $white;
+    margin-top: 15px;
+  }
+  }
+
+  .footer_text {
+    height: 390px;
+  }

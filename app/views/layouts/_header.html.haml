@@ -1,0 +1,39 @@
+.header
+  .content
+    .content-top
+      .content-top_left
+        = link_to do
+          = image_tag "/assets/mercari_logo_horizontal.png", alt: '', height: '45', width: '145'
+      .content-top_right
+        %input.content-top_right__search{maxlength: "30", name: "in01",size: "100",type: "search", placeholder: "何かお探しですか？"}/
+        .icon_box
+          %i.fas.fa-search
+    .content-down
+      .content-down__left
+        %ul 
+          %li.down_list_left
+            = link_to do
+              %i.fa.fa-list-ul
+                %span カテゴリーから探す
+          %li.down_list_left
+            = link_to do
+              %i.fa.fa-tag
+                %span ブランドから探す
+      .content-down__right
+        %ul
+          %li.down_list_right
+            = link_to do
+              %i.far.fa-heart
+                %span いいね！一覧
+          %li.down_list_right
+            = link_to do
+              %i.far.fa-bell
+                %span お知らせ
+          %li.down_list_right
+            = link_to do
+              %i.fa.fa-check
+                %span やることリスト
+          %li.down_list_right
+            = link_to do
+              %p.user-image
+              %span マイページ
