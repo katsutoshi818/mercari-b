@@ -132,7 +132,7 @@ Things you may want to cover:
 |------|----|-------|
 |rater_user_id|reference|foreign_key: true|
 |rated_user_id|reference|foreign_key: true|
-|comment|text|null: false|
+|comment|text||
 |rate|integer|null: false|
 
 ### Association
@@ -190,7 +190,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |product_id|reference|foreign_key: true|
-|image|string|null: false, unique: true|
+|image|string|null: false|
 
 ### Associations
 - belongs_to :product
