@@ -1,0 +1,64 @@
+.wrapper
+  %header
+    %h1
+      = link_to root_path do
+        = image_tag 'exhibition-mercari-logo.svg', size: '185x49'
+  = form_with model: @product, url: {action: :create} do |f|
+    .form-wrapper
+      %h2 商品の情報を入力
+      .product-image-box
+        = f.label :image do
+          .image-form
+            = f.file_field :image, class: 'image-form__file'
+            %p ドラッグアンドドロップ
+            %p またはクリックしてファイルをアップロード
+      .form-wrapper
+        .form-block
+          = f.label :name do
+            %p.form-block__label 商品名
+            %p.form-block__require 必須
+          = f.text_field :name, class: 'form-block__text-field'
+        .form-block
+          = f.label :name do
+            %p.form-block__label 商品説明
+            %p.form-block__require 必須
+          = f.text_area :name, class: 'form-block__text-area'
+      .form-wrapper
+        .details-forms
+          .form-block
+            = f.label :name do
+              %p.form-block__label カテゴリー
+              %p.form-block__require 必須
+            = f.select :name, [["Railsの基礎", "rails_base"], ["Rubyの基礎", "ruby_base"]], class: 'form-block__select'
+          .form-block
+            = f.label :name do
+              %p.form-block__label 状態
+              %p.form-block__require 必須
+            = f.select :name, [["---", 0]], class: 'form-block__select'
+      .form-wrapper
+        .about-shipping-forms
+          .form-block
+            = f.label :name do
+              %p.form-block__label 配送料の負担
+              %p.form-block__require 必須
+            = f.select :name, [["---", 0]], class: 'form-block__select'
+          .form-block
+            = f.label :name do
+              %p.form-block__label 発送元の地域
+              %p.form-block__require 必須
+            = f.select :name, [["---", 0]], class: 'form-block__select'
+          .form-block
+            = f.label :name do
+              %p.form-block__label 発送までの日数
+              %p.form-block__require 必須
+            = f.select :name, [["---", 0]], class: 'form-block__select'
+      .form-wrapper
+        .selling-price-form
+          .form-block--price
+            = f.label '価格'
+          .selling-charge
+          .selling-profit
+      .exhibit
+        .exhibit__announcement
+        = f.submit '出品する', class: 'exhibit__submit-btn'
+        = link_to '戻る', class: 'exhibit__back-btn'
