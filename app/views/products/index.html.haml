@@ -1,8 +1,8 @@
 =  render partial: 'layouts/header'
 .contents
   %section.head_pict
-    =link_to do
-      = image_tag asset_path 'header.png', alt: "heading", class: "heading_pict"
+    = link_to do
+      = image_tag(asset_path 'header.png', alt: "heading", class: "heading_pict") 
   %section.pick_up
     %h2.pick_head ピックアップカテゴリー
     %section.items_box
