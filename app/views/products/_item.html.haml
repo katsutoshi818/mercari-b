@@ -2,7 +2,7 @@
   .item_box
     %section.items
       = link_to do
-        = image_tag "/assets/cat1.png",size: "213*220", alt: "商品写真", class: "items__pict"
+        %img.items_pict{src: asset_path('cat1.png'), width: "213", height: "220", alt: "商品写真"}
         .index_text
           %h4 あかさたなストロングだふふふふふふふふふふふふふふふふふふ
           .index_info
@@ -15,7 +15,7 @@
     .change_a_tag
       %section.items
         = link_to do
-          = image_tag "/assets/cat1.png",size: "213*220", alt: "商品写真", class: "items__pict"
+          %img.items_pict{src: asset_path('cat1.png'), width: "213", height: "220", alt: "商品写真"}
         .index_text
           %h4 品名
           .index_info
@@ -28,7 +28,7 @@
     .change_a_tag
       %section.items
         = link_to do
-          = image_tag "/assets/IMG_0002.jpg",size: "213*220", alt: "商品写真", class: "items__pict"
+          %img.items_pict{src: asset_path('IMG_0002.jpg'), width: "213", height: "220", alt: "商品写真"}
           .index_text
             %h4 品名
             .index_info
@@ -41,7 +41,7 @@
     .change_a_tag
       %section.items
         = link_to do
-          = image_tag "/assets/IMG_0052.jpg",size: "213*220", alt: "商品写真", class: "items__pict"
+          %img.items_pict{src: asset_path('IMG_0002.jpg'), width: "213", height: "220", alt: "商品写真"}
           .index_text
             %h4 品名
             .index_info

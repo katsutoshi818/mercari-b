@@ -2,7 +2,7 @@
 .contents
   %section.head_pict
     = link_to do
-      = image_tag asset_path 'header.png', alt: "heading", class: "heading_pict"
+      %img.heading_pict{src: asset_path('header.png'), alt: "heading"}
   %section.pick_up
     %h2.pick_head ピックアップカテゴリー
     %section.items_box
@@ -18,9 +18,9 @@
       
 .footer
   .footer_pict
-    = image_tag "/assets/footer.png", alt: "heading", class: "foot_pict"
+    %img.foot_pict{src: asset_path('footer.png'), alt: "heading"}
   .footer_text
-    = image_tag "/assets/footer2.png", alt: "heading", class: "foot_pict_2"
+    %img.foot_pict{src: asset_path('footer2.png'), alt: "heading"} 
     = link_to do
       .sell_link
         %p 出品
