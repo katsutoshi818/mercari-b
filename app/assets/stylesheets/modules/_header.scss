@@ -100,7 +100,7 @@
   }
 
   p {
-    background-image: url("/assets/IMG_0052.jpg/"); /* 表示する画像 */
+    background-image: url(asset_path('IMG_0052.jpg')); /* 表示する画像 */
     width: 30px;    /* ※縦横を同値に */
     height: 30px;    /* ※縦横を同値に */
     border-radius: 50%; /* 角丸半径を50%にする(=円形にする) */
