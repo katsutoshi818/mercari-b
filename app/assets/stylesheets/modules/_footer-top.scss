@@ -1,0 +1,112 @@
+.footer {
+  height: 390px;
+  width: 100%;
+  background-color: $black;
+  bottom: 0;
+ 
+h5 {
+  font-size: $font_sentence;
+  line-height: 20px;
+  color: $white;
+  margin-bottom: 10px;
+}
+
+li {
+  font-size: 12px;
+  line-height: 35px;
+  color: $lightgray;
+}
+
+  .footer-down {
+    margin: 30px auto 20px;
+    width: 1020px;
+  }
+
+  .footer-down_box {
+   width: 70%;
+   text-align: center;
+   margin: 0 auto;
+  padding-bottom: 10px;
+  }
+
+ p {
+  color: $white;
+  font-size: 12px;
+   display: inline;
+  }
+}
+
+.footer-left {
+  display: block;
+  float: left;
+  margin-top: 18px;
+  width: 200px;
+  height: 280px;
+
+  i{
+    color: $white;
+   letter-spacing: 15px;
+   padding-top: 20px;
+  }
+}
+
+.footer-top {
+  margin: 0 auto;
+  width: 1020px;
+  height: 300px;
+}
+
+.footer-left_middle {
+  display: block;
+  float: left;
+  margin-top: 18px;
+  width: 200px;
+  height: 300px;
+}
+
+.footer-right_middle {
+  display: block;
+  float: left;
+  margin-top: 18px;
+  height: 250px;
+}
+
+.footer-right_box{
+  float: left;
+  word-wrap: break-word;
+  padding-left: 10px;
+  width: 45%;
+}
+
+.footer-right {
+  display: block;
+  float: left;
+  margin-top: 18px;
+  width: 130px;
+  height: 150px;
+}
+
+.sell_link {
+  bottom: 32px;
+  right: 32px;
+  height:160px;
+  width:160px;
+  border-radius:50%;
+  line-height:50px;
+  text-align:center;
+  background-color: $red;
+  position: fixed;
+  
+  p{
+    height: 22px;
+    font-size: 22px;
+    color: $white;
+    margin-top: 20px;
+    display: block;
+  }
+  i{
+    font-size: 65px;
+    color: $white;
+    margin-top: 15px;
+  }
+  }
