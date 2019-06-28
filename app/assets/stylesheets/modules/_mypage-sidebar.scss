@@ -1,0 +1,47 @@
+.m-side{
+  float: left;
+  width: 280px;
+  margin: 0 40px 0 0;
+  padding-left: 200px;
+  padding-top: 40px;
+
+
+.mypage-nav-list-item {
+  height: 47px;
+  width: 250px;
+  border-top: solid 1px $lightgray;
+  background-color: $white;
+}
+
+a{
+  color: #333333;
+  font-size: $font_menu;
+  line-height: 40px;
+  display: block;
+  padding-left: 15px;
+}
+
+i{
+  color: $lightgray;
+  display: inline-block;
+  text-align: right;
+  float: right;
+  padding-top: 15px;
+  padding-right: 15px;
+}
+
+.mypage-nav-head {
+  margin-top: 40px;
+  font-size: $font_sentence;
+  color: $black;
+  padding-bottom: 5px;
+}
+
+.mypage-nav-list-item:hover{
+  background-color: #f5f5f5;
+  i{
+    color: $black;
+    transform: scale(1.5) translateX(4px);
+  }
+}
+}
