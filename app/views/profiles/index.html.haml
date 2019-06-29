@@ -2,4 +2,13 @@
 .main-profile
   = render partial: 'users/mypage-sidebar'
   .profile-box
+    %div.profile-box__label
+      %p.profile-box__label__profile　プロフィール
+    %form.profile-box__form
+      .profile-box__form__user
+        %img.profile-box__form__user__figure{src: asset_path('icoon-mono.jpeg')}
+        %input.profile-box__form__user__nickname{type: "text", value: "ニックネーム"}
+      .profile-box__form__content
+        %textarea.profile-box__form__content__intoroduction{placeholder: "紹介文"}
+        %button.profile-box__form__content__button{type: "submit"} 変更する
 = render partial: 'layouts/footer-top'
