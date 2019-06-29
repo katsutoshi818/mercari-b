@@ -1,9 +1,7 @@
 .footer {
-  height: 390px;
   width: 100%;
   background-color: $black;
-  bottom: 0;
- 
+  padding-bottom: 0;
 h5 {
   font-size: $font_sentence;
   line-height: 20px;
@@ -18,7 +16,7 @@ li {
 }
 
   .footer-down {
-    margin: 30px auto 20px;
+    margin: 30px auto 0px;
     width: 1020px;
   }
 
@@ -109,4 +107,4 @@ li {
     color: $white;
     margin-top: 15px;
   }
-  }
+}

@@ -1,51 +1,53 @@
 .footer
-  .footer-top
-    .footer-left
-      %h5 メルカリについて
-      %ul
-        %li 会社概要 （運営会社）
-        %li 採用情報
-        %li プレスリリース
-        %li 公式ブログ
-        %li メルカリロゴ利用ガイドライン
-        %i.fab.fa-twitter.fa-2x
-        %i.fab.fa-facebook-square.fa-2x
-    .footer-left_middle
-      %h5 ヘルプ＆ガイド
-      %ul
-        %li メルカリガイド
-        %li らくらくメルカリ便
-        %li ゆうゆうメルカリ便
-        %li 大型メルカリ便
-        %li 車体取引ガイド
-        %li メルカリあんしん・あんぜん宣言！
-        %li 偽ブランド品撲滅への取り組み
-        %li メルカリボックス
-    .footer-right_middle 
-      %h5 プライバシーと利用規約
-      .footer-right_box
+  %img.foot_pict{src: asset_path('footer.png'), alt: "heading"}
+  .footer_text
+    .footer-top
+      .footer-left
+        %h5 メルカリについて
         %ul
-          %li プライバシーポリシー
-          %li メルカリ利用
-          %li あんしんスマホサポート制度に関する利用特約
-          %li コンプライヤンスポリシー
-      .footer-right_box
+          %li 会社概要 （運営会社）
+          %li 採用情報
+          %li プレスリリース
+          %li 公式ブログ
+          %li メルカリロゴ利用ガイドライン
+          %i.fab.fa-twitter.fa-2x
+          %i.fab.fa-facebook-square.fa-2x
+      .footer-left_middle
+        %h5 ヘルプ＆ガイド
         %ul
-          %li 個人データの安全管理に係る基本方針
-          %li 特定商取引に関する表記
-          %li 資金決済法に基づく表示
-          %li 法令順守と犯罪抑止のために
-          %li 返品・返金ポリシー
-    .footer-right
-      %h5 国
-      %ul
-        %li 日本
-        %li United States
-  .footer-down
-    = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-white.svg?1905591235"
-    .footer-down_box
-      %p © 2019 Mercari
-      = link_to do
-        .sell_link
-          %p 出品
-          %i.fas.fa-camera
+          %li メルカリガイド
+          %li らくらくメルカリ便
+          %li ゆうゆうメルカリ便
+          %li 大型メルカリ便
+          %li 車体取引ガイド
+          %li メルカリあんしん・あんぜん宣言！
+          %li 偽ブランド品撲滅への取り組み
+          %li メルカリボックス
+      .footer-right_middle 
+        %h5 プライバシーと利用規約
+        .footer-right_box
+          %ul
+            %li プライバシーポリシー
+            %li メルカリ利用
+            %li あんしんスマホサポート制度に関する利用特約
+            %li コンプライヤンスポリシー
+        .footer-right_box
+          %ul
+            %li 個人データの安全管理に係る基本方針
+            %li 特定商取引に関する表記
+            %li 資金決済法に基づく表示
+            %li 法令順守と犯罪抑止のために
+            %li 返品・返金ポリシー
+      .footer-right
+        %h5 国
+        %ul
+          %li 日本
+          %li United States
+    .footer-down
+      = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-white.svg?1905591235"
+      .footer-down_box
+        %p © 2019 Mercari
+        = link_to do
+          .sell_link
+            %p 出品
+            %i.fas.fa-camera
