@@ -1,0 +1,97 @@
+.wrapper
+  %header
+    %h1
+      = link_to root_path do
+        %img{src: asset_path('exhibition-mercari-logo.svg'), width: 185, height: 49, alt: 'logo'}
+  = form_with model: @product, url: {action: :create} do |f|
+    .forms-wrapper
+      %h2.forms-wrapper__announce 商品の情報を入力
+      .product-image-box
+        %h3.product-image-box__label
+          出品画像
+          %span.form-block__require 必須
+        %p.product-image-box__tips 最大10枚までアップロードできます
+        = f.label :image do
+          .image-form
+            = f.file_field :image, class: 'image-form__file'
+            %p ドラッグアンドドロップ
+            %p またはクリックしてファイルをアップロード
+      .form-wrapper
+        .form-block
+          = f.label :name do
+            %p.form-block__label
+              商品名
+              %span.form-block__require 必須
+          = f.text_field :name, class: 'form-block__form--textfield'
+        .form-block
+          = f.label :name do
+            %p.form-block__label
+              商品説明
+              %span.form-block__require 必須
+          = f.text_area :name, class: 'form-block__form--textarea'
+      .form-wrapper--select
+        %h3.form-wrapper__label 商品の詳細
+        .details-forms
+          .form-block--select
+            = f.label :name do
+              %p.form-block__label
+                カテゴリー
+                %span.form-block__require 必須
+            = f.select :name, [["Railsの基礎", "rails_base"], ["Rubyの基礎", "ruby_base"]], {}, class: 'form-block__form--select'
+            %i.fas.fa-chevron-down.select-arrow
+          .form-block--select
+            = f.label :name do
+              %p.form-block__label
+                状態
+                %span.form-block__require 必須
+            = f.select :name, [["---", 0]], {}, class: 'form-block__form--select'
+            %i.fas.fa-chevron-down.select-arrow
+      .form-wrapper--select
+        %h3.form-wrapper__label 配送について
+        .about-shipping-forms
+          .form-block--select
+            = f.label :name do
+              %p.form-block__label
+                配送料の負担
+                %span.form-block__require 必須
+            = f.select :name, [["---", 0]], {}, class: 'form-block__form--select'
+            %i.fas.fa-chevron-down.select-arrow
+          .form-block--select
+            = f.label :name do
+              %p.form-block__label
+                発送元の地域
+                %span.form-block__require 必須
+            = f.select :name, [["---", 0]], {}, class: 'form-block__form--select'
+            %i.fas.fa-chevron-down.select-arrow
+          .form-block--select
+            = f.label :name do
+              %p.form-block__label
+                発送までの日数
+                %span.form-block__require 必須
+            = f.select :name, [["---", 0]], {}, class: 'form-block__form--select'
+            %i.fas.fa-chevron-down.select-arrow
+      .form-wrapper--select
+        %h3.form-wrapper__label 販売価格(300〜9,999,999)
+        .selling-price-form
+          .form-block--price
+            = f.label :price do
+              %p.form-block__label
+                価格
+                %span.form-block__require 必須
+            .price-form
+              %p.price-form__yen ¥
+              = f.text_field :price, class: 'price-form__text'
+          .form-block--price--charge
+            %p.form-block__charge-label 販売手数料(10%)
+            %p.form-block__charge -
+          .form-block--price--charge
+            %p.form-block__profit-label 販売利益
+            %p.form-block__profit -
+      .form-wrapper
+        .exhibit-announcement
+          %p.exhibit-announcement__text 禁止されている出品、行為を必ずご確認ください。
+          %p.exhibit-announcement__text またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり処罰される可能性があります。
+          %p.exhibit-announcement__text また、出品をもちまして加盟店規約に同意したことになります。
+
+        = f.submit '出品する', class: 'form-wrapper__submit-btn'
+        = link_to '戻る', {} ,class: 'form-wrapper__back-btn'
