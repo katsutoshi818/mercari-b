@@ -1,8 +1,10 @@
 .m-side{
   width: 280px;
-  margin: 0 40px 0 0;
-  padding-left: 200px;
+  margin: 0 0 40px 0;
+  padding-left: 56px;
   padding-top: 40px;
+  float: left;
+  @include clearfix();
 
 
 .mypage-nav-list-item {

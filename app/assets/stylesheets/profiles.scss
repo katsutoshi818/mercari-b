@@ -1,0 +1,12 @@
+.main-profile{
+  background-color: #f5f5f5;
+  @include clearfix();
+}
+
+.profile-box{
+  height: 568px;
+  width: 700px;
+  margin: 40px 58px 0 0;
+  background-color: $white;
+  float: right;
+}
