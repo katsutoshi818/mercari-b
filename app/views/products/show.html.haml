@@ -1,0 +1,131 @@
+= render partial: 'layouts/header'
+%section.show_product
+  %h3.product_name 商品名
+  .product_info
+    .product_photo
+      .photo_stage
+        %img.photo_stage__image{ src: asset_path('cat1.png'), alt: "メイン"}
+      .photo_list
+        .photo_box
+          %img.photo_box__image#photo_box__image_light{ "data-url": asset_path('cat1.png'), src: asset_path('cat1.png'), alt: "写真1"}
+        .photo_box
+          %img.photo_box__image{ "data-url": asset_path('footer.png'), src: asset_path('footer.png'), alt: "写真2"}
+        .photo_box
+          %img.photo_box__image{ "data-url": asset_path('footer2.png'), src: asset_path('footer2.png'), alt: "写真3"}
+        .photo_box
+          %img.photo_box__image{ "data-url": asset_path('IMG_0002.jpg'), src: asset_path('IMG_0002.jpg'), alt: "写真4"}
+        .photo_box
+          %img.photo_box__image{ "data-url": asset_path('header.png'), src: asset_path('header.png'), alt: "写真5"}
+        .photo_box
+          %img.photo_box__image{ "data-url": asset_path('cat1.png'), src: asset_path('cat1.png'), alt: "写真1"}
+        .photo_box
+          %img.photo_box__image{ "data-url": asset_path('footer.png'), src: asset_path('footer.png'), alt: "写真2"}
+        .photo_box
+          %img.photo_box__image{ "data-url": asset_path('footer2.png'), src: asset_path('footer2.png'), alt: "写真3"}
+        .photo_box
+          %img.photo_box__image{ "data-url": asset_path('IMG_0002.jpg'), src: asset_path('IMG_0002.jpg'), alt: "写真4"}
+        .photo_box
+          %img.photo_box__image{ "data-url": asset_path('header.png'), src: asset_path('header.png'), alt: "写真5"}
+    %table.product_detail
+      %tr.detail
+        %th.seller 出品者
+        %td.seller_text
+          = link_to do
+            %span 出品者名<br>
+          .seller_rate
+            .seller_good
+              %i.fas.fa-grin.seller_good__icon
+              %span.seller_good__quentity 20
+            .seller_nomal
+              %i.fas.fa-meh.seller_nomal__icon
+              %span.seller_nomal__quentity 10
+            .seller_bad
+              %i.fas.fa-frown.seller_bad__icon
+              %span.seller_bad__quentity 5
+      %tr.detail
+        %th.detail__category カテゴリー
+        %td.detail__category_text 
+          = link_to do
+            %span カテゴリー名1<br>
+          = link_to do
+            %span カテゴリー名2<br>
+          = link_to do
+            %span カテゴリー名3
+      %tr.detail
+        %th.detail__bland ブランド
+        %td.detail__bland_text ブランド名
+      %tr.detail
+        %th.detail__size サイズ
+        %td.detail___size_text サイズ
+      %tr.detail
+        %th.detail__state 商品状態
+        %td.detail__state_text 状態
+      %tr.detail
+        %th.detail__who_pays_shipping_fee 送料
+        %td.detail__who_pays_shipping_fee_text どっち負担か
+      %tr.detail
+        %th.detail__way_to_ship 配送方法
+        %td.detail__way_to_ship_text 配送方法
+      %tr.detail
+        %th.detail__seller_prefecture 配送元地域
+        %td.detail__seller_prefecture_text
+          =link_to do
+            %span 都道府県
+      %tr.detail
+        %th.detail__days_to_ship 発送日の目安
+        %td.detail__days_to_ship_text 日で発送
+  .product_place
+    %span.product_place__place ¥2,000
+    %span.product_place__tax (税込)
+    %span.product_place__ship 送料込み
+  .link_buy
+    = link_to do
+      %span.link_buy__text 購入画面に進む
+  .product_discription
+    %p.product_discription__text 商品説明
+  .product_other
+    .other_left
+      .other_left__left
+        %i.far.fa-heart.other_left__left__heart#change_icon
+        %span.other_left__left__good いいね!
+        %span.other_left__left__quantity 99
+      .other_left__right
+        %i.far.fa-flag.other_left__right__flag
+        = link_to do
+          %span.other_left__right__bad 不適切な商品の報告
+    .other_right
+      = link_to do
+        %i.fas.fa-lock.other_right__lock
+        %span.other_right__approach あんしん・あんぜんへの取り組み
+%section.show_comment
+  %p.comment_attention 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+  .form コメント入力フォームです
+  .send コメントする
+%section.show_icon
+  .icon_area
+    = link_to do
+      %i.fab.fa-facebook-square.icon_area__facebook
+    = link_to do
+      %i.fab.fa-twitter-square.icon_area__tweeter
+    = link_to do
+      %i.fab.fa-pinterest.icon_area__pinterest
+%section.user_other_product
+  = link_to do
+    %h3.user_name_other ユーザーの他の出品リスト
+  .user_other_product_box
+    = render partial: "product"
+    = render partial: "product"
+    = render partial: "product"
+    = render partial: "product"
+    = render partial: "product"
+    = render partial: "product"
+%section.bland_other_product
+  = link_to do
+    %h3.bland_name_other ブランドの他の出品リスト
+  .bland_other_product_box
+    = render partial: "product"
+    = render partial: "product"
+    = render partial: "product"
+    = render partial: "product"
+    = render partial: "product"
+    = render partial: "product"
