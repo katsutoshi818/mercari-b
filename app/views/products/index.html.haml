@@ -15,13 +15,4 @@
       = render partial: "table"
       = render partial: "table"
       = render partial: "table"
-      
-.footer
-  .footer_pict
-    %img.foot_pict{src: asset_path('footer.png'), alt: "heading"}
-  .footer_text
-    %img.foot_pict{src: asset_path('footer2.png'), alt: "heading"} 
-    = link_to do
-      .sell_link
-        %p 出品
-        %i.fas.fa-camera
+= render partial: 'layouts/footer-top'
