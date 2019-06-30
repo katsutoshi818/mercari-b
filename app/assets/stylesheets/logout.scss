@@ -1,0 +1,30 @@
+*{
+  box-sizing: border-box;
+}
+
+.main-logout{
+  background-color: #f5f5f5;
+  @include clearfix();
+}
+
+.main-logout-box{
+  width: 990px;
+  margin: 0 auto;
+  .logout-box{
+    height: 179px;
+    width: 700px;
+    margin: 40px 0 0 0;
+    padding: 64px 0;
+    float: right;
+    background-color: $white;
+    text-align: center;
+    &__button{
+      height: 50px;
+      width: 320px;
+      font-size: $font_menu;
+      background-color: $red;
+      border: 1px solid $red;
+      color: $white;
+    }
+  }
+}
