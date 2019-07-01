@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do
       get :profile
       get :logout
+      get :identification
     end
   end
   

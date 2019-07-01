@@ -1,0 +1,46 @@
+= render partial: 'layouts/header'
+.main-identification
+  .main-identification-box
+    = render partial: 'users/mypage-sidebar'
+    .identification-box
+      .identification-box__label
+        %p　本人情報の登録
+      %form.identification-box__information
+        .identification-box__information__text
+          %p お客様の本人情報をご登録ください
+        .identification-box__information__form
+          %label お名前
+          %p 林 克俊
+        .identification-box__information__form
+          %label お名前カナ
+          %p ハヤシ　カツトシ
+        .identification-box__information__form
+          %label 生年月日
+          %p 1996/8/8
+        .identification-box__information__form
+          %label 郵便番号
+          %span 任意
+          %input{type: "text", placeholder: "1234567"}
+        .identification-box__information__form
+          %label 都道府県
+          %span 任意
+          .identification-box__information__form__wrap
+            %select
+              %option -----
+              %option 北海道
+              %option 青森
+            %i.fas.fa-chevron-down
+        .identification-box__information__form
+          %label 市区町村
+          %span 任意
+          %input{type: "text", placeholder: "名古屋市中区"}
+        .identification-box__information__form
+          %label 番地
+          %span 任意
+          %input{type: "text", placeholder: "栄1-1"}
+        .identification-box__information__form
+          %label 建物名
+          %span 任意
+          %input{type: "text", placeholder: "栄ビル３階"}
+        %button.identification-box__information__button{type: "submit"} 登録する
+= render partial: 'layouts/footer-top'
