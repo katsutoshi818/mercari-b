@@ -1,0 +1,198 @@
+body {
+  background-color: #f5f5f5;
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+}
+
+.main {
+  background: #fff;
+  margin: 0 auto;
+  width: 700px;
+}
+
+.main_top__text {
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 22px;
+  line-height: 1.5;
+  padding: 16px;
+  text-align: center;
+}
+
+.main_body {
+  padding: 24px 12.5% 0;
+}
+.product_info {
+  margin: 0 auto;
+  max-width: 320px;
+}
+
+.item_info {
+  display: flex;
+  &__image {
+    height: 64px;
+    width: 64px;
+  }
+  &__text {
+    font-size: 16px;
+    font-weight: 600;
+    height: 64px;
+    margin-left: 16px;
+    line-height: 1.5;
+    text-align: left;
+    width: calc(100% - 80px);
+  }
+}
+
+.fee_info {
+  width: 100%;
+  &__text {
+    margin-top: 8px;
+    line-height: 1.5;
+    text-align: center;
+    &__place {
+      font-size: 22px;
+    }
+    &__shipping_cost {
+      font-size: 14px;
+      font-weight: 400;
+      margin-left: 8px;
+    }
+  }
+}
+
+.point_info {
+  background-color: #ccc;
+  padding: 16px;
+  margin-top: 16px;
+  text-align: center;
+  &__text {
+    font-size: 14px;
+    font-weight: 200;
+    
+  }
+}
+
+.buyer_info {
+  border-top: 1px solid #f5f5f5;
+}
+
+.fee_body {
+  border-top: 1px solid #f5f5f5;
+  margin: 40px auto 0;
+}
+
+.buy_info::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.buy_text {
+  float: left;
+  height: 60px;
+  line-height: 28px;
+  padding: 16px 0;
+  &__attention {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+.buy_place {
+  float: right;
+  height: 60px;
+  line-height: 28px;
+  padding: 16px 0;
+  &__body {
+    font-size: 24px;
+  }
+}
+
+.buy_not {
+  &__message {
+    color: red;
+    font-size: 14px;
+  }
+}
+
+.buy_button {
+  background-color: red;
+  border: 1px solid red;
+  color: white;
+  font-size: 14px;
+  height: 50px;
+  margin: 8px 0 0;
+  width: 100%;
+}
+
+.buyer_info {
+  padding: 24px 12.5% 0;
+  margin: 40px 0 0;
+}
+
+.address {
+  max-width: 320px;
+  margin: 0 auto;
+  &__info {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  &__text {
+    margin: 8px 0 0;
+    &__address_number, &__address_text, &__buyer {
+      display: block;
+      font-size: 14px;
+    }
+  }
+  &__text::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  
+}
+
+.address_link {
+  text-align: right;
+  &__text {
+    color: #0099e8;
+    font-size: 14px;
+  }
+  &__icon {
+    color: #0099e8;
+    font-size: 14px;
+  }
+}
+
+.fee_way {
+  margin: 0 auto;
+  max-width: 320px;
+  padding: 24px 0 40px;
+  &__info {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+  }
+  &__card {
+    margin: 8px 0 0;
+    &__number, &__limit {
+      display: block;
+      font-size: 14px;
+    }
+  }
+  &__image {
+    height: 20px;
+    width: 34px;
+  }
+}
+
+.card_link {
+  text-align: right;
+  &__change {
+    color: #0099e8;
+    font-size: 14px;
+  }
+  &__icon {
+    color: #0099e8;
+    font-size: 14px;
+  }
+}
