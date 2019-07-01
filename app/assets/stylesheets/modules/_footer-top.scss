@@ -94,6 +94,7 @@ li {
   text-align:center;
   background-color: $red;
   position: fixed;
+  z-index: 100;
   
   p{
     height: 22px;
