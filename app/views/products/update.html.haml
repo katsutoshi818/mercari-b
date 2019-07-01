@@ -1,0 +1,59 @@
+.body
+  %section.attention
+    .attention__box
+    %i.far.fa-clock.attention--time
+    %span.attention--red 発送をお待ちください
+    %span.attention--black 出品者からの発送通知をお待ちください
+  %section.buyed_info
+    .buyed_top
+      %h2.buyed_top__text 購入が完了しました
+    .buyed_item
+      .buyed_product
+        %img.buyed_product__image{ src: asset_path('cat1.png'), alt: "購入商品写真"}
+        %span.buyed_product__text 商品名
+    .buyed_fee
+      %span.buyed_fee__text ¥ 300
+      %span.buyed_fee__ship 送料込み
+    .buyer_body
+      .buyer_info
+        .address
+          %h3.address__info 配送先
+          .address__text
+            %span.address__text__address_number 郵便番号
+            %span.address__text__address_text 住所
+            %span.address__text__buyer 名前
+            .address_link
+              = link_to do
+                %span.address_link__text 変更する
+                %i.fas.fa-chevron-right.address_link__icon
+    .fee_body
+      .fee_way
+        %h3.fee_way__info 支払い方法
+        .fee_way__card
+          %span.fee_way__card__number カード番号
+          %span.fee_way__card__limit 有効期限
+          %img.fee_way__image{ src: asset_path('cat1.png'), alt: "商品画像1" }
+          .card_link
+            = link_to do
+              %span.card_link__change 変更する
+              %i.fas.fa-chevron-right.card_link__icon
+    .buyed_other
+      %h3.buyed_other__top 発送通知後の流れ
+      .buyed_other__icon_box
+        %span ✨
+        %i.fas.fa-grin.buyed_other__icon_box--red
+        %i.fas.fa-meh.buyed_other__icon_box--yellow
+        %i.fas.fa-frown.buyed_other__icon_box--blue
+        %span ✨
+      .buyed_other__body
+        %span.buyed_other__body__text 商品を受け取ったら<br>出品者の評価をしましょう。<br>購入代金が出品者に振り込まれます。<br>評価後に取引は完了です。
+      = link_to do
+        %span.buyed_other__body__link マイページへ戻る
+.line
+.buyed_not
+  .buyed_not__box
+    %h3.buyed_not__box__text 商品を購入できませんでした
+  .buyed_not__error
+    %span.buyed_not__error__text 購入手続き中に商品情報が変更されました。大変お手数ですが、商品情報の確認を願いします。
+    = link_to do
+      %span.buyed_not__error__link 購入画面へ戻る
