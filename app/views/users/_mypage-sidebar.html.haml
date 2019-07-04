@@ -2,12 +2,12 @@
   %ul.mypage-nav-list
     %li
     = link_to do
-      %a.mypage-nav-list-item 
+      %a.mypage-nav-list-item
         マイページ
         %i.fas.fa-chevron-right
     %li
     = link_to do
-      %a.mypage-nav-list-item 
+      %a.mypage-nav-list-item
         お知らせ
         %i.fas.fa-chevron-right
     %li
@@ -83,37 +83,30 @@
         %i.fas.fa-chevron-right
     %h3.mypage-nav-head 設定
     %li
-    = link_to do
-      %a.mypage-nav-list-item
-        プロフィール
-        %i.fas.fa-chevron-right
+    = link_to profile_users_path, class: "mypage-nav-list-item" do
+      プロフィール
+      %i.fas.fa-chevron-right
     %li
-    = link_to do
-      %a.mypage-nav-list-item
-        発送元・お届け先住所変更
-        %i.fas.fa-chevron-right
+    = link_to deliver_address_users_path, class: "mypage-nav-list-item" do
+      発送元・お届け先住所変更
+      %i.fas.fa-chevron-right
     %li
-    = link_to do
-      %a.mypage-nav-list-item
-        支払い方法
-        %i.fas.fa-chevron-right
+    = link_to card_users_path, class: "mypage-nav-list-item" do
+      支払い方法
+      %i.fas.fa-chevron-right
     %li
-    = link_to do
-      %a.mypage-nav-list-item
-        メール/パスワード
-        %i.fas.fa-chevron-right
+    = link_to email_users_path, class: "mypage-nav-list-item" do
+      メールアドレスの変更
+      %i.fas.fa-chevron-right
     %li
-    = link_to do
-      %a.mypage-nav-list-item
-        本人情報
-        %i.fas.fa-chevron-right
+    = link_to password_users_path, class: "mypage-nav-list-item" do
+      パスワードの変更
+      %i.fas.fa-chevron-right
     %li
-    = link_to do
-      %a.mypage-nav-list-item
-        電話番号の確認
-        %i.fas.fa-chevron-right
+    = link_to identification_users_path, class: "mypage-nav-list-item" do
+      本人情報
+      %i.fas.fa-chevron-right
     %li
-    = link_to do
-      %a.mypage-nav-list-item
-        ログアウト
-        %i.fas.fa-chevron-right
+    = link_to logout_users_path, class: "mypage-nav-list-item" do
+      ログアウト
+      %i.fas.fa-chevron-right

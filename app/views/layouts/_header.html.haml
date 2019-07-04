@@ -2,7 +2,7 @@
   .content
     .content-top
       .content-top_left
-        = link_to do
+        = link_to root_path do
           %img{src: asset_path('mercari_logo_horizontal.png'), alt: 'mercari', height: '45', width: '145'}
       .content-top_right
         %input.content-top_right__search{maxlength: "30", name: "in01",size: "100",type: "search", placeholder: "何かお探しですか？"}/
@@ -34,6 +34,6 @@
               %i.fa.fa-check
                 %span やることリスト
           %li.down_list_right
-            = link_to do
+            = link_to users_path do
               %p.user-image
               %span マイページ
