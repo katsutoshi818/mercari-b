@@ -10,14 +10,16 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    if @product.save
-      @product_image = ProductImage.new(image_params)
-      if @product_image.save
-        respond_to do |format|
-          format.html redirect_to root_path
-          format.json
-        end
-      end
+    Product.transaction do
+      @product.save!
+    end
+    ProductImage.transaction do
+    @product_image = ProductImage.new(image_params)
+    @product_image.save!
+    end
+    respond_to do |format|
+      format.html redirect_to root_path
+      format.json
     end
   end
 
