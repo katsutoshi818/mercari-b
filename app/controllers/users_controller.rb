@@ -19,4 +19,7 @@ class UsersController < ApplicationController
 
   def card
   end
+
+  def password
+  end
 end

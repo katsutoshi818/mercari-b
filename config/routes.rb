@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get :deliver_address
       get :card
       get :email
+      get :password
     end
   end
   
