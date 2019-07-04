@@ -13,4 +13,10 @@ class UsersController < ApplicationController
 
   def deliver_address
   end
+
+  def email
+  end
+
+  def card
+  end
 end
