@@ -13,9 +13,9 @@ class ProductsController < ApplicationController
     if @product.save
       @product_image = ProductImage.new(image_params)
       if @product_image.save
-        respond_to do |f|
-          f.html redirect_to 'root'
-          f.json
+        respond_to do |format|
+          format.html redirect_to root_path
+          format.json
         end
       end
     end
