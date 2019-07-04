@@ -76,3 +76,6 @@ gem 'erb2haml'
 gem 'pry-rails'
 gem 'font-awesome-rails'
 gem 'ancestry'
+
+gem 'jquery-rails'
+gem 'jquery-turbolinks'
