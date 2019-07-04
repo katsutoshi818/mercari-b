@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'products#index'
+  resources :products, only: [:index, :new, :show, :edit, :update]
   resources :users, only: [:index] do
     collection do
       get :profile
