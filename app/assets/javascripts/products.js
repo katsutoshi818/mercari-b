@@ -1,10 +1,5 @@
 $(document).on('turbolinks:load', function() {
 
-  $('.image-form__file').on('change', function() {
-    console.log('change!');
-    console.log($(this).val());
-  })
-
   function appendCategoryForm(categories, hierarchy) {
     categoryList = $('.category-block');
     var html = `<div class="form-block--select-append">
@@ -23,7 +18,6 @@ $(document).on('turbolinks:load', function() {
     categoryList.append(html);
   }
 
-
   $('.category-block').on('click', function() {
     function deleteMidCategories() {
       $('#mid_category').remove();
@@ -35,7 +29,6 @@ $(document).on('turbolinks:load', function() {
 
     $('#top_category').on('change', function() {
       var value = $(this).val();
-      console.log("category_change");
       if (value != 0) {
         $.ajax({
           type: 'GET',
@@ -58,7 +51,6 @@ $(document).on('turbolinks:load', function() {
 
     $('#mid_category').on('change', function() {
       var value = $(this).val();
-      console.log("mid_category_change");
       if (value != 0) {
         $.ajax({
           type: 'GET',
@@ -76,7 +68,5 @@ $(document).on('turbolinks:load', function() {
         })
       }
     })
-
-
   });
 });
