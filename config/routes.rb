@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get :identification
       get :deliver_address
       get :card
+      get :email
     end
   end
   

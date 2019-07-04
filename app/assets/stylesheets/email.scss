@@ -1,0 +1,93 @@
+*{
+  box-sizing: border-box;
+}
+
+.main-email{
+  background-color: #f5f5f5;
+  @include clearfix();
+}
+
+.main-email-box{
+  width: 990px;
+  margin: 0 auto;
+}
+
+.email-box{
+  height: 1200px;
+  width: 700px;
+  margin: 40px 0 0 0;
+  float: right;
+  background-color: $white;
+  &__label{
+    height: 50px;
+    width: 700px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: $font_text;
+    font-weight: bold;
+    text-align: center;
+  }
+  &__information{
+    height: 1150px;
+    widows: 700px;
+    padding: 5px 64px;
+    &__text{
+      font-size: $font_menu;
+    }
+    &__form{
+      margin-top: 40px; 
+      font-size: $font_menu;
+      label{
+        font-weight: bold;
+      }
+      p{
+        margin-top: 7px;
+      }
+      input{
+        height: 48px;
+        width: 100%;
+        padding: 10px 16px 8px;
+        margin-top: 4px;
+        border: 1px solid $lightgray;
+        font-size: $font_sentence;
+        border-radius: 4px;
+      }
+      &__wrap{
+        margin-top: 4px;
+        position: relative;
+        select{
+          height: 48px;
+          width: 100%;
+          padding: 0 19px;
+          cursor: pointer;
+          border: none;
+          outline: none;
+          -webkit-appearance: none;
+          background: transparent;
+          background-image: none;
+          box-shadow: none;
+          appearance: none;
+          border: 1px solid $lightgray;
+          font-size: $font_sentence;
+        }
+        i{
+          position: absolute;
+          right: 16px;
+          font-size: $font_sentence;
+          top: 35%;
+          z-index: 2;
+        }
+      }
+    }
+    &__button{
+      height: 50px;
+      width: 100%;
+      margin-top: 40px;
+      background-color: $red;
+      color: $white;
+      font-size: $font_menu;
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+}
