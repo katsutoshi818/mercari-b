@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get :profile
       get :logout
       get :identification
+      get :deliver_address
     end
   end
   
