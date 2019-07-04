@@ -1,0 +1,12 @@
+= render partial: 'layouts/header'
+.main-email
+  .main-email-box
+    = render partial: 'users/mypage-sidebar'
+    .email-box
+      .email-box__label
+        %p　発送元・お届け先住居の変更
+      %form.email-box__information
+        .email-box__information__form
+          %label メールアドレス
+          %input{type: "text", placeholder: "PC・携帯どちらでも良い", value: "abc@gamil.com"}
+        %button.email-box__information__button{type: "submit"} 変更する
