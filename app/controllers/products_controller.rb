@@ -10,10 +10,9 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    if @product.save!
+    if @product.save
       @product_image = ProductImage.new(image_params)
-      binding.pry
-      if @product_image.save!
+      if @product_image.save
         respond_to do |f|
           f.html redirect_to 'root'
           f.json
@@ -24,7 +23,8 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:product_name, :introduction, :category_id, :product_state, :who_pays_shipping_fee, :seller_prefecture, :days_to_ship, :price).merge(seller_user_id: 1, buyer_user_id: 1, brand_id: 1, trade_state: 999, way_to_ship: 1)
+    binding.pry
+    params.require(:product).permit(:product_name, :introduction, :product_state, :who_pays_shipping_fee, :seller_prefecture, :days_to_ship, :price).merge(category_id: params.require(:product)[:low_category_id], seller_user_id: 1, buyer_user_id: 1, brand_id: 1, trade_state: 1, way_to_ship: 1)
   end
 
   def image_params
