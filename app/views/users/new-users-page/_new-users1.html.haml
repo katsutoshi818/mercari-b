@@ -1,0 +1,76 @@
+.new-header
+  = link_to do
+    %img.single_pict{src: '//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2921618501', alt: '', height: '58', width: '185'}
+  .new-usersbar
+    .new-usersbar__box1
+      %li.box1
+        会員情報
+        .new-usersbar__status1
+    .new-usersbar__box2
+      %li.box2 
+        電話番号認証
+        .new-usersbar__status
+    .new-usersbar__box3
+      %li.box3 
+        お届け先住所
+        .new-usersbar__status
+    .new-usersbar__box4
+      %li.box4 
+        支払い方法
+        .new-usersbar__status
+    .new-usersbar__box5
+      %li.box5 
+        完了
+        .new-usersbar__status
+.new-usersbox
+  .new-usersbox__top
+    %h3 会員情報入力
+  .new-usersbox__down
+    %label{for: "name1"} ニックネーム
+    %span.form-require 必須
+    %input.input-default{name: "nickname", placeholder: "例) メルカリ太郎", type: "text", value: ""}/
+    %label{for: "name1"} メールアドレス
+    %span.form-require 必須
+    %input.input-default{name: "nickname", placeholder: "PC・携帯どちらでも可", type: "text", value: ""}/
+    %label{for: "name1"} パスワード
+    %span.form-require 必須
+    %input.input-default{name: "nickname", placeholder: "6文字以上", type: "text", value: ""}/
+    %label{for: "name1"} パスワード（確認）
+    %span.form-require 必須
+    %input.input-default{name: "nickname", placeholder: "6文字以上", type: "text", value: ""}/
+    %h3 本人確認
+    %span.form-text 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+    %label{for: "name1"} 姓（全角）
+    %span.form-require 必須
+    %input.input-default{name: "nickname", placeholder: "例）山田", type: "text", value: ""}/
+    %label{for: "name1"} 名（全角）
+    %span.form-require 必須
+    %input.input-default{name: "nickname", placeholder: "例）綾", type: "text", value: ""}/
+    %label{for: "name1"} 姓カナ（全角）
+    %span.form-require 必須
+    %input.input-default{name: "nickname", placeholder: "例）ヤマダ", type: "text", value: ""}/
+    %label{for: "name1"} 名カナ（全角）
+    %span.form-require 必須
+    %input.input-default{name: "nickname", placeholder: "例）アヤ", type: "text", value: ""}/
+    .birthbays-form
+      %label{for: "name1"} 生年月日
+      %span.form-require 必須
+      .birthdays-form__down
+        = render partial: "layouts/years"
+        %a.birthdays 年
+        = render partial: "layouts/manth"
+        %a.birthdays 月
+        = render partial: "layouts/days"
+        %a.birthdays 日
+        %span ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+    .rc-anchor
+      ロボット認証入ります。
+    .terms-text
+      %p 「次へ進む」のボタンを押すことにより、
+      %a(href="") 利用規約
+      %p に同意したものとみなします
+    %button.btn-next{type: "submit"} 次へ進む
+    .terms-text_down
+      %a(href="") 本人情報の登録について
+      %i.fas.fa-chevron-right
+= render partial: "layouts/single-footer"
