@@ -104,6 +104,7 @@ Things you may want to cover:
 |days_to_ship|integer|null: false|
 |price|integer|null: false|
 |trade_state|integer|null: false|
+|way_to_ship|integer|null: false|
 
 ### Association
 - belongs_to :seller_user, class_name: 'User', foreign_key: 'seller_user_id'
