@@ -8,6 +8,17 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+  def show
+    @product = Product.find(params[:id])
+    @images = @product.product_images
+    @category3 = @product.category
+    @category2 = @category3.parent
+    @category1 = @category2.parent
+    @brand = @product.brand
+    @seller_user = @product.seller_user
+  end
+
+
   def create
     @product = Product.new(product_params)
     Product.transaction do
