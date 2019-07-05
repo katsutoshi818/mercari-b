@@ -1,0 +1,48 @@
+.flom-form{
+  padding-left: 25%;
+  select{
+    height: 50px;
+    background-color: $white;
+    width: 370px;
+  }
+  span{
+    display: block;
+    font-size: $font_menu;
+    color: #888888;
+    width: 70%;
+  }
+}
+
+.new-usersbar-now__box3{
+  display: inline-block;
+    position: relative;
+    margin-left: 32px;
+    color: $red;
+}
+
+.new-usersbar-was__box2{
+  display: inline-block;
+  position: relative;
+  margin-left: 40px;
+  color: $darkgray;
+}
+
+.new-usersbar-now__box3::after{
+  position: absolute;
+  left: 59%;
+  bottom: 5px;
+  content: '';
+  width: 100px;
+  height: 2px;
+  background: #ccc;
+}
+
+.new-usersbar-was__box2::after{
+  position: absolute;
+  left: 57%;
+  bottom: 5px;
+  content: '';
+  width: 100px;
+  height: 2px;
+  background: $red;
+}

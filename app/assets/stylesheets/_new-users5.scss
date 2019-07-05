@@ -1,0 +1,36 @@
+.new-users-text1{
+  font-size: 16px;
+  padding-left: 37%;
+  padding-top: 30px;
+  display: block;
+}
+
+.new-users-text2{
+  font-size: 16px;
+  padding-left: 36%;
+  display: block;
+}
+
+.new-usersbar-was__box4{
+  display: inline-block;
+  position: relative;
+  margin-left: 32px;
+  color: $darkgray;
+}
+
+.new-usersbar-was__box4::after{
+  position: absolute;
+  left: 59%;
+  bottom: 5px;
+  content: '';
+  width: 100px;
+  height: 2px;
+  background: $red;
+}
+
+.new-usersbar-now__box5{
+  display: inline-block;
+  position: relative;
+  padding-left: 64px;
+  color: $red;
+}

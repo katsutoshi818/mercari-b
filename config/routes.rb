@@ -14,5 +14,4 @@ Rails.application.routes.draw do
       get :password
     end
   end
-  
 end
