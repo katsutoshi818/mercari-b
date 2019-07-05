@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'products#index'
   resources :products, only: [:index, :new, :show, :edit, :update]
-  resources :users, only: [:index] do
+  resources :users, only: [:index, :new] do
     collection do
       get :profile
       get :logout
@@ -13,5 +13,4 @@ Rails.application.routes.draw do
       get :password
     end
   end
-  
 end

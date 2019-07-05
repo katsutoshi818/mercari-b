@@ -1,5 +1,5 @@
 .new-header
-  = link_to do
+  = link_to '#' do
     %img.single_pict{src: '//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2921618501', alt: '', height: '58', width: '185'}
   .new-usersbar
     .new-usersbar-now__box1
@@ -41,7 +41,8 @@
     %span.form-require 必須
     %input.input-default{name: "nickname", placeholder: "カード背面4桁もしくは3桁の番号", type: "text", value: ""}/
     %i.fa.fa-question-circle
-      %a.card-nm-what(href="") カードの裏面の番号とは？
+      = link_to '#' do
+        %span.card-nm-what カードの裏面の番号とは？
     %button.btn-next{type: "submit"} 次へ進む
     .terms-text_down
 = render partial: "layouts/single-footer"

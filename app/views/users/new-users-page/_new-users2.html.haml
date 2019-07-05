@@ -1,5 +1,5 @@
 .new-header
-  = link_to do
+  = link_to '#' do
     %img.single_pict{src: '//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2921618501', alt: '', height: '58', width: '185'}
   .new-usersbar
     .new-usersbar-now__box1
@@ -32,6 +32,7 @@
     %button.btn-next{type: "submit"} SMSを送信する
     %span.text-phone ＊ 電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
     .terms-text_down
-      %a(href="") 電話番号の確認が必要な理由
-      %i.fas.fa-chevron-right
+      = link_to '#' do
+        %span 電話番号の確認が必要な理由
+        %i.fas.fa-chevron-right
 = render partial: "layouts/single-footer"
