@@ -2,54 +2,14 @@
   .item_box
     %section.items
       = link_to do
-        %img.items_pict{src: asset_path('cat1.png'), width: "213", height: "220", alt: "商品写真"}
+        = image_tag @product.product_images.image, class: "items_pict", alt: "商品画像1"
         .index_text
-          %h4 あかさたなストロングだふふふふふふふふふふふふふふふふふふ
+          %h4
+            = @products.introduction
           .index_info
-            .index_info__price ¥ 2000
+            .index_info__price
+              = "¥#{@products.price}"
             .index_info__box
               %i.far.fa-heart
                 %span 99
           .index_tax (税込)
-  .item_box
-    .change_a_tag
-      %section.items
-        = link_to do
-          %img.items_pict{src: asset_path('cat1.png'), width: "213", height: "220", alt: "商品写真"}
-        .index_text
-          %h4 品名
-          .index_info
-            .index_info__price ¥ 2000
-            .index_info__box
-              %i.far.fa-heart
-                %span 99
-          .index_tax (税込)
-  .item_box
-    .change_a_tag
-      %section.items
-        = link_to do
-          %img.items_pict{src: asset_path('IMG_0002.jpg'), width: "213", height: "220", alt: "商品写真"}
-          .index_text
-            %h4 品名
-            .index_info
-            .index_info__price ¥ 2000
-            .index_info__box
-              %i.far.fa-heart
-                %span 99
-            .index_tax (税込)
-  .item_box
-    .change_a_tag
-      %section.items
-        = link_to do
-          %img.items_pict{src: asset_path('IMG_0002.jpg'), width: "213", height: "220", alt: "商品写真"}
-          .index_text
-            %h4 品名
-            .index_info
-            .index_info__price ¥ 2000
-            .index_info__box
-              %i.far.fa-heart
-                %span 99
-            .index_tax (税込)
-.category_link
-  =link_to do
-    %p すべての商品を見る
