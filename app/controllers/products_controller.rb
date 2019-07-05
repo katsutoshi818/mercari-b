@@ -4,17 +4,6 @@ class ProductsController < ApplicationController
   end
 
   def new
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def show
-  end
-end
     @product = Product.new
   end
 
