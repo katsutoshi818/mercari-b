@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'products#index'
   resources :products, only: [:index, :new, :show, :edit, :update]
   resources :categories, only: [:index]
-  resources :users, only: [:index, :new] do
+  resources :users, only: [:index] do
     collection do
       get :profile
       get :logout
