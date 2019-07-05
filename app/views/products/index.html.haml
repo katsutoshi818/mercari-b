@@ -8,11 +8,22 @@
     %section.items_box
       %h3.pick_up__category
         =link_to "新着アイテム"
-      = render partial: "table"
-      = render partial: "table"
-      = render partial: "table"
-      = render partial: "table"
-      = render partial: "table"
-      = render partial: "table"
-      = render partial: "table"
+        .items_table
+          - @products.each do |product| 
+            .item_box
+              %section.items
+                = link_to product_path(product.id) do
+                  - if product.trade_state == 1
+                    .sold_out
+                    .sold_out_text SOLD
+                  = image_tag product.product_images.find_by(product_id: product.id).image, class: "items_pict", alt: "商品画像1"
+                  .index_text
+                    %h4
+                      = product.introduction
+                    .index_info
+                      .index_info__price
+                        = "¥#{product.price.to_s(:delimited)}"
+                      .index_info__box
+                        %i.far.fa-heart
+                          %span 99
 = render partial: 'layouts/footer-top'
