@@ -71,7 +71,7 @@
     %span.product_place__tax (税込)
     %span.product_place__ship 送料込み
   .link_buy
-    = link_to "/products/#{@product.id}/edit" do
+    = link_to edit_product_path(@product) do
       %span.link_buy__text 購入画面に進む
   .product_discription
     %p.product_discription__text
