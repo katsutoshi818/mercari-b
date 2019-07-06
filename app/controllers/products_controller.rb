@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only: [:show]
 
   def index
     @products = Product.all
@@ -9,7 +10,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
     @images = @product.product_images
     @category3 = @product.category
     @category2 = @category3.parent
@@ -41,5 +41,9 @@ class ProductsController < ApplicationController
 
   def image_params
     params.require(:product).permit(:image).merge(product_id: @product[:id])
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 end
