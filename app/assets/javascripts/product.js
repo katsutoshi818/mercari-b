@@ -1,30 +1,35 @@
+$(document).on('turbolinks:load', function () {
+  var image = $('.show_photo_list').children('div :first').children('img').attr('data-url');
+  $(".show_photo_stage__image").attr('src',image);
+  $('.show_photo_list').children('div :first').children('img').css('opacity', '1');
+});
+
 $(document).on('turbolinks:load', function(){
 
-  $(".photo_box__image").on('mouseover',function(){
+  $(".show_photo_box__image").on('mouseover',function(){
     
-    $(".photo_box__image").css("opacity", "0.4");
+    $(".show_photo_box__image").css("opacity", "0.4");
     $(this).css("opacity", "1");
     var dataUrl = $(this).attr('data-url');
-    $(".photo_stage__image").attr('src',dataUrl);
+    $(".show_photo_stage__image").attr('src',dataUrl);
     
   });
   
-  var count = 0
-  $('.other_left__left').on('click',function(){
-    if ( count === 0 ){
-      $('.other_left__left').css('color','#ea352d');
-      $('.other_left__left').css('border', '1px solid #ea352d');
-      $('.other_left__left').css('background-color', '#fff');
-      $('#change_icon').removeClass().addClass("fas fa-heart other_left__left__heart2");
-        count = 1;
-    }
-    else {
-      $('.other_left__left').css('color','#212121');
-      $('.other_left__left').css('border', '1px solid #f5f5f5');
-      $('.other_left__left').css('background-color', '#f5f5f5');
-      $('#change_icon').removeClass().addClass("far fa-heart other_left__left__heart");
-        count = 0;
-    }
+  $(document).on("click", ".other_left__left--black", function () {
+    $('.other_left__left--black').addClass('other_left__left--red');
+    $('.other_left__left--red').removeClass('other_left__left--black');
+    $('.id_form_button--black').addClass('id_form_button--red');
+    $('.id_form_button--red').removeClass('id_form_button--black');
+    $('#change_icon').removeClass().addClass("fas fa-heart other_left__left__heart2");
+  });
+
+  $(document).on("click", ".other_left__left--red", function () {
+    $('.other_left__left--red').addClass('other_left__left--black');
+    $('.other_left__left--black').removeClass('other_left__left--red');
+    $('.id_form_button--red').addClass('id_form_button--black');
+    $('.id_form_button--black').removeClass('id_form_button--red');
+    $('#change_icon').removeClass().addClass("far fa-heart");
   });
 
 });
+

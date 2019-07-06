@@ -1,37 +1,25 @@
 = render partial: 'layouts/header'
 %section.show_product
-  %h3.product_name 商品名
-  .product_info
-    .product_photo
-      .photo_stage
-        %img.photo_stage__image{ src: asset_path('cat1.png'), alt: "メイン"}
-      .photo_list
-        .photo_box
-          %img.photo_box__image#photo_box__image_light{ "data-url": asset_path('cat1.png'), src: asset_path('cat1.png'), alt: "写真1"}
-        .photo_box
-          %img.photo_box__image{ "data-url": asset_path('footer.png'), src: asset_path('footer.png'), alt: "写真2"}
-        .photo_box
-          %img.photo_box__image{ "data-url": asset_path('footer2.png'), src: asset_path('footer2.png'), alt: "写真3"}
-        .photo_box
-          %img.photo_box__image{ "data-url": asset_path('IMG_0002.jpg'), src: asset_path('IMG_0002.jpg'), alt: "写真4"}
-        .photo_box
-          %img.photo_box__image{ "data-url": asset_path('header.png'), src: asset_path('header.png'), alt: "写真5"}
-        .photo_box
-          %img.photo_box__image{ "data-url": asset_path('cat1.png'), src: asset_path('cat1.png'), alt: "写真1"}
-        .photo_box
-          %img.photo_box__image{ "data-url": asset_path('footer.png'), src: asset_path('footer.png'), alt: "写真2"}
-        .photo_box
-          %img.photo_box__image{ "data-url": asset_path('footer2.png'), src: asset_path('footer2.png'), alt: "写真3"}
-        .photo_box
-          %img.photo_box__image{ "data-url": asset_path('IMG_0002.jpg'), src: asset_path('IMG_0002.jpg'), alt: "写真4"}
-        .photo_box
-          %img.photo_box__image{ "data-url": asset_path('header.png'), src: asset_path('header.png'), alt: "写真5"}
+  %h3.show_product_name
+    = @product.product_name
+  .show_product_info
+    .show_product_photo
+      .show_photo_stage
+        - if @product.trade_state == 1
+          .sold_out
+          .sold_out_text SOLD
+        %img.show_photo_stage__image{ src: "", alt: "メイン"}
+      .show_photo_list
+        - @images.each do |image|
+          .show_photo_box
+            %img.show_photo_box__image{ "data-url": image.image, src: image.image, alt: "写真1" }
     %table.product_detail
       %tr.detail
-        %th.seller 出品者
+        %th.seller
         %td.seller_text
-          = link_to do
-            %span 出品者名<br>
+          = link_to class: "seller_link" do
+            = @seller_user.nickname
+            <br>
           .seller_rate
             .seller_good
               %i.fas.fa-grin.seller_good__icon
@@ -45,15 +33,18 @@
       %tr.detail
         %th.detail__category カテゴリー
         %td.detail__category_text 
-          = link_to do
-            %span カテゴリー名1<br>
-          = link_to do
-            %span カテゴリー名2<br>
-          = link_to do
-            %span カテゴリー名3
+          = link_to class: "category_name" do
+            = @category1.category_name
+            <br>
+          = link_to class: "category_name" do
+            = @category2.category_name
+            <br>
+          = link_to class: "category_name" do
+            = @category3.category_name
       %tr.detail
         %th.detail__bland ブランド
-        %td.detail__bland_text ブランド名
+        %td.detail__bland_text
+          = @brand.brand_name
       %tr.detail
         %th.detail__size サイズ
         %td.detail___size_text サイズ
@@ -75,20 +66,25 @@
         %th.detail__days_to_ship 発送日の目安
         %td.detail__days_to_ship_text 日で発送
   .product_place
-    %span.product_place__place ¥2,000
+    %span.product_place__place
+      = "¥#{@product.price.to_s(:delimited)}"
     %span.product_place__tax (税込)
     %span.product_place__ship 送料込み
   .link_buy
-    = link_to do
+    = link_to edit_product_path(@product) do
       %span.link_buy__text 購入画面に進む
   .product_discription
-    %p.product_discription__text 商品説明
+    %p.product_discription__text
+      = @product.introduction
   .product_other
     .other_left
-      .other_left__left
-        %i.far.fa-heart.other_left__left__heart#change_icon
-        %span.other_left__left__good いいね!
-        %span.other_left__left__quantity 99
+      .other_left__left--black
+        -# = form_with model: @product, url: "/products", method: :post, local: true do |f|
+          ?= f.text_field :id, value: @product.id, class: "id_form"
+        = button_tag type: "submit", class: "id_form_button--black", id: "change_button" do
+          %i.far.fa-heart.other_left__left__heart#change_icon
+          %span.other_left__left__good いいね!
+          %span.other_left__left__quantity 99
       .other_left__right
         %i.far.fa-flag.other_left__right__flag
         = link_to do
