@@ -6,13 +6,10 @@ class Brand < ApplicationRecord
   def brand_registration(brand_input)
     # その名前のブランドが存在するか調べる。
     brand = Brand.find_by('brand_name LIKE(?)', brand_input[:brand_name])
-    binding.pry
-    if brand
-    else
-      # テーブルにブランドを登録する
+    unless brand
+      # 入力されたブランドが存在しない場合、テーブルにブランドを登録する
       brand = Brand.create(brand_name: brand_input[:brand_name], category_id: brand_input[:category_id])
     end
-    binding.pry
     return brand[:id]
   end
 end
