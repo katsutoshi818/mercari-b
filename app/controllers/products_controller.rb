@@ -20,13 +20,15 @@ class ProductsController < ApplicationController
 
 
   def create
+    @brand = Brand.new(brand_name: params.require(:product)[:brand_name], category_id: params.require(:product)[:low_category_id])
+    @brand_id = @brand.brand_registration(@brand)
     @product = Product.new(product_params)
     Product.transaction do
       @product.save!
     end
     ProductImage.transaction do
-    @product_image = ProductImage.new(image_params)
-    @product_image.save!
+      @product_image = ProductImage.new(image_params)
+      @product_image.save!
     end
     respond_to do |format|
       format.html{redirect_to root_path}
@@ -36,7 +38,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:product_name, :introduction, :product_state, :who_pays_shipping_fee, :seller_prefecture, :days_to_ship, :price).merge(category_id: params.require(:product)[:low_category_id], seller_user_id: 1, buyer_user_id: 1, brand_id: 1, trade_state: 1, way_to_ship: 1)
+    params.require(:product).permit(:product_name, :introduction, :product_state, :who_pays_shipping_fee, :seller_prefecture, :days_to_ship, :price).merge(category_id: params.require(:product)[:low_category_id], brand_id: @brand_id, seller_user_id: 1, buyer_user_id: 1, trade_state: 1, way_to_ship: 1)
   end
 
   def image_params
