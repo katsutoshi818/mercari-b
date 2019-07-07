@@ -16,7 +16,8 @@
                   - if product.trade_state == 1
                     .sold_out
                     .sold_out_text SOLD
-                  = image_tag product.product_images.find_by(product_id: product.id).image, class: "items_pict", alt: "商品画像1"
+                  = image_tag "#{product.product_images.find_by(product_id: product.id).image}"
+                  -# , class: "items_pict", alt: "商品画像1"
                   .index_text
                     %h4
                       = product.introduction
