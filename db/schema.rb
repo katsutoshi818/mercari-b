@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_26_054135) do
+ActiveRecord::Schema.define(version: 2019_07_08_040237) do
 
   create_table "addressees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -18,12 +18,12 @@ ActiveRecord::Schema.define(version: 2019_06_26_054135) do
     t.string "last_name", null: false
     t.string "first_name_katakana", null: false
     t.string "last_name_katakana", null: false
-    t.integer "postal_code", null: false
+    t.string "postal_code", null: false
     t.integer "prefecture", null: false
     t.string "city", null: false
     t.string "address", null: false
     t.string "building"
-    t.integer "phonenumber"
+    t.string "phonenumber"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_addressees_on_user_id"
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 2019_06_26_054135) do
     t.string "first_name_katakana", null: false
     t.string "last_name_katakana", null: false
     t.integer "birthday", null: false
-    t.integer "postal_code"
+    t.string "postal_code"
     t.integer "prefecture"
     t.string "city"
     t.string "address"
@@ -151,7 +151,7 @@ ActiveRecord::Schema.define(version: 2019_06_26_054135) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "nickname", null: false
-    t.integer "phone_number", null: false
+    t.string "phone_number", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
