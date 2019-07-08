@@ -24,12 +24,13 @@
         .new-usersbar__status
 .new-usersbox
   .new-usersbox__top
-    %h3 電話番号の確認
+    %h3 電話番号の登録
   .new-usersbox__down
     %label{for: "name1"} 携帯電話の番号
     %input.input-default{name: "nickname", placeholder: "携帯電話の番号を入力", type: "text", value: ""}/
     %span.text-phone 本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
-    %button.btn-next{type: "submit"} SMSを送信する
+    %button.btn-next2{type: "submit"} 次に進む
+    %button.btn-back2 前に戻る
     %span.text-phone ＊ 電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
     .terms-text_down
       = link_to '#' do
