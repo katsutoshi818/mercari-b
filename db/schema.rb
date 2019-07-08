@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_08_040237) do
+ActiveRecord::Schema.define(version: 2019_07_08_065959) do
 
   create_table "addressees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -19,13 +19,13 @@ ActiveRecord::Schema.define(version: 2019_07_08_040237) do
     t.string "first_name_katakana", null: false
     t.string "last_name_katakana", null: false
     t.string "postal_code", null: false
-    t.integer "prefecture", null: false
     t.string "city", null: false
     t.string "address", null: false
     t.string "building"
     t.string "phonenumber"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_addressees_on_user_id"
   end
 
@@ -100,13 +100,13 @@ ActiveRecord::Schema.define(version: 2019_07_08_040237) do
     t.integer "product_size"
     t.integer "product_state", null: false
     t.integer "who_pays_shipping_fee", null: false
-    t.integer "seller_prefecture", null: false
     t.integer "days_to_ship", null: false
     t.integer "price", null: false
     t.integer "trade_state", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "way_to_ship", null: false
+    t.integer "prefecture_id"
     t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["buyer_user_id"], name: "index_products_on_buyer_user_id"
     t.index ["category_id"], name: "index_products_on_category_id"
@@ -121,7 +121,6 @@ ActiveRecord::Schema.define(version: 2019_07_08_040237) do
     t.string "last_name_katakana", null: false
     t.integer "birthday", null: false
     t.string "postal_code"
-    t.integer "prefecture"
     t.string "city"
     t.string "address"
     t.string "building"
@@ -130,6 +129,7 @@ ActiveRecord::Schema.define(version: 2019_07_08_040237) do
     t.integer "point", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
