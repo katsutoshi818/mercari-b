@@ -12,7 +12,7 @@ class Product < ApplicationRecord
   validates :introduction, presence: true
   validates :product_state, presence: true
   validates :who_pays_shipping_fee, presence: true
-  validates :seller_prefecture, presence: true
+  validates :prefecture_id, presence: true
   validates :days_to_ship, presence: true
   validates :price, presence: true
   validates :trade_state, presence: true
