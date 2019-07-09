@@ -16,8 +16,9 @@ CarrierWave.configure do |config|
       region: 'ap-northeast-1'
     }
     config.storage = :fog
+    config.fog_directory  = 'mercari-b'
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/mercari-b'
   end
 
-  config.fog_directory  = 'mercari-b'
-  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/mercari-b'
+  
 end
