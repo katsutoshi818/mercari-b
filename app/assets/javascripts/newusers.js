@@ -3,7 +3,7 @@ $(document).on('turbolinks:load',function(){
     $('.single-box_mail').on('click',function(){
       $('#new-users1').fadeIn(100);
         $('html,body').scrollTop(0);
-          $('#new-users').hide();
+          $('#new-users0').hide();
             return false;
   });
 
@@ -15,28 +15,21 @@ $(document).on('turbolinks:load',function(){
   });
 
   $('.btn-next2').on('click',function(){
-    $('#new-users4').fadeIn(100);
+    $('#new-users3').fadeIn(100);
       $('html,body').scrollTop(0);
         $('#new-users2').hide();
         return false;
   });
 
   $('.btn-next3').on('click',function(){
-    $('#new-users5').fadeIn(100);
+    $('#new-users4').fadeIn(100);
       $('html,body').scrollTop(0);
-        $('#new-users4').hide();
+        $('#new-users3').hide();
           return false;
   });
 
-  $('.btn-next4').on('click',function(){
-    $('#new-users6').fadeIn(100);
-      $('html,body').scrollTop(0);
-        $('#new-users5').hide();
-        return false;
-  });
-
   $('.btn-back1').on('click',function(){
-    $('#new-users').fadeIn(100);
+    $('#new-users0').fadeIn(100);
       $('html,body').scrollTop(0);
         $('#new-users1').hide();
   });
@@ -54,8 +47,8 @@ $(document).on('turbolinks:load',function(){
   });
 
   $('.btn-back4').on('click',function(){
-    $('#new-users4').fadeIn(100);
+    $('#new-users3').fadeIn(100);
       $('html,body').scrollTop(0);
-        $('#new-users5').hide();
+        $('#new-users4').hide();
   });
 });
