@@ -26,7 +26,7 @@ $(document).on('turbolinks:load', function() {
     <label for="product_category_id"><p class="form-block__label">サイズ
     <span class="form-block__require">必須</span>
     </p></label>
-    <select class="form-block__form--select" name="product_size">
+    <select class="form-block__form--select" name="product[product_size]">
     <option value="0">---</option>`;
     $.each(sizes, function(i, size) {
       html += `<option value="${size.id}">${size.text}</option>`
