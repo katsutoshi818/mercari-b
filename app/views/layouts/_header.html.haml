@@ -21,20 +21,26 @@
                 %span ブランドから探す
       .content-down__right
         %ul
-          - if user_signed_in?
-            %li.down_list_right
-              = link_to do
-                %i.far.fa-heart
-                  %span いいね！一覧
-            %li.down_list_right
-              = link_to do
-                %i.far.fa-bell
-                  %span お知らせ
-            %li.down_list_right
-              = link_to do
-                %i.fa.fa-check
-                  %span やることリスト
-            %li.down_list_right
-              = link_to user_path(current_user) do
-                %p.user-image
-                %span マイページ
+          .down-list-newuser
+            = link_to " /users/sign_up" do
+              新規会員登録
+          .down-list-userin
+            = link_to "/users/sign_in" do
+              ログイン
+              - if user_signed_in?
+                %li.down_list_right
+                  = link_to do
+                    %i.far.fa-heart
+                      %span いいね！一覧
+                %li.down_list_right
+                  = link_to do
+                    %i.far.fa-bell
+                      %span お知らせ
+                %li.down_list_right
+                  = link_to do
+                    %i.fa.fa-check
+                      %span やることリスト
+                %li.down_list_right
+                  = link_to user_path(current_user) do
+                    %p.user-image
+                    %span マイページ

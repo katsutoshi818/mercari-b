@@ -122,3 +122,31 @@
     font-size: $font_menu;
   }
 }
+
+.down-list-newuser{
+    display: block;
+    width: 100px;
+    background-color: $red;
+    margin-right: 30px;
+    border-radius: 6%;
+    float: left;
+  a{
+    color: $white;
+    font-size: $font_menu;
+    padding-left: 8%;
+  }
+}
+
+.down-list-userin{
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    background-color: $white;
+    border-radius: 6%;
+    border: 1px solid $lightblue;
+  a{
+    font-size: $font_menu;
+    color: $lightblue;
+    padding-left: 22px;
+  }
+}
