@@ -1,15 +1,10 @@
 .flom-form{
-  padding-left: 25%;
   select{
-    height: 50px;
-    background-color: $white;
-    width: 370px;
-  }
-  span{
-    display: block;
-    font-size: $font_menu;
-    color: #888888;
-    width: 70%;
+  height: 50px;
+  width: 50%;
+  margin-left: 25%;
+  background-color: white;
+  border: 1px solid #cccccc;
   }
 }
 
@@ -54,6 +49,8 @@
   color: $white;
   margin: 5% 0 0 27%;
   font-size: $font_menu;
+  text-align: center;
+  padding-top: 2%;
 }
 
 .btn-back3{
@@ -64,4 +61,6 @@
   margin: 5% 0 0 25%;
   font-size: 12px;
   border-radius: 20px;
+  text-align: center;
+  padding-top: 1%;
 }
