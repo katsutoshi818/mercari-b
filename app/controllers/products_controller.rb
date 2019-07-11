@@ -23,7 +23,6 @@ class ProductsController < ApplicationController
     @brand = Brand.new(brand_name: params.require(:product)[:brand_name], category_id: params.require(:product)[:low_category_id])
     @brand_id = @brand.brand_registration(@brand)
     @product = Product.new(product_params)
-    binding.pry
     Product.transaction do
       @product.save!
     end
