@@ -28,48 +28,48 @@
   .new-usersbox__down
     %label{for: "name1"} ニックネーム
     %span.form-require 必須
-    %input.input-default{name: "nickname", placeholder: "例) メルカリ太郎", type: "text", value: ""}/
+    = f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: "例) メルカリ太郎", class: "input-default"
     %label{for: "name1"} メールアドレス
     %span.form-require 必須
-    %input.input-default{name: "nickname", placeholder: "PC・携帯どちらでも可", type: "text", value: ""}/
+    = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "PC・携帯どちらでも可", class: "input-default"
     %label{for: "name1"} パスワード
     %span.form-require 必須
-    %input.input-default{name: "nickname", placeholder: "6文字以上", type: "text", value: ""}/
+    = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "input-default"
     %label{for: "name1"} パスワード（確認）
     %span.form-require 必須
-    %input.input-default{name: "nickname", placeholder: "6文字以上", type: "text", value: ""}/
+    = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上", class: "input-default"
     %h3 本人確認
     %span.form-text 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
     %label{for: "name1"} 姓（全角）
     %span.form-require 必須
-    %input.input-default{name: "nickname", placeholder: "例）山田", type: "text", value: ""}/
-    %label{for: "name1"} 名（全角）
-    %span.form-require 必須
-    %input.input-default{name: "nickname", placeholder: "例）綾", type: "text", value: ""}/
-    %label{for: "name1"} 姓カナ（全角）
-    %span.form-require 必須
-    %input.input-default{name: "nickname", placeholder: "例）ヤマダ", type: "text", value: ""}/
-    %label{for: "name1"} 名カナ（全角）
-    %span.form-require 必須
-    %input.input-default{name: "nickname", placeholder: "例）アヤ", type: "text", value: ""}/
-    .birthbays-form
-      %label{for: "name1"} 生年月日
+    = f.fields_for :profile, Profile.new do |p|
+      = p.text_field :first_name, autocomplete: "first_name", placeholder: "例）山田", class: "input-default"
+      %label{for: "name1"} 名（全角）
       %span.form-require 必須
-      .birthdays-form__down
-        = form_with url: root_path do |f|
-          = raw sprintf(f.date_select(:audition_date, use_month_numbers: true, start_year: (1940), end_year: (Time.now.year + 2), default: Time.now(),:class =>"bootstrap-date-only-width" ,date_separator: '%s'), '年 ', '月 ') + '日'
-        %span ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
-    .rc-anchor
-      ロボット認証入ります。
-    .terms-text
-      %p 「次へ進む」のボタンを押すことにより、
-      = link_to '#' do
-        %span 利用規約
-      %p に同意したものとみなします
-    %button.btn-next{type: "submit"} 次へ進む
-    %button.btn-back1 前へ戻る
-    .terms-text_down
-      = link_to '#' do
-        %span 本人情報の登録について
-        %i.fas.fa-chevron-right
+      = p.text_field :last_name, autocomplete: "last_name", placeholder: "例）綾", class: "input-default"
+      %label{for: "name1"} 姓カナ（全角）
+      %span.form-require 必須
+      = p.text_field :first_name_katakana, autocomplete: "first_name_katakana", placeholder: "例）綾", class: "input-default"
+      %label{for: "name1"} 名カナ（全角）
+      %span.form-require 必須
+      = p.text_field :last_name_katakana, autocomplete: "last_name_katakana", placeholder: "例）綾", class: "input-default"
+      .birthbays-form
+        %label{for: "name1"} 生年月日
+        %span.form-require 必須
+        .birthdays-form__down
+          = raw sprintf(p.date_select(:birthday, use_month_numbers: true, start_year: (1940), end_year: (Time.now.year + 2), default: Time.now(),:class =>"bootstrap-date-only-width" ,date_separator: '%s'), '年 ', '月 ') + '日'
+          %span ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+        .rc-anchor
+          ロボット認証入ります。
+        .terms-text
+          %p 「次へ進む」のボタンを押すことにより、
+          = link_to '#' do
+            %span 利用規約
+          %p に同意したものとみなします
+        %div.btn-next 次へ進む
+        %div.btn-back1 前へ戻る
+        .terms-text_down
+          = link_to '#' do
+            %span 本人情報の登録について
+            %i.fas.fa-chevron-right
 = render partial: "layouts/single-footer"

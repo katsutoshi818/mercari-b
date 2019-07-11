@@ -3,5 +3,5 @@
   .main-logout-box
     = render partial: 'users/mypage-sidebar'
     .logout-box
-      %button.logout-box__button{type: "submit"} ログアウト
+      = link_to "ログアウト", destroy_user_session_path, method: :delete, type: 'button', class: 'logout-box__button'
 = render partial: 'layouts/footer-top'
