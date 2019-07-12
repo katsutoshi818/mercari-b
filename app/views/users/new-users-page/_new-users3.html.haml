@@ -41,7 +41,7 @@
       %label{for: "name1"} 都道府県
       %span.form-require 必須
       .flom-form
-        = i.select(:prefecture, options_for_select(["北海道","東京"]))
+        = i.select(:prefecture_id, options_for_select(["北海道","東京"]))
       %label{for: "name1"} 市区町村
       %span.form-require 必須
       = i.text_field :city, autocomplete: "address-level2", placeholder: "例) 横浜市緑区", class: "input-default"
