@@ -1,6 +1,4 @@
 $(document).on('turbolinks:load', function() {
-  // var CLOTHES = ["XXS以下", "XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL以上", "FREE SIZE"];
-  // var SHOES = ["20.0cm以下", "20.5cm", "21.0cm", "21.5cm", "22.0cm", "22.5cm", "23.0cm", "23.5cm", "24.0cm", "24.5cm", "25.0cm", "25.5cm", "26.0cm", "26.5cm", "27.0cm", "27.5cm以上"];
 
   function appendCategoryForm(categories, hierarchy) {
     categoryList = $('.category-block');
@@ -88,9 +86,6 @@ $(document).on('turbolinks:load', function() {
     })
 
     $('#low_category').off('change').on('change', function() {
-      //low_categoryが決まったときに発火
-      // low_categoryのIDから、サイズパターンのidを取得する(ajax)
-      console.log("appendsize");
       $('#size-form').remove();
       var lowCategory = $('#low_category').val();
       if (lowCategory !== 0){
@@ -109,7 +104,6 @@ $(document).on('turbolinks:load', function() {
 
         })
       }
-      //カテゴリーidに紐づいたサイズパターンを取得する
     })
   });
 });
