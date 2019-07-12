@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
+  before_action :set_category_brand, only: [:show]
 
   def index
   end
@@ -23,5 +24,18 @@ class UsersController < ApplicationController
   end
 
   def password
+  end
+
+  private
+
+  def set_category_brand
+    @brands = Brand.all
+    @parents = Category.where(ancestry: nil)
+    @parent = Category.find_by('category_name LIKE(?)', "%#{params[:keyword]}%")
+    @children = @parent.children
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 end
