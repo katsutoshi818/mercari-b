@@ -8,6 +8,10 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @top_category = [["----", 0]]
+    Category.where("ancestry IS NULL").each do |category|
+      @top_category <<  [category.category_name, category.id]
+    end
   end
 
   def show
