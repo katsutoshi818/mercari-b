@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_10_053948) do
+ActiveRecord::Schema.define(version: 2019_07_12_052959) do
 
   create_table "addressees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_053948) do
     t.bigint "category_id"
     t.string "product_name", null: false
     t.text "introduction", null: false
-    t.integer "product_size"
+    t.integer "product_size_id"
     t.integer "product_state", null: false
     t.integer "who_pays_shipping_fee", null: false
     t.integer "days_to_ship", null: false
