@@ -1,11 +1,13 @@
 .item_box
   %section.items
     = link_to do
-      = image_tag "/assets/cat1.png",size: "213*220", alt: "商品写真", class: "items__pict"
+      = image_tag "#{product.product_images.find_by(product_id: product.id).image}",size: "213*220", alt: "商品写真", class: "items__pict"
       .index_text
-        %h4 あかさたなストロングだふふふふふふふふふふふふふふふふふふ
+        %h4
+          = product.product_name
         .index_info
-          .index_info__price ¥ 2000
+          .index_info__price
+            = product.price.to_s(:delimited)
           .index_info__box
             %i.far.fa-heart
               %span 99

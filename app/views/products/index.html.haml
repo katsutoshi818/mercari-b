@@ -1,8 +1,6 @@
 =  render partial: 'layouts/header'
+.pict_box
 .contents
-  %section.head_pict
-    = link_to do
-      %img.heading_pict{src: asset_path('header.png'), alt: "heading"}
   %section.pick_up
     %h2.pick_head ピックアップカテゴリー
     %section.items_box
@@ -19,7 +17,7 @@
                   = image_tag "#{product.product_images.find_by(product_id: product.id).image}", class: "items_pict", alt: "商品画像1"
                   .index_text
                     %h4
-                      = product.introduction
+                      = product.product_name
                     .index_info
                       .index_info__price
                         = "¥#{product.price.to_s(:delimited)}"

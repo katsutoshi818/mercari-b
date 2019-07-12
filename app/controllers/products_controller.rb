@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show]
+  before_action :set_category_brand, only: [:index, :show]
 
   def index
     @products = Product.all
@@ -16,6 +17,8 @@ class ProductsController < ApplicationController
     @category1 = @category2.parent
     @brand = @product.brand
     @seller_user = @product.seller_user
+    @user_products = Product.where(seller_user_id: @product.seller_user_id).where.not(id: params[:id]).limit(6)
+    @brand_products = Product.where(brand_id: @product.brand_id).where.not(id: params[:id]).limit(6)
   end
 
 
@@ -48,4 +51,16 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
+
+  def set_category_brand
+    @brands = Brand.all
+    @parents = Category.where(ancestry: nil)
+    @parent = Category.find_by('category_name LIKE(?)', "%#{params[:keyword]}%")
+    @children = @parent.children
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
 end
