@@ -35,6 +35,7 @@ class UsersController < ApplicationController
     @children = @parent.children
     respond_to do |format|
       format.json
+      format.html
     end
   end
 end
