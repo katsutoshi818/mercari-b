@@ -38,7 +38,6 @@ class ProductsController < ApplicationController
       @product_image.save!
     end
     respond_to do |format|
-      format.html{redirect_to root_path}
       format.json
     end
   end
