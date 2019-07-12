@@ -7,7 +7,7 @@ class Addressee < ApplicationRecord
   validates :first_name_katakana, presence: true
   validates :last_name_katakana, presence: true
   validates :postal_code, presence: true
-  validates :prefecture, presence: true
+  validates :prefecture_id, presence: true
   validates :city, presence: true
   validates :address, presence: true
 end
