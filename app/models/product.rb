@@ -5,6 +5,7 @@ class Product < ApplicationRecord
   belongs_to :buyer_user, class_name: 'User', foreign_key: 'buyer_user_id'
   belongs_to :brand
   belongs_to :category
+  belongs_to :product_size
   has_many :comments
   has_many :product_images, dependent: :destroy
   has_many :users, through: :favorites
