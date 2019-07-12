@@ -43,7 +43,7 @@ $(document).on('turbolinks:load',function(){
   $('.btn-back3').on('click',function(){
     $('#new-users2').fadeIn(100);
       $('html,body').scrollTop(0);
-        $('#new-users4').hide();
+        $('#new-users3').hide();
   });
 
   $('.btn-back4').on('click',function(){
