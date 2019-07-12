@@ -42,3 +42,26 @@
   font-size: 12px;
   color: $lightblue;
 }
+
+.btn-next4{
+  width: 45%;
+  height: 50px;
+  background-color: $red;
+  color: $white;
+  margin: 5% 0 0 27%;
+  font-size: $font_menu;
+  text-align: center;
+  padding-top: 2%;
+}
+
+.btn-back4{
+  width: 50%;
+  height: 30px;
+  background-color: $red;
+  color: $white;
+  margin: 5% 0 0 25%;
+  font-size: 12px;
+  border-radius: 20px;
+  text-align: center;
+  padding-top: 1%;
+}

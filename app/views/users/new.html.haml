@@ -1,29 +1,16 @@
-= render partial: "layouts/single-header"
-.single-main
-  .single-box
-    .single-box_top
-      %h2.single-new 新規会員登録
-    .single-box_down
-      .btn-mail
-      %button.single-box_mail{type: "button"}
-        メールアドレスで登録する
-        .btn-box
-          %i.far.fa-envelope
-      .btn-box_facebook
-      %button.single-box_facebook{type: "button"}
-        フェイスブックで登録する
-        .btn-box
-          %i.fab.fa-facebook-square
-      .btn-box_google
-      %button.single-box_google{type: "button"}
-        Googleで登録する
-        .btn-box
-          %i.fab.fa-google
-.single-footer
-= render partial: "layouts/single-footer"
-= render partial: 'users/new-users-page/new-users1'
-= render partial: 'users/new-users-page/new-users2'
-= render partial: 'users/new-users-page/new-users2-sns'
-= render partial: 'users/new-users-page/new-users3'
-= render partial: 'users/new-users-page/new-users4'
-= render partial: 'users/new-users-page/new-users5'
+%form#example-form{action: "#"}
+%div
+  %section#new-users
+    = render partial: 'users/new-users-page/new-users'
+  %section#new-users1
+    = render partial: 'users/new-users-page/new-users1'
+  %section#new-users2
+    = render partial: 'users/new-users-page/new-users2'
+  %section#new-users3
+    = render partial: 'users/new-users-page/new-users2-sns'
+  %section#new-users4
+    = render partial: 'users/new-users-page/new-users3'
+  %section#new-users5
+    = render partial: 'users/new-users-page/new-users4'
+  %section#new-users6
+    = render partial: 'users/new-users-page/new-users5'

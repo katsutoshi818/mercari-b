@@ -34,3 +34,23 @@
   padding-left: 64px;
   color: $red;
 }
+
+.foot_pict2{
+  width: 720px;
+}
+
+.action1{
+  width: 50%;
+  height: 45px;
+  display: block;
+  margin: 15px auto;
+  padding-left: 10px;
+  padding-top: 10px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  text-align: center;
+  background-color: $red;
+  a{
+    color: $white;
+  }
+}

@@ -1,0 +1,22 @@
+= render partial: "layouts/single-header"
+.single-main
+  .single-box
+    .single-box_top
+      %h2.single-new 新規会員登録
+    .single-box_down
+      .btn-mail
+      %button.single-box_mail{type: "button"}
+        メールアドレスで登録する
+        .btn-box
+          %i.far.fa-envelope
+      .btn-box_facebook
+      %button.single-box_facebook{type: "button"}
+        フェイスブックで登録する
+        .btn-box
+          %i.fab.fa-facebook-square
+      .btn-box_google
+      %button.single-box_google{type: "button"}
+        Googleで登録する
+        .btn-box
+          %i.fab.fa-google
+= render partial: "layouts/single-footer"

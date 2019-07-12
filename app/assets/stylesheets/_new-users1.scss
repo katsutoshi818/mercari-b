@@ -196,6 +196,24 @@
   color: $white;
   margin: 5% 0 0 27%;
   font-size: $font_menu;
+  text-align: center;
+  padding-top: 2%;
+}
+
+.btn-back1{
+  width: 50%;
+  height: 30px;
+  background-color: $red;
+  color: $white;
+  margin: 5% 0 0 25%;
+  font-size: 12px;
+  border-radius: 20px;
+  text-align: center;
+  padding-top: 1%;
+}
+
+.btn-back1:active{
+  border-radius: 20px;
 }
 
 .terms-text_down{
