@@ -13,11 +13,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   validates :nickname, presence: true
   validates :phone_number, presence: true
-<<<<<<< Updated upstream
   accepts_nested_attributes_for :profile, update_only: true
   accepts_nested_attributes_for :addressee, update_only: true
-=======
 
-  
->>>>>>> Stashed changes
 end
