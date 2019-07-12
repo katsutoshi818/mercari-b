@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
-  before_action :set_category_brand, only: [:show]
+  before_action :set_category_brand, only: [:show, :profiles, :logout, :identification, :deliver_address, :email, :card, :password]
 
   def index
   end
