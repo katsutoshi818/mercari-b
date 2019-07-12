@@ -14,8 +14,24 @@ $(document).on('turbolinks:load', function() {
     })
     html += option;
     html += `</select>
-    <i class="fas fa-chevron-down select-arrow-append"></i>`;
+    <i class="fas fa-chevron-down select-arrow-append"></i></div>`;
     categoryList.append(html);
+  }
+
+  function appendSizeForm(sizes){
+    var sizeForm = $('#size-block');
+    var html = `<div class="form-block--select-append" id="size-form">
+    <label for="product_category_id"><p class="form-block__label">サイズ
+    <span class="form-block__require">必須</span>
+    </p></label>
+    <select class="form-block__form--select" name="product[product_size]">
+    <option value="0">---</option>`;
+    $.each(sizes, function(i, size) {
+      html += `<option value="${size.id}">${size.text}</option>`
+    });
+    html += `</select>
+    <i class="fas fa-chevron-down select-arrow"></i></div>`;
+    sizeForm.append(html);
   }
 
   $('.category-block').on('click', function() {
@@ -65,6 +81,27 @@ $(document).on('turbolinks:load', function() {
           }
         })
         .fail(function() {
+        })
+      }
+    })
+
+    $('#low_category').off('change').on('change', function() {
+      $('#size-form').remove();
+      var lowCategory = $('#low_category').val();
+      if (lowCategory !== 0){
+        $.ajax({
+          type: 'GET',
+          url: '/product_sizes',
+          data: {low_category: lowCategory},
+          dataType: 'json'
+        })
+        .done(function(sizes) {
+          if (sizes !== 0) {
+            appendSizeForm(sizes);
+          }
+        })
+        .fail(function() {
+
         })
       }
     })

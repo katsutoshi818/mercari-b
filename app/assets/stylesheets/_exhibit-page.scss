@@ -184,6 +184,11 @@ header {
     }
   }
 
+  &--brand {
+    @extend .form-block;
+    margin-top: 40px;
+  }
+
   & + &, &--select + &--select, .category-block + &, & + &--select {
     margin-top: 40px;
   }

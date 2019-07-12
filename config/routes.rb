@@ -22,4 +22,5 @@ Rails.application.routes.draw do
       get :password
     end
   end
+  resources :product_sizes, only: :index
 end
