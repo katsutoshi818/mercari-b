@@ -34,7 +34,6 @@ class UsersController < ApplicationController
     @parent = Category.find_by('category_name LIKE(?)', "%#{params[:keyword]}%")
     @children = @parent.children
     respond_to do |format|
-      format.html
       format.json
     end
   end
