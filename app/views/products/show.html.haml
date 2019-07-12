@@ -33,38 +33,44 @@
       %tr.detail
         %th.detail__category カテゴリー
         %td.detail__category_text 
-          = link_to class: "category_name" do
+          = link_to root_path, class: "category_name" do
             = @category1.category_name
             <br>
-          = link_to class: "category_name" do
+          = link_to root_path, class: "category_name" do
             = @category2.category_name
             <br>
-          = link_to class: "category_name" do
+          = link_to root_path, class: "category_name" do
             = @category3.category_name
       %tr.detail
         %th.detail__bland ブランド
         %td.detail__bland_text
-          = @brand.brand_name
+          = link_to root_path, class: "brand_name" do
+            = @brand.brand_name
       %tr.detail
         %th.detail__size サイズ
-        %td.detail___size_text サイズ
+        %td.detail___size_text
+          = @product.product_size
       %tr.detail
         %th.detail__state 商品状態
-        %td.detail__state_text 状態
+        %td.detail__state_text
+          = @product.product_state
       %tr.detail
         %th.detail__who_pays_shipping_fee 送料
-        %td.detail__who_pays_shipping_fee_text どっち負担か
+        %td.detail__who_pays_shipping_fee_text
+          = @product.who_pays_shipping_fee
       %tr.detail
         %th.detail__way_to_ship 配送方法
-        %td.detail__way_to_ship_text 配送方法
+        %td.detail__way_to_ship_text
+          = @product.way_to_ship
       %tr.detail
         %th.detail__seller_prefecture 配送元地域
         %td.detail__seller_prefecture_text
-          =link_to do
-            %span 都道府県
+          =link_to root_path, class: "prefecture_name" do
+            = @seller_user.profile.prefecture.name
       %tr.detail
         %th.detail__days_to_ship 発送日の目安
-        %td.detail__days_to_ship_text 日で発送
+        %td.detail__days_to_ship_text
+          = @product.days_to_ship
   .product_place
     %span.product_place__place
       = "¥#{@product.price.to_s(:delimited)}"
@@ -107,21 +113,41 @@
       %i.fab.fa-pinterest.icon_area__pinterest
 %section.user_other_product
   = link_to do
-    %h3.user_name_other ユーザーの他の出品リスト
+    %h3.user_name_other
+      = "#{@seller_user.nickname}さんの他の出品リスト"
   .user_other_product_box
-    = render partial: "product"
-    = render partial: "product"
-    = render partial: "product"
-    = render partial: "product"
-    = render partial: "product"
-    = render partial: "product"
+    - @user_products.each do |product|
+      .item_box
+        %section.items
+          = link_to "/products/#{product.id}" do
+            = image_tag "#{product.product_images.find_by(product_id: product.id).image}",size: "213*220", alt: "商品写真", class: "items__pict"
+            .index_text
+              %h4
+                = product.product_name
+              .index_info
+                .index_info__price
+                  = product.price.to_s(:delimited)
+                .index_info__box
+                  %i.far.fa-heart
+                    %span 99
+              .index_tax (税込)
 %section.bland_other_product
   = link_to do
-    %h3.bland_name_other ブランドの他の出品リスト
+    %h3.bland_name_other
+      = "#{@brand.brand_name}の他の出品リスト"
   .bland_other_product_box
-    = render partial: "product"
-    = render partial: "product"
-    = render partial: "product"
-    = render partial: "product"
-    = render partial: "product"
-    = render partial: "product"
+    - @brand_products.each do |product|
+      .item_box
+        %section.items
+          = link_to "/products/#{product.id}" do
+            = image_tag "#{product.product_images.find_by(product_id: product.id).image}",size: "213*220", alt: "商品写真", class: "items__pict"
+            .index_text
+              %h4
+                = product.product_name
+              .index_info
+                .index_info__price
+                  = product.price.to_s(:delimited)
+                .index_info__box
+                  %i.far.fa-heart
+                    %span 99
+              .index_tax (税込)

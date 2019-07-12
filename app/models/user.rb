@@ -15,4 +15,5 @@ class User < ApplicationRecord
   validates :phone_number, presence: true
   accepts_nested_attributes_for :profile, update_only: true
   accepts_nested_attributes_for :addressee, update_only: true
+
 end

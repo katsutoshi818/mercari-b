@@ -12,13 +12,27 @@
       .content-down__left
         %ul 
           %li.down_list_left
-            = link_to do
-              %i.fa.fa-list-ul
-                %span カテゴリーから探す
+            .category_list
+              .category_name_box
+                %i.fa.fa-list-ul
+                  %span カテゴリーから探す
+              .category_boxes
+                .category_index_parent.category_none
+                  - @parents.each do |parent|
+                    .category_box
+                      = parent.category_name
+                .category_index_children.category_none
+                .category_index_grandchildren.category_none
           %li.down_list_left
-            = link_to do
-              %i.fa.fa-tag
-                %span ブランドから探す
+            .brand_list
+              .brand_name_box
+                %i.fa.fa-tag
+                  %span ブランドから探す
+              .brand_boxes.brand_none
+                .brand_index
+                  - @brands.each do |brand|
+                    .brand_box
+                      = brand.brand_name
       .content-down__right
         %ul
           - if user_signed_in?
