@@ -32,6 +32,15 @@
   background: #ccc;
 }
 
+.form-require2{
+  font-size: 12px;
+      color: $white;
+      border: 1px solid $darkgray;
+      background-color: $darkgray;
+      border-radius: 3px;
+      padding: 2px;
+}
+
 .new-usersbar-was__box2::after{
   position: absolute;
   left: 57%;
