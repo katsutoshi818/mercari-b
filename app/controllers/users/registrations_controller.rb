@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     @user = User.new(user_params)
-    @user.profile.birthday = user_params[:profile_attributes][:'birthday(1i)'] + "/" + user_params[:profile_attributes][:'birthday(2i)'] + "/" + user_params[:profile_attributes][:'birthday(3i)']
+    @user.profile.birthday = user_params[:profile_attributes][:'birthday(1i)'] + user_params[:profile_attributes][:'birthday(2i)'] +  user_params[:profile_attributes][:'birthday(3i)']
     @user.save
     sign_in @user
     render action: 'thanks'
