@@ -106,4 +106,26 @@ $(document).on('turbolinks:load', function() {
       }
     })
   });
+
+  function separateOnThousand(number) {
+    return String(number).replace(/(\d)(?=(\d\d\d)+$)/g, '$1,');
+  }
+
+  var preinput = "";
+  $('.price-form__text').on('keyup', function() {
+    var input = $(this).val();
+    if (input !== preinput) {
+      if (input > 300) {
+        var charge = Math.floor(input * 0.1);
+        var profit = input - charge;
+        $('.form-block__charge').text("¥" + separateOnThousand(charge));
+        $('.form-block__profit').text("¥" + separateOnThousand(profit));
+      }
+      else {
+        $('.form-block__charge').text('-');
+        $('.form-block__profit').text('-');
+      }
+    };
+    preinput = input;
+  });
 });
