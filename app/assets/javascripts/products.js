@@ -125,7 +125,7 @@ $(document).on('turbolinks:load', function() {
         $('.form-block__charge').text('-');
         $('.form-block__profit').text('-');
       }
-    };
+    }
     preinput = input;
   });
 });
