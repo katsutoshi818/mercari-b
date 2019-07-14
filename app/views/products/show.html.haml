@@ -17,7 +17,7 @@
       %tr.detail
         %th.seller
         %td.seller_text
-          = link_to class: "seller_link" do
+          = link_to user_path(@product.seller_user_id), class: "seller_link" do
             = @seller_user.nickname
             <br>
           .seller_rate
