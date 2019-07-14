@@ -126,5 +126,16 @@ $(document).on('turbolinks:load', function(){
 
   })
 
+  $('.category_show_link').on('click', function(){
+    var id = $(this).attr('id')
+    var target = $('.category_index_list_name').filter('#' +id)
+    var position = $(target).offset().top;
+    $("html,body").animate({
+    scrollTop : position
+    }, {
+    queue : false
+    });
+  })
+
 });
 
