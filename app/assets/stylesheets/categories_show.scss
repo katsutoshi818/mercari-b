@@ -1,0 +1,35 @@
+.categories_show_main {
+  padding: 0 0 40px;
+  margin: 24px auto 0;
+  width: 940px;
+}
+
+.categories_show_contents {
+  @include clearfix();
+  width: 100%;
+}
+
+.categoies_show_children {
+  @include clearfix();
+  margin: 0;
+  &__text {
+    float: left;
+    margin: 16px 16px 0 20px;
+    &__link {
+      color: $lightblue;
+      font-size: 14px;
+    }
+    }
+}
+
+.categories_show_box {
+  @include clearfix();
+  margin: 0;
+}
+
+.categoies_show_title {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 24px 0 8px 15px;
+  line-height: 1.4;
+}
