@@ -14,8 +14,9 @@
           %li.down_list_left
             .category_list
               .category_name_box
-                %i.fa.fa-list-ul
-                  %span カテゴリーから探す
+                = link_to new_category_path do
+                  %i.fa.fa-list-ul
+                    %span カテゴリーから探す
               .category_boxes
                 .category_index_parent.category_none
                   - @parents.each do |parent|
