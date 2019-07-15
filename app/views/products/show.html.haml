@@ -1,4 +1,7 @@
 = render partial: 'layouts/header'
+.pankuzu
+  - breadcrumb :show_product, @product, class: "pankuzu__text"
+  = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right')} "
 %section.show_product
   %h3.show_product_name
     = @product.product_name
@@ -17,7 +20,7 @@
       %tr.detail
         %th.seller
         %td.seller_text
-          = link_to class: "seller_link" do
+          = link_to user_path(@product.seller_user_id), class: "seller_link" do
             = @seller_user.nickname
             <br>
           .seller_rate

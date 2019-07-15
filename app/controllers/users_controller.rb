@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @products = Product.where(seller_user_id: params[:id])
   end
 
   def profiles
@@ -38,8 +40,8 @@ class UsersController < ApplicationController
     @children = @parent.children
     @products = Product.where(seller_user_id: current_user.id)
     respond_to do |format|
-      format.json
       format.html
+      format.json
     end
   end
 end
