@@ -52,6 +52,44 @@
               = link_to user_path(current_user) do
                 %p.user-image
                 %span マイページ
+              .mypage-box.none
+                %h3.mypage-box__name #{current_user.nickname}さん
+                - if @products.length == 0
+                  %h5.mypage-box__int 評価：0 出品数：0
+                - else 
+                  %h5.mypage-box__int 評価：0 出品数：#{@products.length}
+                %h5.mypage-box__sum 売上金　0円
+                %ul.mypage-box-link
+                  %li
+                  = link_to do
+                    %a.mypage-box-link__string
+                      いいね！一覧
+                      %i.fas.fa-chevron-right
+                  %li
+                  = link_to do
+                    %a.mypage-box-link__string
+                      出品した商品-出品中
+                      %i.fas.fa-chevron-right
+                  %li
+                  = link_to do
+                    %a.mypage-box-link__string
+                      出品した商品-取引中
+                      %i.fas.fa-chevron-right
+                  %li
+                  = link_to do
+                    %a.mypage-box-link__string
+                      出品した商品-売却済み
+                      %i.fas.fa-chevron-right
+                  %li
+                  = link_to do
+                    %a.mypage-box-link__string
+                      購入した商品-取引中
+                      %i.fas.fa-chevron-right
+                  %li
+                  = link_to do
+                    %a.mypage-box-link__string
+                      購入した商品-過去の取引
+                      %i.fas.fa-chevron-right
           - else
             .down-list-newuser
               = link_to " /users/sign_up" do

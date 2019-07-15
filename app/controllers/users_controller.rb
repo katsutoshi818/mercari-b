@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   def index
   end
 
+  def show
+  end
+
   def profiles
   end
 
@@ -33,6 +36,7 @@ class UsersController < ApplicationController
     @parents = Category.where(ancestry: nil)
     @parent = Category.find_by('category_name LIKE(?)', "%#{params[:keyword]}%")
     @children = @parent.children
+    @products = Product.where(seller_user_id: current_user.id)
     respond_to do |format|
       format.json
       format.html

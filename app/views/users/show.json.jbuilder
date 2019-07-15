@@ -9,3 +9,5 @@ json.array! @grandchildren do |grandchildren|
   json.category_name grandchildren.category_name
   json.ancestry grandchildren.ancestry
 end
+
+json.products @products.length
