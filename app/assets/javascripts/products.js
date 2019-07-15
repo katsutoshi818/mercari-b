@@ -128,4 +128,55 @@ $(document).on('turbolinks:load', function() {
     }
     preinput = input;
   });
+
+
+  var imageFormId = 2;
+  $('.image-forms-wrapper').on('click', function(){
+      function viewThumbnail(file, thisImageId) {
+        console.log(thisImageId);
+      //選択された画像を読み込んでサムネイルを表示する機能
+      var reader = new FileReader();
+      reader.onload = function() {
+        var img_src = $('<img>').attr('src', reader.result);
+        //選択したファイルフォームと同じボックスのサムネイルのみに追加する
+        $(`#image${thisImageId} .thumbnail`).html(img_src);
+      }
+      reader.readAsDataURL(file);
+    }
+    
+    function changeImageFormToSelectedForm(thisImageId) {
+      //変更すべきdiv(.image-form)のdomを取得
+      var thisImageForm = $(`#image${thisImageId}`);
+      //classを書き換える
+      thisImageForm.removeClass('image-form');
+      thisImageForm.addClass('image-form--selected');
+      //->見た目が変わる！
+    }
+
+    function appendNextImageForm() {
+      var wrapper = $('.image-forms-wrapper');
+      var html = `<label for="product_image${imageFormId}"><div class="image-form" id="image${imageFormId}">
+<input class="image-form__file" type="file" name="product[image${imageFormId}]" id="product_image${imageFormId}" data-imageid=${imageFormId}>
+<p>ドラッグアンドドロップ</p>
+<p>またはクリックしてファイルをアップロード</p>
+<div class="thumbnail"></div>
+</div>
+</label>`
+      wrapper.append(html);
+      imageFormId += 1;
+    }
+
+    $('.image-form__file').off().on('change', function() {
+      //ファイルが空→有の場合、追加を行う。変更のみの場合、追加は行わない。
+      var file = $(this).prop('files')[0];
+      var parent = $(this).parent();
+      var thisImageId = $(this).attr("data-imageid");
+      console.log(file);
+      console.log(parent);
+      changeImageFormToSelectedForm(thisImageId);
+      viewThumbnail(file, thisImageId);
+      $(`#image${thisImageId} p`).remove();
+      appendNextImageForm();
+    })
+  })
 });
