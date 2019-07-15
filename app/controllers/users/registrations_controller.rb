@@ -18,12 +18,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.profile.birthday = user_params[:profile_attributes][:'birthday(1i)'] + user_params[:profile_attributes][:'birthday(2i)'] +  user_params[:profile_attributes][:'birthday(3i)']
     @user.save
     sign_in @user
-    render action: 'thanks'
+    redirect_to new_card_path(current_user.id)
   end
 
   def thanks
     @user = User.new
-    redirect_to users_path(current_user.id)
+    sign_in @user
+    # redirect_to user_path(current_user.id)
   end
   # GET /resource/edit
   # def edit
