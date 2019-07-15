@@ -1,0 +1,76 @@
+.new-header
+  = link_to '#' do
+    %img.single_pict{src: '//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2921618501', alt: '', height: '58', width: '185'}
+  .new-usersbar
+    .new-usersbar-now__box1
+      %li.box1
+        会員情報
+        .new-usersbar__status1
+    .new-usersbar-was__box2
+      %li.box2 
+        電話番号認証
+        .new-usersbar__status2
+    .new-usersbar-was__box3
+      %li.box3 
+        お届け先住所
+        .new-usersbar__status2
+    .new-usersbar-now__box4
+      %li.box4 
+        支払い方法
+        .new-usersbar__status2
+    .new-usersbar__box5
+      %li.box5 
+        完了
+        .new-usersbar__status
+.new-usersbox
+  .new-usersbox__top
+    %h3 お支払い方法
+  .new-usersbox__down
+    = form_tag(pay_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+      %label{for: "name1"} カード番号
+      %span.form-require 必須
+      = text_field_tag "number", "", class: "input-default", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
+      .birthbays-form
+        %label{for: "name1"} 有効期限
+        %span.form-require 必須
+        .birthdays-form__down
+          %select#exp_month{name: "exp_month", type: "text"}
+            %option{value: ""} --
+            %option{value: "1"}01
+            %option{value: "2"}02
+            %option{value: "3"}03
+            %option{value: "4"}04
+            %option{value: "5"}05
+            %option{value: "6"}06
+            %option{value: "7"}07
+            %option{value: "8"}08
+            %option{value: "9"}09
+            %option{value: "10"}10
+            %option{value: "11"}11
+            %option{value: "12"}12
+          %a.birthdays 月
+          %select#exp_year{name: "exp_year", type: "text"}
+            %option{value: ""} --
+            %option{value: "2019"}19
+            %option{value: "2020"}20
+            %option{value: "2021"}21
+            %option{value: "2022"}22
+            %option{value: "2023"}23
+            %option{value: "2024"}24
+            %option{value: "2025"}25
+            %option{value: "2026"}26
+            %option{value: "2027"}27
+            %option{value: "2028"}28
+            %option{value: "2029"}29
+          %a.birthdays 年
+      %label{for: "name1"} セキュリティーコード
+      %span.form-require 必須
+      = text_field_tag "cvc", "", class: "input-default", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
+      %i.fa.fa-question-circle
+        = link_to '#' do
+          %span.card-nm-what カードの裏面の番号とは？
+      .action
+        #card_token
+        = submit_tag "登録する", id: "token_submit"
+        .terms-text_down
+= render partial: "layouts/single-footer"
