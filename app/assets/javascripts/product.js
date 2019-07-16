@@ -136,6 +136,113 @@ $(document).on('turbolinks:load', function(){
     queue : false
     });
   })
+  function appendCategoryForm(categories, hierarchy, value) {
+    categoryList = $('#search_category_box');
+    var html = `<div class="form-block--select-append">
+    <label for="product_category_id">
+    </label>
+    <select class="form-block__form--select" id="search_${hierarchy}_category" name="product[${hierarchy}_category_id]">
+    <option value="a">---</option><option value="${value}">すべて</option>`;
+
+    var option = ``;
+    $.each(categories, function(i, category) {
+      option += `<option value="${category.id}">${category.name}</option>`
+    })
+    html += option;
+    html += `</select>
+    <i class="fas fa-chevron-down select-arrow-append"></i></div>`;
+    categoryList.append(html);
+  }
+
+    $(document).on('change',"#search_top_category", function(){
+      var value = $(this).val();
+      if (value != 0) {
+        $.ajax({
+          type: 'GET',
+          url: '/categories',
+          data: {value: value},
+          dataType: 'json'
+        })
+        .done(function(midCategories) {
+          $('#search_mid_category').remove();
+          $('.search_low_check_box').remove();
+          if (midCategories.length !== 0) {
+            appendCategoryForm(midCategories, 'mid', value);
+          }
+        })
+        .fail(function() {
+        })
+      }
+    })
+  
+    $(document).on('change',"#search_mid_category", function(){
+      $('.search_low_check_box').remove();
+      var value = $(this).val();
+      var text = $('#search_mid_category option:selected').text();
+      if (text != "すべて") {
+      if (value != 0) {
+        $.ajax({
+          type: 'GET',
+          url: '/categories',
+          data: {value: value},
+          dataType: 'json'
+        })
+        .done(function(lowCategories) {
+          if (lowCategories.length !== 0) {
+            $('#search_category_box').append(`<div class="search_low_check_box"></div>`)
+            $('.search_low_check_box').append(`<label><input type="checkbox" name="low_category" value="${value}"><p>すべて</p></label>`)
+            $.each(lowCategories,function(index,category){
+              $('.search_low_check_box').append(`<label><input type="checkbox" name="low_category" value="${category.id}"><p>${category.name}</p></label>`)
+            });
+          }
+        })
+        .fail(function() {
+        })
+      }
+    }
+    })
+
+    $('#search_low_category').off('change').on('change', function() {
+      var lowCategory = $('#low_category').val();
+      if (lowCategory !== 0){
+        $.ajax({
+          type: 'GET',
+          url: '/product_sizes',
+          data: {low_category: lowCategory},
+          dataType: 'json'
+        })
+        .done(function(sizes) {
+          if (sizes !== 0) {
+            appendSizeForm(sizes);
+          }
+        })
+        .fail(function() {
+
+        })
+      }
+    })
+    $(document).on('change',"#product_search_size", function(){
+      var value = $(this).val();
+      $('.search_size_check_box').remove();
+      if (value) {
+        $.ajax({
+          type: 'GET',
+          url: '/product_sizes/new',
+          data: {value: value},
+          dataType: 'json'
+        })
+        .done(function(sizes) {
+          if (sizes !== 0) {
+            $('.product_search_size').append(`<div class="search_size_check_box"></div>`)
+            $.each(sizes,function(index,size){
+              $('.search_size_check_box').append(`<label><input type="checkbox" name="low_category" value="${size.id}"><p>${size.text}</p></label>`)
+            });
+          }
+        })
+      }
+      
+
+    });
 
 });
 
