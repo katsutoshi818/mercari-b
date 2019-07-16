@@ -5,7 +5,8 @@ class CategoriesController < ApplicationController
     # @categories = Category.where("category_name LIKE(?)", "#{params[:value]}")
     # ancestryのアソシエーションっぽい機能を使って、もらったカテゴリーの子カテゴリーを検索して配列に入れる。
     category_id = params[:value]
-    @children = Category.find(category_id).children
+    @parent = Category.find(category_id)
+    @children = @parent.children
     respond_to do |format|
       format.json { render 'index', formats: 'json', handlers: 'jbuilder' }
     end
@@ -22,6 +23,10 @@ class CategoriesController < ApplicationController
       @children = @category.children
     end
 
+  end
+
+  def search
+    
   end
 
 
