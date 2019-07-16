@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :card, only: [:new, :show] do
+  resources :card, only: [:new, :show, :card, :index] do
     collection do
+      post 'payjp', to: 'card#payjp'
       post 'show', to: 'card#show'
       post 'pay', to: 'card#pay'
       post 'delete', to: 'card#delete'
