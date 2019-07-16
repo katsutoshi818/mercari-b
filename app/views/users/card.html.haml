@@ -4,5 +4,78 @@
     = render partial: 'users/mypage-sidebar'
     .card-box
       .card-box__label
-        %p　支払い方法
+        %p 支払い方法
+      .content__credit-cards
+        %h クレジットカード一覧
+      - if @card.present?
+        %ul.content__credit-cards__list
+          %li
+            = form_with url: card_path(@card.id), method: :delete, local: true, id: 'charge-form' do |f|
+              %figure
+                = image_tag "credit-cards/#{@card_src}", width: '26', height: '20', alt: @card_brand, id: "card_image"
+              .content__credit-cards__list--pay-num
+                = "**** **** **** " + @card_information.last4
+              .content__credit-cards__list--pay-num
+                - exp_month = @card_information.exp_month.to_s
+                - exp_year = @card_information.exp_year.to_s.slice(2,3)
+                = exp_month + " / " + exp_year
+              %input{type: "hidden", name: "card_id", value: ""}
+              = f.submit "削除する", {class: "content__credit-cards__list__remove"}
+              - if flash[:notice]
+                .alert.alert-success
+                = flash[:notice]
+              - if flash[:alert]
+                .alert.alert-dange
+                = flash[:alert]
+              - else
+              .new-usersbox
+                .new-usersbox__top
+                  %h3 お支払い方法
+                .new-usersbox__down
+                  = form_tag(pay_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+                    %label{for: "name1"} カード番号
+                    %span.form-require 必須
+                    = text_field_tag "number", "", class: "input-default", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
+                    .birthbays-form
+                    %label{for: "name1"} 有効期限
+                    %span.form-require 必須
+                    .birthdays-form__down
+                    %select#exp_month{name: "exp_month", type: "text"}
+                    %option{value: ""} --
+                    %option{value: "1"}01
+                    %option{value: "2"}02
+                    %option{value: "3"}03
+                    %option{value: "4"}04
+                    %option{value: "5"}05
+                    %option{value: "6"}06
+                    %option{value: "7"}07
+                    %option{value: "8"}08
+                    %option{value: "9"}09
+                    %option{value: "10"}10
+                    %option{value: "11"}11
+                    %option{value: "12"}12
+                  %a.birthdays 月
+                  %select#exp_year{name: "exp_year", type: "text"}
+                    %option{value: ""} --
+                    %option{value: "2019"}19
+                    %option{value: "2020"}20
+                    %option{value: "2021"}21
+                    %option{value: "2022"}22
+                    %option{value: "2023"}23
+                    %option{value: "2024"}24
+                    %option{value: "2025"}25
+                    %option{value: "2026"}26
+                    %option{value: "2027"}27
+                    %option{value: "2028"}28
+                    %option{value: "2029"}29
+                  %a.birthdays 年
+              %label{for: "name1"} セキュリティーコード
+              %span.form-require 必須
+              = text_field_tag "cvc", "", class: "input-default", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
+              %i.fa.fa-question-circle
+                 = link_to '#' do
+                  %span.card-nm-what カードの裏面の番号とは？
+              .action
+                 #card_token
+                  = submit_tag "登録する", id: "token_submit"
 = render partial: 'layouts/footer-top'
