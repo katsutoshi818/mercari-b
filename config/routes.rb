@@ -9,8 +9,16 @@ Rails.application.routes.draw do
   end
 
   root 'products#index'
-  resources :products, only: [:index, :new, :show, :edit, :update, :create]
-  resources :categories
+  resources :products, only: [:index, :new, :show, :edit, :update, :create] do
+    collection do
+      get :search
+    end
+  end
+  resources :categories do
+    collection do
+      get :search
+    end
+  end
   resources :users, only: [:show, :new] do
     collection do
       get :profile
@@ -22,5 +30,5 @@ Rails.application.routes.draw do
       get :password
     end
   end
-  resources :product_sizes, only: :index
+  resources :product_sizes, only: [:index, :new]
 end
