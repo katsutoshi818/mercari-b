@@ -1,0 +1,66 @@
+.main-card
+  .main-card-box
+    = render partial: 'users/mypage-sidebar'
+    .card-box
+      .card-box__label
+        %p クレジットカード登録
+      .content__credit-cards
+        .new-usersbox
+          .new-usersbox__top2
+            %h3 お支払い方法
+          .new-usersbox__down2
+            = form_with url: payjp_card_index_path, method: :post, html: {name: "inputForm" } do |f|
+              %label{for: "name1"} カード番号
+              %span.form-require 必須
+              = f.text_field :card_number, class: "input-default", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
+              %img{src: asset_path('visa.svg'), width: '49', heigh: '20', alt: 'visa', class: 'visacard'}
+              %img{src: asset_path('master-card.svg'), width: '49', heigh: '20', alt: 'master'}
+              %img{src: asset_path('saison-card.svg'), width: '49', heigh: '20', alt: 'master'}
+              %img{src: asset_path('jcb.svg'), width:'40', heigh: '20', alt: 'master'}
+              %img{src: asset_path('american_express.svg'), width: '25', heigh: '20', alt: 'master'}
+              %img{src: asset_path('dinersclub.svg'), width: '25', heigh: '20', alt: 'master'}
+              %img{src: asset_path('discover.svg'), width: '35', heigh: '20', alt: 'master'}
+              .birthbays-form
+                %label{for: "name1"} 有効期限
+                %span.form-require 必須
+                .birthdays-form__down
+                  %select#exp_month{name: "exp_month", type: "text"}
+                    %option{value: ""} --
+                    %option{value: "1"}01
+                    %option{value: "2"}02
+                    %option{value: "3"}03
+                    %option{value: "4"}04
+                    %option{value: "5"}05
+                    %option{value: "6"}06
+                    %option{value: "7"}07
+                    %option{value: "8"}08
+                    %option{value: "9"}09
+                    %option{value: "10"}10
+                    %option{value: "11"}11
+                    %option{value: "12"}12
+                  %a.birthdays 月
+                  %select#exp_year{name: "exp_year", type: "text"}
+                    %option{value: ""} --
+                    %option{value: "2019"}19
+                    %option{value: "2020"}20
+                    %option{value: "2021"}21
+                    %option{value: "2022"}22
+                    %option{value: "2023"}23
+                    %option{value: "2024"}24
+                    %option{value: "2025"}25
+                    %option{value: "2026"}26
+                    %option{value: "2027"}27
+                    %option{value: "2028"}28
+                    %option{value: "2029"}29
+                  %a.birthdays 年
+              %label{for: "name1"} セキュリティーコード
+              %span.form-require 必須
+              = f.text_field :cvc, class: "input-default", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
+              %i.fa.fa-question-circle
+                = link_to '#' do
+                  %span.card-nm-what カードの裏面の番号とは？
+              .action
+                #card_token
+                = f.submit "登録する", id: "token_submit"
+                .terms-text_down2
+= render partial: 'layouts/footer-top'
