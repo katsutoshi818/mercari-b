@@ -9,10 +9,10 @@
           .new-usersbox__top2
             %h3 お支払い方法
           .new-usersbox__down2
-            = form_tag(payjp_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+            = form_with url: payjp_card_index_path, method: :post, html: {name: "inputForm" } do |f|
               %label{for: "name1"} カード番号
               %span.form-require 必須
-              = text_field_tag "number", "", class: "input-default", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
+              = f.text_field :card_number, class: "input-default", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
               %img{src: asset_path('visa.svg'), width: '49', heigh: '20', alt: 'visa', class: 'visacard'}
               %img{src: asset_path('master-card.svg'), width: '49', heigh: '20', alt: 'master'}
               %img{src: asset_path('saison-card.svg'), width: '49', heigh: '20', alt: 'master'}
@@ -55,12 +55,12 @@
                   %a.birthdays 年
               %label{for: "name1"} セキュリティーコード
               %span.form-require 必須
-              = text_field_tag "cvc", "", class: "input-default", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
+              = f.text_field :cvc, class: "input-default", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
               %i.fa.fa-question-circle
                 = link_to '#' do
                   %span.card-nm-what カードの裏面の番号とは？
               .action
                 #card_token
-                = submit_tag "登録する", id: "token_submit"
+                = f.submit "登録する", id: "token_submit"
                 .terms-text_down2
 = render partial: 'layouts/footer-top'
