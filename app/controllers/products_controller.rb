@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show]
-  before_action :set_category_brand, only: [:index, :show]
+  before_action :set_category_brand, only: [:index, :show, :search]
 
   def index
     @products = Product.all
@@ -40,6 +40,15 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.json
       format.html
+    end
+  end
+
+  def search
+    @keyword = params[:word]
+    @products = Product.where('product_name LIKE(?) OR introduction LIKE (?)', "%#{params[:word]}%", "%#{params[:word]}%")
+    @top_category = [["----", 0]]
+    Category.where("ancestry IS NULL").each do |category|
+      @top_category <<  [category.category_name, category.id]
     end
   end
 
