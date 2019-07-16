@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       get :search
     end
   end
-  resources :categories do
+  resources :categories, only: [:index, :new, :show, :search] do
     collection do
       get :search
     end
