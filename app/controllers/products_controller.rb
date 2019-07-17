@@ -34,8 +34,9 @@ class ProductsController < ApplicationController
       @product.save!
     end
     ProductImage.transaction do
-      @product_image = ProductImage.new(image_params)
-      @product_image.save!
+      image_params_array.each do |image|
+        ProductImage.new({product_id: @product.id,image: image}).save!
+      end
     end
     redirect_to root_path
   end
@@ -47,6 +48,10 @@ class ProductsController < ApplicationController
 
   def image_params
     params.require(:product).permit(:image).merge(product_id: @product[:id])
+  end
+
+  def image_params_array
+    params.require(:product).select{ |key, value| key =~ /^image/}.values
   end
 
   def set_product
