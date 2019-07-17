@@ -139,7 +139,6 @@ $(document).on('turbolinks:load', function() {
       function viewThumbnail(file, thisImageId) {
       //選択された画像を読み込んでサムネイルを表示する機能
       var reader = new FileReader();
-      console.log(reader)
       reader.onload = function() {
         var img_src = $('<img>').attr('src', reader.result);
         $(`#image${thisImageId} .thumbnail`).html(img_src);
