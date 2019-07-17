@@ -28,7 +28,7 @@ class CardController < ApplicationController
   
   
   def index
-    card = Card.where(user_id: current_user.id).first
+    @card = Card.where(user_id: current_user.id).first
   end
   
   
@@ -51,26 +51,27 @@ class CardController < ApplicationController
     end
     
 
-  def destroy
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-    customer = Payjp::Customer.retrieve(@card.customer_id)
-    customer.delete
-    if @card.destroy
-      redirect_to action: "show", notice: "削除しました"
-    else 
-      redirect_to action: "show", alert: "削除できませんでした"
+  def delete
+    @card = Card.where(user_id: current_user.id).first
+    if @card.blank?
+    else
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      customer.delete
+      @card.delete
     end
+      redirect_to action: "index"
   end
 
 
   def show #Cardのデータpayjpに送り情報を取り出します
-    card = Card.where(user_id: current_user.id).first
-    if card.blank?
+    @card = Card.where(user_id: current_user.id).first
+    if @card.blank?
       redirect_to action: "index" 
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.retrieve(card.card_id)
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @default_card_information = customer.cards.retrieve(@card.card_id)
       @card_brand = @default_card_information.brand
       case @card_brand
       when "Visa"
