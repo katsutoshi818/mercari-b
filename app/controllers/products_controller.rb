@@ -34,22 +34,26 @@ class ProductsController < ApplicationController
       @product.save!
     end
     ProductImage.transaction do
-      @product_image = ProductImage.new(image_params)
-      @product_image.save!
+      image_params_array.each do |image|
+        ProductImage.new({product_id: @product.id,image: image}).save!
+      end
     end
     respond_to do |format|
-      format.json
       format.html
     end
   end
 
   private
   def product_params
-    params.require(:product).permit(:product_name, :introduction, :product_state, :who_pays_shipping_fee, :seller_prefecture, :days_to_ship, :price, :product_size).merge(category_id: params.require(:product)[:low_category_id], brand_id: @brand_id, seller_user_id: 1, buyer_user_id: 1, trade_state: 1, way_to_ship: 1)
+    params.require(:product).permit(:product_name, :introduction, :product_state, :who_pays_shipping_fee, :seller_prefecture, :days_to_ship, :price, :product_size_id, :prefecture_id).merge(category_id: params.require(:product)[:low_category_id], brand_id: @brand_id, seller_user_id: 1, buyer_user_id: 1, trade_state: 1, way_to_ship: 1)
   end
 
   def image_params
     params.require(:product).permit(:image).merge(product_id: @product[:id])
+  end
+
+  def image_params_array
+    params.require(:product).select{ |key, value| key =~ /^image/}.values
   end
 
   def set_product
