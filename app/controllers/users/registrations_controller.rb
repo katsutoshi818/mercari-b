@@ -16,9 +16,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new(user_params)
     @user.profile.birthday = user_params[:profile_attributes][:'birthday(1i)'] + user_params[:profile_attributes][:'birthday(2i)'] +  user_params[:profile_attributes][:'birthday(3i)']
-    @user.save
-    sign_in @user
-    redirect_to new_card_path(current_user.id)
+    if @user.save
+      sign_in @user
+      redirect_to new_card_path(current_user.id)
+    else
+      redirect_to action: "new"
+    end
   end
 
   def thanks

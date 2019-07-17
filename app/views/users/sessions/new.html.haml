@@ -1,17 +1,26 @@
-%h2 Log in
+= render partial: "layouts/single-header"
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "users/shared/links"
+  .single-main2
+    .single-box2
+      .single-box_top2
+        %p アカウントをお持ちでない方はこちら
+        = link_to new_user_registration_path, class: "new-users-top" do
+          新規会員登録
+      .single-box_down
+        .btn-box_facebook
+        %button.single-box_facebook2{type: "button"}
+          フェイスブックで登録する
+          .btn-box
+            %i.fab.fa-facebook-square
+        .btn-box_google
+        %button.single-box_google2{type: "button"}
+          Googleで登録する
+          .btn-box
+            %i.fab.fa-google
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: "input-default1"
+        = f.password_field :password, autocomplete: "current-password", class: "input-default1"
+        .rc-anchor1
+          ロボット認証入ります。
+        = f.submit "ログイン", class: "btn-signup"
+      .terms-text_down
+= render partial: "layouts/single-footer"
