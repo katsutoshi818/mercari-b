@@ -204,7 +204,7 @@ $(document).on('turbolinks:load', function() {
           appendNextImageForm()
           changeImageFormWidth()
         }
-      };
+      }
     })
 
     $('.edit-button-box__edit-btn').off().on('click', function() {
