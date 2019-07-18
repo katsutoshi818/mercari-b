@@ -1,5 +1,125 @@
-= render 'layouts/single-header'
-- if @product.trade_state == "buying"
+- if @product.seller_user_id == current_user.id
+  .wrapper
+    %header
+      %h1
+        = link_to root_path do
+          %img{src: asset_path('exhibition-mercari-logo.svg'), width: 185, height: 49, alt: 'logo'}
+    = form_with model: @product, url: {action: :update} do |f|
+      .forms-wrapper
+        %h2.forms-wrapper__announce 商品の情報を編集する
+        .product-image-box
+          %h3.product-image-box__label
+            出品画像を設定し直す
+            %span.form-block__require 必須
+          %p.product-image-box__tips 最大10枚までアップロードできます
+          = f.label :image do
+            .image-form
+              = f.file_field :image, class: 'image-form__file'
+              %p ドラッグアンドドロップ
+              %p またはクリックしてファイルをアップロード
+        .form-wrapper
+          .form-block
+            = f.label :product_name do
+              %p.form-block__label
+                商品名
+                %span.form-block__require 必須
+            = f.text_field :product_name, class: 'form-block__form--textfield', value: "#{@product.product_name}"
+          .form-block
+            = f.label :introduction do
+              %p.form-block__label
+                商品説明
+                %span.form-block__require 必須
+            = f.text_area :introduction, class: 'form-block__form--textarea', value: "#{@product.introduction}"
+        .form-wrapper--select
+          %h3.form-wrapper__label 商品の詳細
+          .details-forms
+            .category-block
+              .form-block--select
+                = f.label :top_category_id do
+                  %p.form-block__label
+                    カテゴリー
+                    %span.form-block__require 必須
+                = f.select :top_category_id, @top_category, {}, class: 'form-block__form--select top_category_val', id: 'top_category'
+                %i.fas.fa-chevron-down.select-arrow
+              .form-block--select-append
+                = f.select :mid_category_id, @mid_category, {}, class: 'form-block__form--select mid_category_val', id: 'mid_category'
+                %i.fas.fa-chevron-down.select-arrow
+              .form-block--select-append
+                = f.select :low_category_id, @low_category, {}, class: 'form-block__form--select low_category_val', id: 'low_category'
+                %i.fas.fa-chevron-down.select-arrow
+              %script
+                $('.top_category_val').val("#{@top_categories.id}");
+                $('.mid_category_val').val("#{@mid_categories.id}");
+                $('.low_category_val').val("#{@low_categories.id}");
+              .form-block--select-append#size-form
+                = f.label :product_size_id, value: "サイズ"
+                %span.form-block__require 必須
+                = f.select :product_size_id, @product_size, {}, class:"form-block__form--select"
+                %i.fas.fa-chevron-down.select-arrow
+            .form-block--select#size-block
+            .form-block--brand
+              = f.label :brand_name do
+                %p.form-block__label
+                  ブランド
+                  %span.form-block__optional 任意
+              = f.text_field :brand_name, class: 'form-block__form--textfield', value: "#{@product.brand.brand_name}"
+            .form-block--select
+              = f.label :product_state do
+                %p.form-block__label
+                  状態
+                  %span.form-block__require 必須
+              = f.select :product_state, Product.product_states_i18n.keys.map {|k| [Product.product_states_i18n[k], k]},{}, class: 'form-block__form--select'
+              %i.fas.fa-chevron-down.select-arrow
+        .form-wrapper--select
+          %h3.form-wrapper__label 配送について
+          .about-shipping-forms
+            .form-block--select
+              = f.label :who_pays_shipping_fee do
+                %p.form-block__label
+                  配送料の負担の再設定
+                  %span.form-block__require 必須
+              = f.select :who_pays_shipping_fee, Product.who_pays_shipping_fees_i18n.keys.map {|k| [Product.who_pays_shipping_fees_i18n[k], k]},{}, class: 'form-block__form--select'
+              %i.fas.fa-chevron-down.select-arrow
+            .form-block--select
+              = f.label :seller_prefecture do
+                %p.form-block__label
+                  発送元の地域の再設定
+                  %span.form-block__require 必須
+              = f.select :prefecture_id,{"北海道": 1, "青森": 2}, class: 'form-block__form--select'
+              %i.fas.fa-chevron-down.select-arrow
+            .form-block--select
+              = f.label :days_to_ship do
+                %p.form-block__label
+                  発送までの日数の再設定
+                  %span.form-block__require 必須
+              = f.select :days_to_ship, Product.days_to_ships_i18n.keys.map {|k| [Product.days_to_ships_i18n[k], k]},{}, class: 'form-block__form--select'
+              %i.fas.fa-chevron-down.select-arrow
+        .form-wrapper--select
+          %h3.form-wrapper__label 販売価格(300〜9,999,999)
+          .selling-price-form
+            .form-block--price
+              = f.label :price do
+                %p.form-block__label
+                  価格
+                  %span.form-block__require 必須
+              .price-form
+                %p.price-form__yen ¥
+                = f.text_field :price, class: 'price-form__text', value: "#{@product.price}"
+            .form-block--price--charge
+              %p.form-block__charge-label 販売手数料(10%)
+              %p.form-block__charge -
+            .form-block--price--charge
+              %p.form-block__profit-label 販売利益
+              %p.form-block__profit -
+        .form-wrapper
+          .exhibit-announcement
+            %p.exhibit-announcement__text 禁止されている出品、行為を必ずご確認ください。
+            %p.exhibit-announcement__text またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり処罰される可能性があります。
+            %p.exhibit-announcement__text また、出品をもちまして加盟店規約に同意したことになります。
+
+          = f.submit '編集する', class: 'form-wrapper__submit-btn'
+          = link_to '戻る', {} ,class: 'form-wrapper__back-btn'
+- else
   %section.main
     .main_top
       %h2.main_top__text 購入内容の確認
@@ -62,6 +182,7 @@
             = link_to do
               %span.card_link__change 変更する
               %i.fas.fa-chevron-right.card_link__icon
+  .line
 - else
   .buyed_not
     .buyed_not__box

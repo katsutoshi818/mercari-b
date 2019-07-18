@@ -1,7 +1,7 @@
 = render partial: 'layouts/header'
 .pankuzu
-  - breadcrumb :show_product, @product, class: "pankuzu__text"
-  = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right')} "
+  -# - breadcrumb :show_product, @product, class: "pankuzu__text"
+  -# = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right')} "
 %section.show_product
   %h3.show_product_name
     = @product.product_name
@@ -69,7 +69,7 @@
         %th.detail__seller_prefecture 配送元地域
         %td.detail__seller_prefecture_text
           =link_to root_path, class: "prefecture_name" do
-            = @seller_user.profile.prefecture.name
+            = @product.prefecture.name
       %tr.detail
         %th.detail__days_to_ship 発送日の目安
         %td.detail__days_to_ship_text
@@ -80,11 +80,15 @@
     %span.product_place__tax (税込)
     %span.product_place__ship 送料込み
   .link_buy
-    - if @product.trade_state == "buyed"
-      %span.link_buy__text 売り切れました
-    - else
-      = link_to edit_product_path(@product) do
-        %span.link_buy__text 購入画面に進む
+    = link_to edit_product_path(@product) do
+      - if current_user.id == @product.seller_user_id
+        %span.link_buy__text 編集画面に進む
+      - else
+        - if @product.trade_state == "buyed"
+          %span.link_buy__text 売り切れました
+        - else
+          = link_to edit_product_path(@product) do
+            %span.link_buy__text 購入画面に進む
   .product_discription
     %p.product_discription__text
       = @product.introduction
