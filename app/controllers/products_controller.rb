@@ -42,17 +42,22 @@ class ProductsController < ApplicationController
   end
 
   def edit
-  end
+end
 
 
   def update
+    begin
     @product.update(buy_params)
     Payjp::Charge.create(
       :amount => @product.price,
       :customer => @card.customer_id,
       :currency => 'jpy'
       )
+    rescue => e
+      flash[:alert] += '購入に失敗しました。'
+      render :edit
   end
+end
 
   private
 
@@ -85,6 +90,7 @@ class ProductsController < ApplicationController
   end
 
   def card_img
+    begin
     @card = Card.where(user_id: current_user.id).first
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     customer = Payjp::Customer.retrieve(@card.customer_id)
@@ -104,7 +110,10 @@ class ProductsController < ApplicationController
     when "Discover"
       @card_src = "discover.svg"
     end
+  rescue => e
+    redirect_to controller: "card", acttion: "show"
   end
+end
 
   def set_address
     @address = Addressee.find_by(user_id: @product.seller_user_id)
