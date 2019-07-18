@@ -14,6 +14,11 @@ class ProductsController < ApplicationController
     Category.where("ancestry IS NULL").each do |category|
       @top_category <<  [category.category_name, category.id]
     end
+    prefectures = Prefecture.all
+    @prefecture_selection = []
+    prefectures.each do |prefecture|
+      @prefecture_selection << [prefecture.name, prefecture.id]
+    end
   end
 
   def edit
