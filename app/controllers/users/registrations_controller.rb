@@ -25,8 +25,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def thanks
-    @user = User.new
-    sign_in @user
     # redirect_to user_path(current_user.id)
   end
   # GET /resource/edit
