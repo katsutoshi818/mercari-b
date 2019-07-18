@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
+  before_action :set_category_brand, only: [:index, :show, :edit]
   before_action :set_product, only: [:show, :edit, :update]
-  before_action :set_category_brand, only: [:index, :show]
   before_action :card_img, only: [:edit, :update]
   before_action :set_address, only: [:edit, :update]
+
   def index
     @products = Product.all
   end
@@ -15,6 +16,31 @@ class ProductsController < ApplicationController
     end
   end
 
+  def edit
+    @product = Product.find(params[:id])
+    @low_categories = @product.category
+    @mid_categories = @low_categories.parent
+    @top_categories = @mid_categories.parent
+    @top_category = [["----", 0]]
+    @mid_category = [["----", 0]]
+    @low_category = [["----", 0]]
+    @product_size = [["----", 0]]
+
+    Category.where("ancestry IS NULL").each do |category|
+      @top_category <<  [category.category_name, category.id]
+    end
+    @top_categories.children.each do |category|
+      @mid_category  << [category.category_name, category.id]
+    end
+    @mid_categories.children.each do |category|
+      @low_category  << [category.category_name, category.id]
+    end
+    ProductSize.all.each do |size|
+      @product_size << [size.size_text, size.id]
+    end
+  end
+
+  
   def show
     @images = @product.product_images
     @category3 = @product.category
@@ -25,8 +51,8 @@ class ProductsController < ApplicationController
     @user_products = Product.where(seller_user_id: @product.seller_user_id).where.not(id: params[:id]).limit(6)
     @brand_products = Product.where(brand_id: @product.brand_id).where.not(id: params[:id]).limit(6)
   end
-
-
+  
+  
   def create
     @brand = Brand.new(brand_name: params.require(:product)[:brand_name], category_id: params.require(:product)[:low_category_id])
     @brand_id = @brand.brand_registration(@brand)
@@ -38,6 +64,20 @@ class ProductsController < ApplicationController
       image_params_array.each do |image|
         ProductImage.new({product_id: @product.id,image: image}).save!
       end
+    end
+    redirect_to root_path
+  end
+  
+  def update
+    @brand = Brand.new(brand_name: params.require(:product)[:brand_name], category_id: params.require(:product)[:low_category_id])
+    @brand_id = @brand.brand_registration(@brand)
+    @product = Product.find(params[:id])
+    Product.transaction do
+      @product.update(product_params)
+    end
+    ProductImage.transaction do
+      @product_image = ProductImage.new(image_params)
+      @product_image.save!
     end
     redirect_to root_path
   end
@@ -62,7 +102,7 @@ end
   private
 
   def product_params
-    params.require(:product).permit(:product_name, :introduction, :product_state, :who_pays_shipping_fee, :prefecture_id, :days_to_ship, :price, :product_size_id).merge(category_id: params.require(:product)[:low_category_id], brand_id: @brand_id, seller_user_id: 1, buyer_user_id: 1, trade_state: "buying", way_to_ship: "らくらくメルカリ便")
+    params.require(:product).permit(:product_name, :introduction, :product_state, :who_pays_shipping_fee, :prefecture_id, :days_to_ship, :price, :product_size_id).merge(category_id: params.require(:product)[:low_category_id], brand_id: @brand_id, seller_user_id: current_user.id, buyer_user_id: 1, trade_state: "buying", way_to_ship: "らくらくメルカリ便")
   end
 
   def image_params
@@ -83,6 +123,9 @@ end
     @parents = Category.where(ancestry: nil)
     @parent = Category.find_by('category_name LIKE(?)', "%#{params[:keyword]}%")
     @children = @parent.children
+    if current_user.present?
+      @products = Product.where(seller_user_id: current_user.id)
+    end
     respond_to do |format|
       format.html
       format.json
