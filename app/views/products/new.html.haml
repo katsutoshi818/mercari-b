@@ -23,13 +23,13 @@
             %p.form-block__label
               商品名
               %span.form-block__require 必須
-          = f.text_field :product_name, class: 'form-block__form--textfield'
+          = f.text_field :product_name, class: 'form-block__form--textfield', placeholder: "商品名を入力してください"
         .form-block
           = f.label :introduction do
             %p.form-block__label
               商品説明
               %span.form-block__require 必須
-          = f.text_area :introduction, class: 'form-block__form--textarea'
+          = f.text_area :introduction, class: 'form-block__form--textarea', placeholder: "商品の説明を入力してください"
       .form-wrapper--select
         %h3.form-wrapper__label 商品の詳細
         .details-forms
@@ -47,7 +47,7 @@
               %p.form-block__label
                 ブランド
                 %span.form-block__optional 任意
-            = f.text_field :brand_name, class: 'form-block__form--textfield'
+            = f.text_field :brand_name, class: 'form-block__form--textfield', placeholder: "ブランド名を入力してください（任意）"
           .form-block--select
             = f.label :product_state do
               %p.form-block__label
@@ -89,7 +89,7 @@
                 %span.form-block__require 必須
             .price-form
               %p.price-form__yen ¥
-              = f.text_field :price, class: 'price-form__text'
+              = f.text_field :price, class: 'price-form__text', placeholder: "例)300"
           .form-block--price--charge
             %p.form-block__charge-label 販売手数料(10%)
             %p.form-block__charge -
