@@ -1,7 +1,8 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update]
   before_action :set_category_brand, only: [:index, :show]
-
+  before_action :card_img, only: [:edit, :update]
+  before_action :address, only: [:edit, :update]
   def index
     @products = Product.all
   end
@@ -41,59 +42,20 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @address = Addressee.find_by(user_id: @product.seller_user_id)
-    @card = Card.where(user_id: current_user.id).first
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-    customer = Payjp::Customer.retrieve(@card.customer_id)
-    @default_card_information = customer.cards.retrieve(@card.card_id)
-    @card_brand = @default_card_information.brand
-    case @card_brand
-    when "Visa"
-      @card_src = "visa.svg"
-    when "JCB"
-      @card_src = "jcb.svg"
-    when "MasterCard"
-      @card_src = "master-card.svg"
-    when "American Express"
-      @card_src = "american_express.svg"
-    when "Diners Club"
-      @card_src = "dinersclub.svg"
-    when "Discover"
-      @card_src = "discover.svg"
-    end
   end
 
 
   def update
     @product.update(buy_params)
-    @address = Addressee.find_by(user_id: @product.seller_user_id)
-    @card = Card.where(user_id: current_user.id).first
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
-    customer = Payjp::Customer.retrieve(@card.customer_id)
-    @default_card_information = customer.cards.retrieve(@card.card_id)
-    @card_brand = @default_card_information.brand
     Payjp::Charge.create(
       :amount => @product.price,
       :customer => @card.customer_id,
       :currency => 'jpy'
       )
-      case @card_brand
-      when "Visa"
-        @card_src = "visa.svg"
-      when "JCB"
-        @card_src = "jcb.svg"
-      when "MasterCard"
-        @card_src = "master-card.svg"
-      when "American Express"
-        @card_src = "american_express.svg"
-      when "Diners Club"
-        @card_src = "dinersclub.svg"
-      when "Discover"
-        @card_src = "discover.svg"
-      end
   end
 
   private
+
   def product_params
     params.require(:product).permit(:product_name, :introduction, :product_state, :who_pays_shipping_fee, :prefecture_id, :days_to_ship, :price, :product_size_id).merge(category_id: params.require(:product)[:low_category_id], brand_id: @brand_id, seller_user_id: 1, buyer_user_id: 1, trade_state: 1, way_to_ship: 1)
   end
@@ -120,6 +82,32 @@ class ProductsController < ApplicationController
 
   def buy_params
     params.require(:product).permit(:trade_state, :buyer_user_id)
+  end
+
+  def card_img
+    @card = Card.where(user_id: current_user.id).first
+    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    customer = Payjp::Customer.retrieve(@card.customer_id)
+    @default_card_information = customer.cards.retrieve(@card.card_id)
+    @card_brand = @default_card_information.brand
+    case @card_brand
+    when "Visa"
+      @card_src = "visa.svg"
+    when "JCB"
+      @card_src = "jcb.svg"
+    when "MasterCard"
+      @card_src = "master-card.svg"
+    when "American Express"
+      @card_src = "american_express.svg"
+    when "Diners Club"
+      @card_src = "dinersclub.svg"
+    when "Discover"
+      @card_src = "discover.svg"
+    end
+  end
+
+  def address
+    @address = Addressee.find_by(user_id: @product.seller_user_id)
   end
 
 end
