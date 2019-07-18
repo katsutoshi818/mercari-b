@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to :seller_user, class_name: 'User', foreign_key: 'seller_user_id'
   belongs_to :buyer_user, class_name: 'User', foreign_key: 'buyer_user_id'
-  belongs_to :brand
+  belongs_to :brand, optional: true
   belongs_to :category
   belongs_to :product_size
   has_many :comments

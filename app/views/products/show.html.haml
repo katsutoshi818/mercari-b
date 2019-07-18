@@ -48,7 +48,7 @@
         %th.detail__bland ブランド
         %td.detail__bland_text
           = link_to root_path, class: "brand_name" do
-            = @brand.brand_name
+            = @brand.brand_name if @brand
       %tr.detail
         %th.detail__size サイズ
         %td.detail___size_text
@@ -146,23 +146,24 @@
                   %i.far.fa-heart
                     %span 99
               .index_tax (税込)
-%section.bland_other_product
-  = link_to do
-    %h3.bland_name_other
-      = "#{@brand.brand_name}の他の出品リスト"
-  .bland_other_product_box
-    - @brand_products.each do |product|
-      .item_box
-        %section.items
-          = link_to "/products/#{product.id}" do
-            = image_tag "#{product.product_images.find_by(product_id: product.id).image}",size: "213*220", alt: "商品写真", class: "items__pict"
-            .index_text
-              %h4
-                = product.product_name
-              .index_info
-                .index_info__price
-                  = product.price.to_s(:delimited)
-                .index_info__box
-                  %i.far.fa-heart
-                    %span 99
-              .index_tax (税込)
+= if @brand
+  %section.bland_other_product
+    = link_to do
+      %h3.bland_name_other
+        = "#{@brand.brand_name}の他の出品リスト"
+    .bland_other_product_box
+      - @brand_products.each do |product|
+        .item_box
+          %section.items
+            = link_to "/products/#{product.id}" do
+              = image_tag "#{product.product_images.find_by(product_id: product.id).image}",size: "213*220", alt: "商品写真", class: "items__pict"
+              .index_text
+                %h4
+                  = product.product_name
+                .index_info
+                  .index_info__price
+                    = product.price.to_s(:delimited)
+                  .index_info__box
+                    %i.far.fa-heart
+                      %span 99
+                .index_tax (税込)
