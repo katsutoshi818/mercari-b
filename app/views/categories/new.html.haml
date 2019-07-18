@@ -1,0 +1,34 @@
+= render partial: 'layouts/header'
+.categories_index
+  .categories_index_main
+    .category_index_top
+      %h2.category_index_top_text
+        カテゴリー一覧
+      .parent_category_index
+        - @parents.each do |parent|
+          %p.category_show_link{id: "a#{parent.id}"}
+            = parent.category_name
+      .category_index_list_box
+        - @parents.each do |parent|
+          .category_index_list_all
+            .category_index_list_name{id: "a#{parent.id}"}
+              = parent.category_name
+            .category_index_contents
+              .category_index_children_box_all
+                = link_to category_path(parent.id), class: "category_index_children_box_all__text" do
+                  すべて
+              - parent.children.each do |children|
+                .category_index_child
+                  = children.category_name
+                .category_index_grandchild
+                  .grandchild_all
+                    = link_to category_path(children.id), class: "grandchild_all__text" do
+                      すべて
+                  - children.children.each do |grandchildren|
+                    .category_grand_name
+                      = link_to category_path(grandchildren.id), class: "category_grand_name__text" do
+                        = grandchildren.category_name
+= render partial: 'layouts/footer-top'
+
+
+

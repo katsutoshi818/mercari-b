@@ -1,0 +1,370 @@
+.products_search_main {
+  @include clearfix();
+  margin: 40px auto 0;
+  width: 1050px;
+}
+
+.products_search_side {
+  float: left;
+  margin-right: 40px;
+  width: 280px;
+}
+
+.sort_order_content {
+  background-color: $white;
+  text-align: left;
+  position: relative;
+  #sort {
+  background-color: $white;
+  height: 48px;
+  width: 100%;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.select-arrow_search {
+  position: absolute;
+  right: 16px;
+  top: 35%;
+  font-size: 20px;
+  color: gray;
+  z-index: 1;
+}
+}
+
+.products_search_content {
+  float: right;
+  width: 720px;
+}
+
+.products_search_content_box {
+  margin: 0;
+  padding: 0;
+  &__keyword {
+  font-size: 22px;
+  margin-bottom: 8px;
+  }
+  &__number {
+    color: #888;
+    font-size: 12px;
+    margin: 16px 0;
+  }
+}
+
+.products_search_items {
+  @include clearfix();
+}
+
+.item_box_product_search {
+  margin: 0 20px 20px 0;
+  width: 160px;
+  float: left;
+  background-color: $white;
+}
+
+.items_pict_product_search {
+  height: 160px;
+  width: 160px;
+}
+
+.index_text_product_search {
+  height: 80px;
+  padding: 8px 12px;
+  h4 {
+    font-size: 14px;
+    color: $black;
+    height: 3em;
+    word-wrap: break-word;
+    overflow: hidden;
+    position: relative;
+    line-height: 1.5;
+  }
+  h4::after {
+    content: '';
+    position: absolute;
+    height: 1.7em;
+    background: linear-gradient(to right,rgba( 255, 255, 255, 0),#fff 72%);
+    width: 50%;
+    right: 0;
+    bottom: 0;
+    display: block;
+    }
+}
+.index_info_product_search {
+}
+.index_info_product_search__price {
+  width: 70%;
+  font-size: 17px;
+  font-weight: 600;
+  color: $black;
+  text-align: left;
+}
+
+.product_search_list {
+  background-color: $white;
+  margin: 40px 0 0;
+  padding: 16px;
+
+  &__text {
+    color: black;
+    font-size: 16px;
+  }
+
+  &__form {
+    margin-top: 24px;
+    &__label {
+      i {
+        color: #888;
+        font-size: 16px;
+        margin-right: 4px
+      }
+      span {
+        color: black;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+    &__field {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      height: 48px;
+      margin-top: 8px;
+      line-height: 1.5;
+      padding: 10px 16px 8px;
+      width: 100%;
+    }
+  }
+}
+
+#search_top_category, #search_mid_category, #product_search_size {
+  background-color: $white;
+}
+
+.search_top_category_box, .product_search_size {
+  position: relative;
+}
+
+.select-arrow_search_category {
+  position: absolute;
+  right: 16px;
+  top: 30%;
+  font-size: 20px;
+  color: gray;
+  z-index: 1;
+}
+
+.search_low_check_box {
+  @include clearfix();
+  label {
+    @include clearfix();
+    float: left;
+    height: 60px;
+    display: block;
+    width: 120px;
+    input {
+      float: left;
+      display: block;
+      font-size: 20px;
+      height: 60px;
+      width: 20px;
+    }
+    p {
+      float: left;
+      font-size: 12px;
+      height: 60px;
+      width: 90px;
+      word-wrap: break-word;
+      display: flex;
+	    align-items: center;
+    }
+  }
+  
+}
+
+.size-arrow_search_category {
+  position: absolute;
+  right: 16px;
+  top: 33px;
+  font-size: 20px;
+  color: gray;
+  z-index: 1;
+}
+
+.search_size_check_box {
+  @include clearfix();
+  padding-top: 10px;
+  label {
+    @include clearfix();
+    float: left;
+    height: 20px;
+    display: block;
+    width: 120px;
+    input {
+      float: left;
+      display: block;
+      font-size: 20px;
+      height: 20px;
+      width: 20px;
+    }
+    p {
+      float: left;
+      font-size: 12px;
+      height: 20px;
+      width: 90px;
+      word-wrap: break-word;
+      display: flex;
+	    align-items: center;
+    }
+  }
+  
+}
+
+.prace_form_box {
+  @include clearfix();
+  .product_search_list__form__field--half {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 8px;
+    padding: 10px 16px 8px;
+    height: 48px;
+    width: 43%;
+  }
+  span {
+    display: inline-block;
+    font-size: 14px;
+    height: 48px;
+    line-height: 1;
+    width: 10%;
+    text-align: center;
+
+  }
+}
+
+.search_product_state_check_box {
+  @include clearfix();
+  margin: 5px 0;
+  label {
+    @include clearfix();
+    float: left;
+    height: 30px;
+    display: block;
+    width: 120px;
+    input {
+      float: left;
+      display: block;
+      font-size: 20px;
+      height: 30px;
+      width: 20px;
+    }
+    p {
+      float: left;
+      font-size: 16px;
+      height: 30px;
+      width: 90px;
+      word-wrap: break-word;
+      display: flex;
+	    align-items: center;
+    }
+  }
+  
+}
+
+.product_ship_fee_check_box {
+  @include clearfix();
+  margin: 5px 0;
+  label {
+    @include clearfix();
+    float: left;
+    height: 30px;
+    display: block;
+    width: 120px;
+    input {
+      float: left;
+      display: block;
+      font-size: 20px;
+      height: 30px;
+      width: 20px;
+    }
+    p {
+      float: left;
+      font-size: 16px;
+      height: 30px;
+      width: 90px;
+      word-wrap: break-word;
+      display: flex;
+	    align-items: center;
+    }
+  }
+  
+}
+
+.product_trade_check_box {
+  @include clearfix();
+  margin: 5px 0;
+  label {
+    @include clearfix();
+    float: left;
+    height: 30px;
+    display: block;
+    width: 120px;
+    input {
+      float: left;
+      display: block;
+      font-size: 20px;
+      height: 30px;
+      width: 20px;
+    }
+    p {
+      float: left;
+      font-size: 16px;
+      height: 30px;
+      width: 90px;
+      word-wrap: break-word;
+      display: flex;
+	    align-items: center;
+    }
+  }
+  
+}
+
+.submit_box {
+  @include clearfix();
+  margin: 15px 0;
+  width: 100%;
+}
+
+.search_word_reset {
+  background-color: #aaa;
+  border: 1px solid #aaa;
+  height: 50px;
+  float: left;
+  margin-right: 10px;
+  text-align: center;
+  width: 45%;
+  span {
+    color: $white;
+    line-height: 50px;
+  }
+}
+
+.search_submit {
+  background-color: $red;
+  border: 1px solid $red;
+  color: $white;
+  height: 50px;
+  float: left;
+  margin-left: 10px;
+  line-height: 50px;
+  text-align: center;
+  width: 45%;
+}
+
+
+
+
+

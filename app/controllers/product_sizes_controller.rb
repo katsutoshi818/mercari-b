@@ -6,4 +6,12 @@ class ProductSizesController < ApplicationController
       format.json { @sizes = ProductSize.where("size_type LIKE(?)", category_type) }
     end
   end
+
+  def new
+    @sizes = ProductSize.where(size_type: params[:value])
+    respond_to do |format|
+    format.json { @sizes }
+    end
+  end
+
 end
