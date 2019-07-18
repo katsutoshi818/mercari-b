@@ -14,11 +14,6 @@ class ProductsController < ApplicationController
     Category.where("ancestry IS NULL").each do |category|
       @top_category <<  [category.category_name, category.id]
     end
-    prefectures = Prefecture.all
-    @prefecture_selection = []
-    prefectures.each do |prefecture|
-      @prefecture_selection << [prefecture.name, prefecture.id]
-    end
   end
 
   def edit
@@ -84,23 +79,20 @@ class ProductsController < ApplicationController
       @product_image = ProductImage.new(image_params)
       @product_image.save!
     end
-    
-    if @product.update(buy_params)
-    Payjp::Charge.create(
-      amount: @product.price,
-      customer: @card.customer_id,
-      currency: 'jpy'
-      )
-    else
-      flash[:alert] += '購入に失敗しました。'
-      render :edit
-    end
-    redirect_to root_path
-  end
 
-  def destroy
-    product = current_user.products.find(params[:id])
-    product.destroy 
+    if current_user.id == @product.id
+      if @product.update(buy_params)
+        Payjp::Charge.create(
+          amount: @product.price,
+          customer: @card.customer_id,
+          currency: 'jpy'
+          )
+        else
+          flash[:alert] += '購入に失敗しました。'
+          render :edit
+        end
+      end
+
     redirect_to root_path
   end
 
@@ -142,29 +134,31 @@ class ProductsController < ApplicationController
   end
 
   def card_img
-    if @card = Card.where(user_id: current_user.id).first
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
-    customer = Payjp::Customer.retrieve(@card.customer_id)
-    @default_card_information = customer.cards.retrieve(@card.card_id)
-    @card_brand = @default_card_information.brand
-    case @card_brand
-    when "Visa"
-      @card_src = "visa.svg"
-    when "JCB"
-      @card_src = "jcb.svg"
-    when "MasterCard"
-      @card_src = "master-card.svg"
-    when "American Express"
-      @card_src = "american_express.svg"
-    when "Diners Club"
-      @card_src = "dinersclub.svg"
-    when "Discover"
-      @card_src = "discover.svg"
+    if current_user.id == @product.id
+      if @card = Card.where(user_id: current_user.id).first
+      Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @default_card_information = customer.cards.retrieve(@card.card_id)
+      @card_brand = @default_card_information.brand
+      case @card_brand
+      when "Visa"
+        @card_src = "visa.svg"
+      when "JCB"
+        @card_src = "jcb.svg"
+      when "MasterCard"
+        @card_src = "master-card.svg"
+      when "American Express"
+        @card_src = "american_express.svg"
+      when "Diners Club"
+        @card_src = "dinersclub.svg"
+      when "Discover"
+        @card_src = "discover.svg"
+      end
+      else
+        redirect_to controller: "card", acttion: "show"
+      end
     end
-  else
-    redirect_to controller: "card", acttion: "show"
   end
-end
 
   def set_address
     @address = Addressee.find_by(user_id: @product.seller_user_id)

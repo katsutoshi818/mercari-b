@@ -120,74 +120,74 @@
           = f.submit '編集する', class: 'form-wrapper__submit-btn'
           = link_to '戻る', {} ,class: 'form-wrapper__back-btn'
 - else
-  %section.main
-    .main_top
-      %h2.main_top__text 購入内容の確認
-    .main_body
-      .product_info
-        .item_info
-          = image_tag "#{@product.product_images.find_by(product_id: @product.id).image}", class: "items_pict", alt: "商品画像1"
-          %p.item_info__text 
-            = @product.product_name
-        .fee_info
-          .fee_info__text
-            %span.fee_info__text__place 
-              = "¥#{@product.price.to_s(:delimited)}"
-            %span.fee_info__text__shipping_cost 送料込み
-          .point_info
-            %span.point_info__text ポイントはありません
-          .buy_info
-            .buy_text
-              %span.buy_text__attention 支払い金額
-            .buy_place
-              %span.buy_place__body
+  - if @product.trade_state == "buying"
+    %section.main
+      .main_top
+        %h2.main_top__text 購入内容の確認
+      .main_body
+        .product_info
+          .item_info
+            = image_tag "#{@product.product_images.find_by(product_id: @product.id).image}", class: "items_pict", alt: "商品画像1"
+            %p.item_info__text 
+              = @product.product_name
+          .fee_info
+            .fee_info__text
+              %span.fee_info__text__place 
                 = "¥#{@product.price.to_s(:delimited)}"
-          .buy_action
-            .buy_not
-              %span.buy_not__message 配送先と支払い方法の入力を完了してください。
-            = form_with model: @product,local: true, id: 'charge-form' do |f|
-              = f.text_field :trade_state, class: "buy_form", value: "buyed"
-              = f.number_field :buyer_user_id, class: "buy_form", value: "#{current_user.id}"
-              = f.submit '購入する', class: 'buy_button'
-    .buyer_body
-      .buyer_info
-        .address
-          %h3.address__info 配送先
-          .address__text
-            %span.address__text__address_number 郵便番号
-            = "〒#{@address.postal_code}"
-            %span.address__text__address_text 住所
-            = "#{@address.prefecture.name}" + "#{@address.city}" + "#{@address.address}" + "#{@address.building}"
-            %span.address__text__buyer 名前
-            = "#{@address.first_name}" + "#{@address.last_name}"
-            .address_link
+              %span.fee_info__text__shipping_cost 送料込み
+            .point_info
+              %span.point_info__text ポイントはありません
+            .buy_info
+              .buy_text
+                %span.buy_text__attention 支払い金額
+              .buy_place
+                %span.buy_place__body
+                  = "¥#{@product.price.to_s(:delimited)}"
+            .buy_action
+              .buy_not
+                %span.buy_not__message 配送先と支払い方法の入力を完了してください。
+              = form_with model: @product,local: true, id: 'charge-form' do |f|
+                = f.text_field :trade_state, class: "buy_form", value: "buyed"
+                = f.number_field :buyer_user_id, class: "buy_form", value: "#{current_user.id}"
+                = f.submit '購入する', class: 'buy_button'
+      .buyer_body
+        .buyer_info
+          .address
+            %h3.address__info 配送先
+            .address__text
+              %span.address__text__address_number 郵便番号
+              = "〒#{@address.postal_code}"
+              %span.address__text__address_text 住所
+              = "#{@address.prefecture.name}" + "#{@address.city}" + "#{@address.address}" + "#{@address.building}"
+              %span.address__text__buyer 名前
+              = "#{@address.first_name}" + "#{@address.last_name}"
+              .address_link
+                = link_to do
+                  %span.address_link__text 変更する
+                  %i.fas.fa-chevron-right.address_link__icon
+      .fee_body
+        .fee_way
+          %h3.fee_way__info 支払い方法
+          .fee_way__card
+            - if @default_card_information.blank?
+              %br/
+            - else
+            %span.fee_way__card__number カード番号
+            = "**** **** **** " + @default_card_information.last4
+            %span.fee_way__card__limit 有効期限
+            - exp_month = @default_card_information.exp_month.to_s
+            - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+            = exp_month + " / " + exp_year
+          %img{src: asset_path("#{@card_src}"), width: '26', height: '20', alt: @card_brand, id: "card_image"}
+            .card_link
               = link_to do
-                %span.address_link__text 変更する
-                %i.fas.fa-chevron-right.address_link__icon
-    .fee_body
-      .fee_way
-        %h3.fee_way__info 支払い方法
-        .fee_way__card
-          - if @default_card_information.blank?
-            %br/
-          - else
-          %span.fee_way__card__number カード番号
-          = "**** **** **** " + @default_card_information.last4
-          %span.fee_way__card__limit 有効期限
-          - exp_month = @default_card_information.exp_month.to_s
-          - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-          = exp_month + " / " + exp_year
-        %img{src: asset_path("#{@card_src}"), width: '26', height: '20', alt: @card_brand, id: "card_image"}
-          .card_link
-            = link_to do
-              %span.card_link__change 変更する
-              %i.fas.fa-chevron-right.card_link__icon
-  .line
-- else
-  .buyed_not
-    .buyed_not__box
-      %h3.buyed_not__box__text 商品はすでに売り切れています。
-    .buyed_not__error--edit
-      = link_to do
-        %span.buyed_not__error__link 購入画面へ戻る
+                %span.card_link__change 変更する
+                %i.fas.fa-chevron-right.card_link__icon
+  - else
+    .buyed_not
+      .buyed_not__box
+        %h3.buyed_not__box__text 商品はすでに売り切れています。
+      .buyed_not__error--edit
+        = link_to do
+          %span.buyed_not__error__link 購入画面へ戻る
 = render 'layouts/single-footer'
