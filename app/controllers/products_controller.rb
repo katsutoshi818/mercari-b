@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update]
   before_action :set_category_brand, only: [:index, :show]
   before_action :card_img, only: [:edit, :update]
-  before_action :address, only: [:edit, :update]
+  before_action :set_address, only: [:edit, :update]
   def index
     @products = Product.all
   end
@@ -106,7 +106,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def address
+  def set_address
     @address = Addressee.find_by(user_id: @product.seller_user_id)
   end
 
