@@ -1,3 +1,4 @@
+= render partial: 'layouts/header'
 .main-card
   .main-card-box
     = render partial: 'users/mypage-sidebar'
@@ -18,7 +19,4 @@
               = exp_month + " / " + exp_year
             %input{type: "hidden", name: "card_id", value: ""}
             = f.submit "削除する", {class: "credit-cards__delete"}
-          - if flash[:notice]
-            .alert.alert-success
-            = flash[:notice]
 = render partial: 'layouts/footer-top'

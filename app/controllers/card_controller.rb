@@ -1,6 +1,6 @@
 class CardController < ApplicationController
-
-  
+  before_action :set_category_brand, only: [:show, :index]
+  before_action :set_avatar_img, only: [:index, :show]
   require "payjp"
 
   def new
@@ -25,7 +25,6 @@ class CardController < ApplicationController
       end
     end
   end
-  
   
   def index
     @card = Card.where(user_id: current_user.id).first
@@ -89,4 +88,25 @@ class CardController < ApplicationController
       end
     end
   end
+
+  private
+
+  def set_category_brand
+    @products = Product.where(seller_user_id: params[:id])
+    @brands = Brand.all
+    @parents = Category.where(ancestry: nil)
+    @parent = Category.find_by('category_name LIKE(?)', "%#{params[:keyword]}%")
+    @children = @parent.children
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
+  def set_avatar_img
+    if user_signed_in?
+      @profile = Profile.find_by(id: current_user.id)
+    end
+  end
+
 end
