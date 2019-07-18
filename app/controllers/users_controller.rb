@@ -38,7 +38,9 @@ class UsersController < ApplicationController
     @parents = Category.where(ancestry: nil)
     @parent = Category.find_by('category_name LIKE(?)', "%#{params[:keyword]}%")
     @children = @parent.children
-    @products = Product.where(seller_user_id: current_user.id)
+    if current_user.present?
+      @user_products = Product.where(seller_user_id: current_user.id)
+    end
     respond_to do |format|
       format.html
       format.json

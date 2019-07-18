@@ -6,7 +6,6 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
-    @user_products = Product.where(seller_user_id: current_user.id)
   end
 
   def new
@@ -133,7 +132,7 @@ class ProductsController < ApplicationController
     @parent = Category.find_by('category_name LIKE(?)', "%#{params[:keyword]}%")
     @children = @parent.children
     if current_user.present?
-      @products = Product.where(seller_user_id: current_user.id)
+      @user_products = Product.where(seller_user_id: current_user.id)
     end
     respond_to do |format|
       format.html

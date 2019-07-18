@@ -54,7 +54,7 @@
                 %span マイページ
               .mypage-box.none
                 %h3.mypage-box__name #{current_user.nickname}さん
-                - if @products.length == 0
+                - if @user_products.length == 0
                   %h5.mypage-box__int 評価：0 出品数：0
                 - else 
                   %h5.mypage-box__int 評価：0 出品数：#{@user_products.length}
