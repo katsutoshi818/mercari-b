@@ -1,11 +1,12 @@
 class ProductsController < ApplicationController
   before_action :set_category_brand, only: [:index, :show, :edit]
-  before_action :set_product, only: [:show, :edit, :update]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :card_img, only: [:edit, :update]
   before_action :set_address, only: [:edit, :update]
 
   def index
     @products = Product.all
+    @user_products = Product.where(seller_user_id: current_user.id)
   end
 
   def new
@@ -76,8 +77,9 @@ class ProductsController < ApplicationController
       @product.update(product_params)
     end
     ProductImage.transaction do
-      @product_image = ProductImage.new(image_params)
-      @product_image.save!
+      image_params_array.each do |image|
+        ProductImage.new({product_id: @product.id,image: image}).save!
+      end
     end
 
     if current_user.id == @product.id
@@ -93,6 +95,11 @@ class ProductsController < ApplicationController
         end
       end
 
+    redirect_to root_path
+  end
+
+  def destroy
+    @product.destroy
     redirect_to root_path
   end
 

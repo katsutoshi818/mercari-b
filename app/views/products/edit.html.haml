@@ -6,17 +6,18 @@
           %img{src: asset_path('exhibition-mercari-logo.svg'), width: 185, height: 49, alt: 'logo'}
     = form_with model: @product, url: {action: :update} do |f|
       .forms-wrapper
-        %h2.forms-wrapper__announce 商品の情報を編集する
+        %h2.forms-wrapper__announce 商品の情報を入力
         .product-image-box
           %h3.product-image-box__label
-            出品画像を設定し直す
+            出品画像
             %span.form-block__require 必須
-          %p.product-image-box__tips 最大10枚までアップロードできます
-          = f.label :image do
-            .image-form
-              = f.file_field :image, class: 'image-form__file'
-              %p ドラッグアンドドロップ
-              %p またはクリックしてファイルをアップロード
+          %p.product-image-box__tips 最大5枚までアップロードできます
+          .image-forms-wrapper
+            = f.label :image1 do
+              .image-form#image1
+                = f.file_field :image1, class: 'image-form__file', data: {imageid: 1}
+                %p クリックしてファイルをアップロード
+                .thumbnail
         .form-wrapper
           .form-block
             = f.label :product_name do
