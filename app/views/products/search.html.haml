@@ -14,14 +14,14 @@
             %i.fas.fa-plus
               %span
                 キーワードを追加する
-          = f.text_field :word, name: "word",class: "product_search_list__form__field", value: "#{@keyword}"
+          = f.text_field :words, name: "words",class: "product_search_list__form__field", value: "#{@keyword}", placeholder: "例) 値下げ"
         .product_search_list__form#search_category_box
           %label.product_search_list__form__label
             %i.fa.fa-list-ul
               %span
                 カテゴリーを選択する
           .search_top_category_box
-            = f.select :top_category_id, @top_category, {}, class: "form-block__form--select", id: 'search_top_category'
+            = f.select :top_category_id, @top_category, {prompt: "すべて"}, class: 'form-block__form--select', id: 'search_top_category'
             %i.fas.fa-chevron-down.select-arrow_search_category
         .product_search_list__form
           %label.product_search_list__form__label
@@ -42,9 +42,9 @@
               %span
                 価格
           .prace_form_box
-            = f.text_field :word, name: "min_prace",class: "product_search_list__form__field--half", placeholder: "¥ min"
+            = f.text_field :word, name: "min_price",class: "product_search_list__form__field--half", placeholder: "¥ min"
             %span ~
-            = f.text_field :word, name: "max_prace",class: "product_search_list__form__field--half", placeholder: "¥ max"
+            = f.text_field :word, name: "max_price",class: "product_search_list__form__field--half", placeholder: "¥ max"
         .search_product_state_check
           %label.product_search_list__form__label
             %i.fas.fa-star
@@ -52,22 +52,22 @@
                 商品の状態
         .search_product_state_check_box
           %label
-            %input{type: "checkbox", name: "product_state", value: 1}
+            %input{type: "checkbox", name: "product_state[]", value: "", id: "state_all"}
               %p すべて
           %label
-            %input{type: "checkbox", name: "product_state", value: 1}
+            %input{type: "checkbox", name: "product_state[]", value: 1, class: "state_box"}
               %p とても良い
           %label
-            %input{type: "checkbox", name: "product_state", value: 2}
+            %input{type: "checkbox", name: "product_state[]", value: 2, class: "state_box"}
               %p 良い
           %label
-            %input{type: "checkbox", name: "product_state", value: 3}
+            %input{type: "checkbox", name: "product_state[]", value: 3, class: "state_box"}
               %p 普通
           %label
-            %input{type: "checkbox", name: "product_state", value: 4}
+            %input{type: "checkbox", name: "product_state[]", value: 4, class: "state_box"}
               %p 悪い
           %label
-            %input{type: "checkbox", name: "product_state", value: 5}
+            %input{type: "checkbox", name: "product_state[]", value: 5, class: "state_box"}
               %p とても悪い
         .product_ship_fee_check
           %label.product_search_list__form__label
@@ -76,13 +76,13 @@
                 配送料の負担
         .product_ship_fee_check_box
           %label
-            %input{type: "checkbox", name: "who_pays_shipping_fee", value: ""}
+            %input{type: "checkbox", name: "who_pays_shipping_fee[]", value: "", id: "fee_all"}
               %p すべて
           %label
-            %input{type: "checkbox", name: "who_pays_shipping_fee", value: 1}
+            %input{type: "checkbox", name: "who_pays_shipping_fee[]", value: 1, class: "fee_box"}
               %p 発送者負担
           %label
-            %input{type: "checkbox", name: "who_pays_shipping_fee", value: 2}
+            %input{type: "checkbox", name: "who_pays_shipping_fee[]", value: 2, class: "fee_box"}
               %p 購入者負担
         .product_trade_check
           %label.product_search_list__form__label
@@ -91,14 +91,18 @@
                 販売状況
         .product_trade_check_box
           %label
-            %input{type: "checkbox", name: "trade_state", value: ""}
+            %input{type: "checkbox", name: "trade_state[]", value: "", id: "trade_all"}
               %p すべて
           %label
-            %input{type: "checkbox", name: "trade_state", value: 1}
+            %input{type: "checkbox", name: "trade_state[]", value: 1, class: "trade_box"}
               %p 販売中
           %label
-            %input{type: "checkbox", name: "trade_state", value: 3}
+            %input{type: "checkbox", name: "trade_state[]", value: 3, class: "trade_box"}
               %p 販売終了
+        .submit_box
+          .search_word_reset
+            %span クリア
+          = f.submit "完了", class: "search_submit"
   .products_search_content
     .products_search_content_box
       %h2.products_search_content_box__keyword
@@ -120,4 +124,14 @@
                   .index_info_product_search
                     .index_info_product_search__price
                       = "¥#{product.price.to_s(:delimited)}"
+- if @top_category_id.present?
+  .instamce_list
+    %span.top_category_id{ value: "#{@top_category_id.id}"}
+      = "#{@top_category_id.id}"
+    %span.mid_category_id
+      = "#{@mid_category_id.id}"
+    .low_category_parent
+      - @low_category_id.each do |low_category|
+        %span{class: "a#{low_category.id}"}
+          = "#{low_category.id}"
 = render partial: 'layouts/footer-top'

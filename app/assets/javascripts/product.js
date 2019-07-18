@@ -136,13 +136,9 @@ $(document).on('turbolinks:load', function(){
     queue : false
     });
   })
-  function appendCategoryForm(categories, hierarchy, value) {
+  function appendCategoryFormSearch(categories, hierarchy, value) {
     categoryList = $('#search_category_box');
-    var html = `<div class="form-block--select-append">
-    <label for="product_category_id">
-    </label>
-    <select class="form-block__form--select" id="search_${hierarchy}_category" name="product[${hierarchy}_category_id]">
-    <option value="a">---</option><option value="${value}">すべて</option>`;
+    var html = `<select class="form-block__form--select" id="search_${hierarchy}_category" class="searched_${hierarchy}_category" name="${hierarchy}_category]"><option value="a">---</option><option value="${value}">すべて</option>`;
 
     var option = ``;
     $.each(categories, function(i, category) {
@@ -167,8 +163,13 @@ $(document).on('turbolinks:load', function(){
           $('#search_mid_category').remove();
           $('.search_low_check_box').remove();
           if (midCategories.length !== 0) {
-            appendCategoryForm(midCategories, 'mid', value);
+            appendCategoryFormSearch(midCategories, 'mid', value);
           }
+          // if ($('.instamce_list').length){
+          //   var mid_id_st = $('.mid_category_id').text();
+          //   var mid_id = mid_id_st - 0
+          //   $("#search_mid_category").val(mid_id).change()
+          // }
         })
         .fail(function() {
         })
@@ -190,11 +191,16 @@ $(document).on('turbolinks:load', function(){
         .done(function(lowCategories) {
           if (lowCategories.length !== 0) {
             $('#search_category_box').append(`<div class="search_low_check_box"></div>`)
-            $('.search_low_check_box').append(`<label><input type="checkbox" name="low_category" value="${value}"><p>すべて</p></label>`)
+            $('.search_low_check_box').append(`<label><input type="checkbox" name="low_category[]" value="${value}" id="a${value}" ><p>すべて</p></label>`)
             $.each(lowCategories,function(index,category){
-              $('.search_low_check_box').append(`<label><input type="checkbox" name="low_category" value="${category.id}"><p>${category.name}</p></label>`)
+              $('.search_low_check_box').append(`<label><input type="checkbox" name="low_category[]" value="${category.id}" id= "a${category.id}"><p>${category.name}</p></label>`)
             });
           }
+          // if ($('.instamce_list').length){
+          //     var low = ($(this).text())
+          //     console.log($('#a' + low))
+          //     $('#a' + low).prop('checked', true)
+          //   }
         })
         .fail(function() {
         })
@@ -235,14 +241,62 @@ $(document).on('turbolinks:load', function(){
           if (sizes !== 0) {
             $('.product_search_size').append(`<div class="search_size_check_box"></div>`)
             $.each(sizes,function(index,size){
-              $('.search_size_check_box').append(`<label><input type="checkbox" name="low_category" value="${size.id}"><p>${size.text}</p></label>`)
+              $('.search_size_check_box').append(`<label><input type="checkbox" name="size_id[]" value="${size.id}"><p>${size.text}</p></label>`)
             });
           }
         })
       }
-      
-
     });
+    $('#state_all').on('change', function(){
+      $('.state_box').prop('checked', true)
+    })
+
+    $('.state_box').on('change', function(){
+      $('#state_all').prop('checked', false)
+    })
+
+    $('#fee_all').on('change', function(){
+      $('.fee_box').prop('checked', true)
+    })
+
+    $('.fee_box').on('change', function(){
+      $('#fee_all').prop('checked', false)
+    })
+
+    $('#trade_all').on('change', function(){
+      $('.trade_box').prop('checked', true)
+    })
+
+    $('.trade_box').on('change', function(){
+      $('#trade_all').prop('checked', false)
+    })
+
+    $('.search_word_reset').on('click', function(){
+      $('.product_search_list__form__field').val("");
+      $('.product_search_list__form__field--half').val("");
+      $('.form-block__form--select').val("");
+      $('#search_mid_category').remove();
+      $('.search_low_check_box').remove();
+      $('.search_size_check_box').remove();
+      $('.state_box').prop('checked', false)
+      $('#state_all').prop('checked', false)
+      $('#fee_all').prop('checked', false)
+      $('.fee_box').prop('checked', false)
+      $('#trade_all').prop('checked', false)
+      $('.trade_box').prop('checked', false)
+    })
+
+    $(document).on('submit',"#product_search_size", function(){
+
+    })
+
 
 });
+
+// $(window).load(function () {
+//   var top_id_st = $('.top_category_id').text();
+//   var top_id = top_id_st - 0
+//   $('#search_top_category').val(top_id).change()
+//   $('#search_top_category').change()
+// });
 

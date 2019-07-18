@@ -332,5 +332,39 @@
   
 }
 
+.submit_box {
+  @include clearfix();
+  margin: 15px 0;
+  width: 100%;
+}
+
+.search_word_reset {
+  background-color: #aaa;
+  border: 1px solid #aaa;
+  height: 50px;
+  float: left;
+  margin-right: 10px;
+  text-align: center;
+  width: 45%;
+  span {
+    color: $white;
+    line-height: 50px;
+  }
+}
+
+.search_submit {
+  background-color: $red;
+  border: 1px solid $red;
+  color: $white;
+  height: 50px;
+  float: left;
+  margin-left: 10px;
+  line-height: 50px;
+  text-align: center;
+  width: 45%;
+}
+
+
+
 
 
