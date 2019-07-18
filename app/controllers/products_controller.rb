@@ -16,20 +16,21 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
-    @category3 = @product.category
-    @category2 = @category3.parent
-    @category1 = @category2.parent
+    @low_categories = @product.category
+    @mid_categories = @low_categories.parent
+    @top_categories = @mid_categories.parent
     @top_category = [["----", 0]]
     @mid_category = [["----", 0]]
     @low_category = [["----", 0]]
     @product_size = [["----", 0]]
+
     Category.where("ancestry IS NULL").each do |category|
       @top_category <<  [category.category_name, category.id]
     end
-    @category1.children.each do |category|
+    @low_categories.children.each do |category|
       @mid_category  << [category.category_name, category.id]
     end
-    @category2.children.each do |category|
+    @mid_categories.children.each do |category|
       @low_category  << [category.category_name, category.id]
     end
     ProductSize.all.each do |size|
