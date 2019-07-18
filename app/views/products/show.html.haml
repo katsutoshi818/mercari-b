@@ -8,7 +8,7 @@
   .show_product_info
     .show_product_photo
       .show_photo_stage
-        - if @product.trade_state == 1
+        - if @product.trade_state == "buyed"
           .sold_out
           .sold_out_text SOLD
         %img.show_photo_stage__image{ src: "", alt: "メイン"}
@@ -88,8 +88,12 @@
         %span.link_buy__text 商品を削除する
   - else
     .link_buy
-      = link_to edit_product_path(@product) do
-        %span.link_buy__text 購入画面に進む
+      - if @product.trade_state == "buyed"
+        = link_to edit_product_path(@product) do
+          %span.link_buy__text 売り切れました
+      - else
+        = link_to edit_product_path(@product) do
+          %span.link_buy__text 購入画面に進む
   .product_discription
     %p.product_discription__text
       = @product.introduction
