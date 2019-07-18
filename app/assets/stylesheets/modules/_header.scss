@@ -89,6 +89,7 @@
   .down_list_right {
     float: left;
     padding-left: 15px;
+    position: relative;
   }
 
   span {
@@ -96,8 +97,7 @@
       font-size: $font_menu;
   }
 
-  p {
-    background-image: url(asset_path('IMG_0052.jpg')); /* 表示する画像 */
+  .user-img {
     width: 30px;    /* ※縦横を同値に */
     height: 30px;    /* ※縦横を同値に */
     border-radius: 50%; /* 角丸半径を50%にする(=円形にする) */
@@ -212,4 +212,37 @@
 .brand_box {
   height: 50px;
   line-height: 50px;
+}
+
+.none{
+  display: none;
+}
+
+.mypage-box{
+  background-color: $white;
+  @include clearfix();
+  height: 280px;
+  width: 205px;
+  z-index: 5;
+  position: absolute;
+  right: 0px;
+  border: 1px solid black;
+  h3{
+    font-size: 16px;
+    padding-left: 10px;
+  }
+  h5{
+    font-size: 14px;
+    border-bottom: 1px solid #f5f5f5;
+    padding-left: 10px;
+  }
+  .mypage-box-link{
+    li{
+      border-bottom: 1px solid #f5f5f5;
+    }
+    &__string{
+      font-size: 14px;
+      padding-left: 10px;
+    }
+  }
 }

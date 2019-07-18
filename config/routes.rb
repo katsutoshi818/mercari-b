@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+
+  resources :card, only: [:new, :show, :index] do
+    collection do
+      post 'payjp', to: 'card#payjp'
+      post 'show', to: 'card#show'
+      post 'pay', to: 'card#pay'
+      post 'delete', to: 'card#delete'
+    end
+  end
+  
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -9,7 +19,8 @@ Rails.application.routes.draw do
   end
 
   root 'products#index'
-  resources :products, only: [:index, :new, :show, :edit, :update, :create] do
+
+  resources :products do
     collection do
       get :search
     end
@@ -19,6 +30,7 @@ Rails.application.routes.draw do
       get :search
     end
   end
+  
   resources :users, only: [:show, :new] do
     collection do
       get :profile

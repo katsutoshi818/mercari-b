@@ -1,36 +1,35 @@
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .new-header
-    = link_to '#' do
-      %img.single_pict{src: '//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2921618501', alt: '', height: '58', width: '185'}
-    .new-usersbar
-      .new-usersbar-now__box1
-        %li.box1
-          会員情報
-          .new-usersbar__status1
-      .new-usersbar-was__box2
-        %li.box2 
-          電話番号認証
-          .new-usersbar__status2
-      .new-usersbar-was__box3
-        %li.box3 
-          お届け先住所
-          .new-usersbar__status2
-      .new-usersbar-was__box4
-        %li.box4 
-          支払い方法
-          .new-usersbar__status2
-      .new-usersbar-now__box5
-        %li.box5 
-          完了
-          .new-usersbar__status2
-  .new-usersbox
-    .new-usersbox__top
-      %h3 会員登録完了
-    .new-usersbox__down
-      %p.new-users-text1 ありがとうございます。
-      %p.new-users-text2 会員登録が完了しました。
-      .action1
-        = link_to "メルカリをはじめる", "/users/{current_user.id}"
-      .terms-text_down
+.new-header
+  = link_to '#' do
+    %img.single_pict{src: '//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2921618501', alt: '', height: '58', width: '185'}
+  .new-usersbar
+    .new-usersbar-now__box1
+      %li.box1
+        会員情報
+        .new-usersbar__status1
+    .new-usersbar-was__box2
+      %li.box2 
+        電話番号認証
+        .new-usersbar__status2
+    .new-usersbar-was__box3
+      %li.box3 
+        お届け先住所
+        .new-usersbar__status2
+    .new-usersbar-was__box4
+      %li.box4 
+        支払い方法
+        .new-usersbar__status2
+    .new-usersbar-now__box5
+      %li.box5 
+        完了
+        .new-usersbar__status2
+.new-usersbox
+  .new-usersbox__top
+    %h3 会員登録完了
+  .new-usersbox__down
+    %p.new-users-text1 ありがとうございます。
+    %p.new-users-text2 会員登録が完了しました。
+    .action1
+      = link_to "メルカリをはじめる", user_path(current_user.id)
+    .terms-text_down2
       %img.foot_pict2{src: asset_path('footer_users.png'), alt: "heading"}
 = render partial: "layouts/single-footer"

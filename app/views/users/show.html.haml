@@ -1,15 +1,61 @@
 = render partial: 'layouts/header'
-.main-profile
-  .main-profile-box
-    = render partial: 'users/mypage-sidebar'
-    .profile-box
-      .profile-box__label
-        %p.profile-box__label__profile　プロフィール
-      %form.profile-box__form
-        .profile-box__form__user
-          %img.profile-box__form__user__figure{src: asset_path('icoon-mono.jpeg')}
-          %input.profile-box__form__user__nickname{type: "text", value: "ニックネーム"}
-        .profile-box__form__content
-          %textarea.profile-box__form__content__intoroduction{placeholder: "紹介文"}
-          %button.profile-box__form__content__button{type: "submit"} 変更する
+- if current_user.id == @user.id
+  .main-profile
+    .main-profile-box
+      = render partial: 'users/mypage-sidebar'
+      .profile-box
+        .profile-box__label
+          %p.profile-box__label__profile　プロフィール
+        %form.profile-box__form
+          .profile-box__form__user
+            %img.profile-box__form__user__figure{src: asset_path('icoon-mono.jpeg')}
+            %input.profile-box__form__user__nickname{type: "text", value: "ニックネーム"}
+          .profile-box__form__content
+            %textarea.profile-box__form__content__intoroduction{placeholder: "紹介文"}
+            %button.profile-box__form__content__button{type: "submit"} 変更する
+- else
+  .main-user-show
+    .user-show-user
+      %img.user-show-user__icon{src: asset_path('icoon-mono.jpeg')}
+      %p.user-show-user__name #{@user.nickname}
+    .user-show-content
+      .user-show-content__box
+        %i.fas.fa-grin.face
+        %span.figure 20
+        %i.fas.fa-meh.face
+        %span.figure 10
+        %i.fas.fa-frown.face
+        %span.figure 5
+        %span.string 評価　25
+        - if @products.length == 0
+          %span.string 出品数　0
+        - else
+          %span.string 出品数 #{@products.length}
+      .user-show-content__description
+        %p #{@user.profile.introduction}
+    .user-show-social-box
+      %p line facebook twitter
+    .user-show-product-box
+      %h2.user-show-product-box__label この出品者の商品
+      .user-show-product-box__products
+        - if @products.length == 0
+          出品商品はありません
+        - else
+          - @products.each do |product| 
+            .item_box
+              %section.items
+                = link_to product_path(product.id) do
+                  - if product.trade_state == 1
+                    .sold_out
+                    .sold_out_text SOLD
+                  = image_tag "#{product.product_images.find_by(product_id: product.id).image}", class: "items_pict", alt: "商品画像1"
+                  .index_text
+                    %h4
+                      = product.product_name
+                    .index_info
+                      .index_info__price
+                        = "¥#{product.price.to_s(:delimited)}"
+                      .index_info__box
+                        %i.far.fa-heart
+                          %span 99
 = render partial: 'layouts/footer-top'

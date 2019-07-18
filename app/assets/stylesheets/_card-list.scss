@@ -1,0 +1,32 @@
+
+.credit-cards{
+  width: 34%;
+
+  img{
+    margin-top: 45%;
+    margin-left: 90%;
+  }
+}
+.credit-cards__list{
+  margin-left: 30%;
+}
+
+.content__credit-cards {
+  position: relative;
+}
+
+.credit-cards__delete {
+  background-color:$white;
+  color: $red;
+  border-radius: 5%;
+  width: 70px;
+  height: 24px;
+  border-color: $red;
+  margin-left: 45%;
+  font-size: 14px;
+  padding: 1px;
+  position: absolute;
+  bottom: 18%;
+  left: 10%;
+}
+

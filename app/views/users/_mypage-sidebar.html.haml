@@ -21,7 +21,7 @@
         いいね！一覧
         %i.fas.fa-chevron-right
     %li
-    = link_to do
+    = link_to new_product_path do
       %a.mypage-nav-list-item
         出品する
         %i.fas.fa-chevron-right
@@ -91,7 +91,7 @@
       発送元・お届け先住所変更
       %i.fas.fa-chevron-right
     %li
-    = link_to card_users_path, class: "mypage-nav-list-item" do
+    = link_to card_path(current_user.id), class: "mypage-nav-list-item" do
       支払い方法
       %i.fas.fa-chevron-right
     %li

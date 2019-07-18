@@ -1,0 +1,42 @@
+= render partial: 'layouts/header'
+.main-card
+  .main-card-box
+    = render partial: 'users/mypage-sidebar'
+    .card-box
+      .card-box__label
+        %p クレジットカード登録
+      .content__credit-cards
+        .new-usersbox
+          .new-usersbox__top2
+            %h3 お支払い方法
+          .new-usersbox__down2
+            = form_with url: payjp_card_index_path, method: :post, html: {name: "inputForm" } do |f|
+              %label{for: "name1"} カード番号
+              %span.form-require 必須
+              = f.text_field :number, class: "input-default", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
+              %img{src: asset_path('visa.svg'), width: '49', heigh: '20', alt: 'visa', class: 'visacard'}
+              %img{src: asset_path('master-card.svg'), width: '49', heigh: '20', alt: 'master'}
+              %img{src: asset_path('saison-card.svg'), width: '49', heigh: '20', alt: 'master'}
+              %img{src: asset_path('jcb.svg'), width:'40', heigh: '20', alt: 'master'}
+              %img{src: asset_path('american_express.svg'), width: '25', heigh: '20', alt: 'master'}
+              %img{src: asset_path('dinersclub.svg'), width: '25', heigh: '20', alt: 'master'}
+              %img{src: asset_path('discover.svg'), width: '35', heigh: '20', alt: 'master'}
+              .birthbays-form
+                %label{for: "name1"} 有効期限
+                %span.form-require 必須
+                .birthdays-form__down
+                  = f.select :exp_month, [["--",""],["01",1],["02",2],["03",3],["04",4],["05",5],["06",6],["07",7],["08",8],["09",9],["10",10],["11",11],["12",12]],{} , class: 'input-expire'
+                  %a.birthdays 月
+                  = f.select :exp_year, [["--",""],["19",2019],["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029]],{} , class: 'input-expire'
+                  %a.birthdays 年
+              %label{for: "name1"} セキュリティーコード
+              %span.form-require 必須
+              = f.text_field :cvc, class: "input-default", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
+              %i.fa.fa-question-circle
+                = link_to '#' do
+                  %span.card-nm-what カードの裏面の番号とは？
+              .action
+                #card_token
+                = f.submit "登録する", id: "token_submit"
+                .terms-text_down2
+= render partial: 'layouts/footer-top'

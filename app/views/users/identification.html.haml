@@ -10,13 +10,16 @@
           %p お客様の本人情報をご登録ください
         .identification-box__information__form
           %label お名前
-          %p 林 克俊
+          %p
+          = @addressee.first_name + @addressee.last_name
         .identification-box__information__form
           %label お名前カナ
-          %p ハヤシ　カツトシ
+          %p
+          = @addressee.first_name_katakana + @addressee.last_name_katakana
         .identification-box__information__form
           %label 生年月日
-          %p 1996/8/8
+          %p
+          = @profile.birthday
         .identification-box__information__form
           %label 郵便番号
           %span 任意

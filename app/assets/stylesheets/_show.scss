@@ -4,13 +4,13 @@
   padding: 24px 40px 40px;
   margin: 40px auto 0;
   width: 700px;
+
   .show_product_name {
     color: black;
     font-size: $font_text;
     line-height: 1.4;
     text-align: center;
     word-wrap: break-word;
-    
   }
   
   .show_product_info {
@@ -35,7 +35,7 @@
     }
   
   }
-  
+
   .show_photo_list {
     font-size: 0;
   }
@@ -226,6 +226,31 @@
   }
 }
 
+.pankuzu {
+  background-color: $white;
+  border: 1px solid $backcolor;
+  height: 50px;
+  width: 100%;
+}
+
+.breadcrumbs {
+  color: $lightgray;
+  height: 50px;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 50px;
+  margin: 0 auto;
+  width: 1000px;
+  a {
+    color: black;
+    font-size: 14px;
+  }
+  span {
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
 
 
 
