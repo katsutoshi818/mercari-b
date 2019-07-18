@@ -46,14 +46,13 @@ end
 
 
   def update
-    begin
-    @product.update(buy_params)
+    if @product.update(buy_params)
     Payjp::Charge.create(
       :amount => @product.price,
       :customer => @card.customer_id,
       :currency => 'jpy'
       )
-    rescue => e
+    else
       flash[:alert] += '購入に失敗しました。'
       render :edit
   end
