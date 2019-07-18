@@ -23,6 +23,15 @@ header {
 
 }
 
+.image-forms-wrapper {
+  display: flex;
+  width: 100%;
+
+  & > .image-form--selected + label > .image-form, .image-form--selected + .image-form--selected {
+    margin-left: 10px;
+  }
+}
+
 .forms-wrapper {
   background-color: #ffffff;
   &__announce {
@@ -86,12 +95,66 @@ header {
 .image-form {
   background-color: #f5f5f5;
   border: dashed thin #ccc;
+  height: 160px;
+  width: 620px;
   padding: 40px;
   text-align: center;
   font-size: 14px;
   line-height: 1.5;
+
   &__file {
     display: none;
+  }
+
+  &--selected {
+    width: 116px;
+    height: 160px;
+    border: solid 1px #ccc;
+    background-color: #f5f5f5;
+
+    & img {
+      max-width: 106px;
+      max-height: 106px;
+      margin: 5px;
+    }
+  }
+}
+
+.thumbnail {
+  width: 116px;
+  height: 120px;
+}
+
+%image-form-button {
+  border-radius: 3px;
+  text-align: center;
+  margin: 0 5px 1px;
+  padding: 5px;
+}
+
+.edit-button-box {
+  bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+  
+  &__edit-btn {
+  @extend %image-form-button;
+  background-color: #ceeed5;
+  color: #33683e;
+
+  &:hover {
+    opacity: 0.7;
+  }
+  }
+
+  &__delete-btn {
+  @extend %image-form-button;
+  background-color: #eecece;
+  color: #8d5b5b;
+
+  &:hover {
+    opacity: 0.7;
+  }
   }
 }
 

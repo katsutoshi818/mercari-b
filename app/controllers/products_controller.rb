@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show]
   before_action :set_category_brand, only: [:index, :show, :edit]
+  before_action :set_product, only: [:show, :edit, :update]
+  before_action :card_img, only: [:edit, :update]
+  before_action :set_address, only: [:edit, :update]
 
   def index
     @products = Product.all
@@ -59,8 +61,9 @@ class ProductsController < ApplicationController
       @product.save!
     end
     ProductImage.transaction do
-      @product_image = ProductImage.new(image_params)
-      @product_image.save!
+      image_params_array.each do |image|
+        ProductImage.new({product_id: @product.id,image: image}).save!
+      end
     end
     redirect_to root_path
   end
@@ -79,7 +82,25 @@ class ProductsController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+end
+
+
+  def update
+    if @product.update(buy_params)
+    Payjp::Charge.create(
+      amount: @product.price,
+      customer: @card.customer_id,
+      currency: 'jpy'
+      )
+    else
+      flash[:alert] += '購入に失敗しました。'
+      render :edit
+  end
+end
+
   private
+
   def product_params
     params.require(:product).permit(:product_name, :introduction, :product_state, :who_pays_shipping_fee, :prefecture_id, :days_to_ship, :price, :product_size_id).merge(category_id: params.require(:product)[:low_category_id], brand_id: @brand_id, seller_user_id: current_user.id, buyer_user_id: 1, trade_state: 1, way_to_ship: 1)
   end
@@ -88,11 +109,16 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:image).merge(product_id: @product[:id])
   end
 
+  def image_params_array
+    params.require(:product).select{ |key, value| key =~ /^image/}.values
+  end
+
   def set_product
     @product = Product.find(params[:id])
   end
 
   def set_category_brand
+    @products = Product.where(seller_user_id: params[:id])
     @brands = Brand.all
     @parents = Category.where(ancestry: nil)
     @parent = Category.find_by('category_name LIKE(?)', "%#{params[:keyword]}%")
@@ -105,4 +131,38 @@ class ProductsController < ApplicationController
       format.json
     end
   end
+
+  def buy_params
+    params.require(:product).permit(:trade_state, :buyer_user_id)
+  end
+
+  def card_img
+    if @card = Card.where(user_id: current_user.id).first
+    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    customer = Payjp::Customer.retrieve(@card.customer_id)
+    @default_card_information = customer.cards.retrieve(@card.card_id)
+    @card_brand = @default_card_information.brand
+    case @card_brand
+    when "Visa"
+      @card_src = "visa.svg"
+    when "JCB"
+      @card_src = "jcb.svg"
+    when "MasterCard"
+      @card_src = "master-card.svg"
+    when "American Express"
+      @card_src = "american_express.svg"
+    when "Diners Club"
+      @card_src = "dinersclub.svg"
+    when "Discover"
+      @card_src = "discover.svg"
+    end
+  else
+    redirect_to controller: "card", acttion: "show"
+  end
+end
+
+  def set_address
+    @address = Addressee.find_by(user_id: @product.seller_user_id)
+  end
+
 end

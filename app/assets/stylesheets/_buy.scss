@@ -109,6 +109,10 @@ body {
   }
 }
 
+.buy_form {
+  display: none;
+}
+
 .buy_button {
   background-color: red;
   border: 1px solid red;
@@ -137,6 +141,7 @@ body {
     &__address_number, &__address_text, &__buyer {
       display: block;
       font-size: 14px;
+      font-weight: 800;
     }
   }
   &__text::after {
@@ -173,11 +178,15 @@ body {
     &__number, &__limit {
       display: block;
       font-size: 14px;
+      font-weight: 600;
+      span{
+        margin-bottom: 2%;
+        margin-top: 2%;
+      }
     }
   }
-  &__image {
-    height: 20px;
-    width: 34px;
+  img{
+    margin-top: 2%;
   }
 }
 
