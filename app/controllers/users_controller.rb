@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
-  before_action :set_category_brand, only: [:show, :profiles, :logout, :identification, :deliver_address, :email, :card, :password]
+  before_action :set_category_brand, only: [:show, :profile, :logout, :identification, :deliver_address, :email, :card, :password]
 
   def index
   end
@@ -10,13 +10,15 @@ class UsersController < ApplicationController
     @products = Product.where(seller_user_id: params[:id])
   end
 
-  def profiles
+  def profile
   end
 
   def logout
   end
 
   def identification
+    @addressee = Addressee.find_by(id: current_user.id)
+    @profile = Profile.find_by(id: current_user.id)
   end
 
   def deliver_address
