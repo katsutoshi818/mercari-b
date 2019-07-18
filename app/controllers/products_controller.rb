@@ -84,14 +84,7 @@ class ProductsController < ApplicationController
       @product_image = ProductImage.new(image_params)
       @product_image.save!
     end
-    redirect_to root_path
-  end
-
-  def edit
-end
-
-
-  def update
+    
     if @product.update(buy_params)
     Payjp::Charge.create(
       amount: @product.price,
@@ -101,8 +94,15 @@ end
     else
       flash[:alert] += '購入に失敗しました。'
       render :edit
+    end
+    redirect_to root_path
   end
-end
+
+  def destroy
+    product = current_user.products.find(params[:id])
+    product.destroy 
+    redirect_to root_path
+  end
 
   private
 
