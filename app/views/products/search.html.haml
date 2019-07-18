@@ -1,0 +1,137 @@
+= render partial: 'layouts/header'
+.products_search_main
+  .products_search_side
+    .sort_order_content
+      = form_with url: search_products_path, method: :get, local: true do |f|
+        = f.select :sort, [["価格安い順", 1], ["価格高い順", 2],  ["出品が古い順", 3], ["出品が新しい順", 4],["いいねが多い順", 5] ], prompt: "並び替え"
+        %i.fas.fa-chevron-down.select-arrow_search
+    .product_search_list
+      %h3.product_search_list__text
+        詳細検索
+      = form_with url: search_products_path, method: :get, local: true do |f|
+        .product_search_list__form
+          %label.product_search_list__form__label
+            %i.fas.fa-plus
+              %span
+                キーワードを追加する
+          = f.text_field :words, name: "words",class: "product_search_list__form__field", value: "#{@keyword}", placeholder: "例) 値下げ"
+        .product_search_list__form#search_category_box
+          %label.product_search_list__form__label
+            %i.fa.fa-list-ul
+              %span
+                カテゴリーを選択する
+          .search_top_category_box
+            = f.select :top_category_id, @top_category, {prompt: "すべて"}, class: 'form-block__form--select', id: 'search_top_category'
+            %i.fas.fa-chevron-down.select-arrow_search_category
+        .product_search_list__form
+          %label.product_search_list__form__label
+            %i.fa.fa-tag
+              %span
+                ブランド名から探す
+          = f.text_field :brand, name: "brand",class: "product_search_list__form__field", placeholder: "例) ナイキ"
+        .product_search_list__form.product_search_size
+          %label.product_search_list__form__label
+            %i.fas.fa-expand
+              %span
+                サイズを指定する
+          = f.select :size, ProductSize.size_types_i18n.map {|k, v| [ProductSize.size_types_i18n[k], ProductSize.size_types[v]]}, {prompt: '選択してください'}, class: 'form-block__form--select', id: 'product_search_size'
+          %i.fas.fa-chevron-down.size-arrow_search_category
+        .product_search_list__form
+          %label.product_search_list__form__label
+            %i.fas.fa-coins
+              %span
+                価格
+          .prace_form_box
+            = f.text_field :word, name: "min_price",class: "product_search_list__form__field--half", placeholder: "¥ min"
+            %span ~
+            = f.text_field :word, name: "max_price",class: "product_search_list__form__field--half", placeholder: "¥ max"
+        .search_product_state_check
+          %label.product_search_list__form__label
+            %i.fas.fa-star
+              %span
+                商品の状態
+        .search_product_state_check_box
+          %label
+            %input{type: "checkbox", name: "product_state[]", value: "", id: "state_all"}
+              %p すべて
+          %label
+            %input{type: "checkbox", name: "product_state[]", value: 1, class: "state_box"}
+              %p とても良い
+          %label
+            %input{type: "checkbox", name: "product_state[]", value: 2, class: "state_box"}
+              %p 良い
+          %label
+            %input{type: "checkbox", name: "product_state[]", value: 3, class: "state_box"}
+              %p 普通
+          %label
+            %input{type: "checkbox", name: "product_state[]", value: 4, class: "state_box"}
+              %p 悪い
+          %label
+            %input{type: "checkbox", name: "product_state[]", value: 5, class: "state_box"}
+              %p とても悪い
+        .product_ship_fee_check
+          %label.product_search_list__form__label
+            %i.fas.fa-truck
+              %span
+                配送料の負担
+        .product_ship_fee_check_box
+          %label
+            %input{type: "checkbox", name: "who_pays_shipping_fee[]", value: "", id: "fee_all"}
+              %p すべて
+          %label
+            %input{type: "checkbox", name: "who_pays_shipping_fee[]", value: 1, class: "fee_box"}
+              %p 発送者負担
+          %label
+            %input{type: "checkbox", name: "who_pays_shipping_fee[]", value: 2, class: "fee_box"}
+              %p 購入者負担
+        .product_trade_check
+          %label.product_search_list__form__label
+            %i.fas.fa-shopping-cart
+              %span
+                販売状況
+        .product_trade_check_box
+          %label
+            %input{type: "checkbox", name: "trade_state[]", value: "", id: "trade_all"}
+              %p すべて
+          %label
+            %input{type: "checkbox", name: "trade_state[]", value: 1, class: "trade_box"}
+              %p 販売中
+          %label
+            %input{type: "checkbox", name: "trade_state[]", value: 3, class: "trade_box"}
+              %p 販売終了
+        .submit_box
+          .search_word_reset
+            %span クリア
+          = f.submit "完了", class: "search_submit"
+  .products_search_content
+    .products_search_content_box
+      %h2.products_search_content_box__keyword
+        = "#{@keyword} の検索結果"
+      .products_search_content_box__number
+        = "#{@products.length} 件"
+      .products_search_items
+        - @products.each do |product|
+          .item_box_product_search
+            %section.items
+              = link_to product_path(product.id) do
+                - if product.trade_state == 1
+                  .sold_out
+                  .sold_out_text SOLD
+                = image_tag "#{product.product_images.find_by(product_id: product.id).image}", class: "items_pict_product_search", alt: "商品画像1"
+                .index_text_product_search
+                  %h4
+                    = product.product_name
+                  .index_info_product_search
+                    .index_info_product_search__price
+                      = "¥#{product.price.to_s(:delimited)}"
+- if @top_category_id.present?
+  .instamce_list
+    %span.top_category_id{ value: "#{@top_category_id.id}"}
+      = "#{@top_category_id.id}"
+    %span.mid_category_id
+      = "#{@mid_category_id.id}"
+    .low_category_parent
+      - @low_category_id.each do |low_category|
+        %span{class: "a#{low_category.id}"}
+          = "#{low_category.id}"
+= render partial: 'layouts/footer-top'

@@ -1,0 +1,70 @@
+= render partial: 'layouts/header'
+.categories_show_main
+  .categories_show_contents
+    .categoies_show_children
+      - @category.children.each do |children|
+        .categoies_show_children__text
+          = link_to category_path(children.id), class: "categoies_show_children__text__link" do
+            = children.category_name
+  .categories_show_box
+    %h1.categoies_show_title
+      ="#{@category.category_name}の商品一覧"
+    .categories_show_list
+      - if @item.present?
+        - @item.products.each do |product|
+          .item_box
+            %section.items
+              = link_to product_path(product.id) do
+                - if product.trade_state == 1
+                  .sold_out
+                  .sold_out_text SOLD
+                = image_tag "#{product.product_images.find_by(product_id: product.id).image}", class: "items_pict", alt: "商品画像1"
+                .index_text
+                  %h4
+                    = product.product_name
+                  .index_info
+                    .index_info__price
+                      = "¥#{product.price.to_s(:delimited)}"
+                    .index_info__box
+                      %i.far.fa-heart
+                        %span 99
+      - elsif @children.present?
+        - @children.each do |child|
+          - if child.children.empty?
+            - child.products.each do |product|
+              .item_box
+                %section.items
+                  = link_to product_path(product.id) do
+                    - if product.trade_state == 1
+                      .sold_out
+                      .sold_out_text SOLD
+                    = image_tag "#{product.product_images.find_by(product_id: product.id).image}", class: "items_pict", alt: "商品画像1"
+                    .index_text
+                      %h4
+                        = product.product_name
+                      .index_info
+                        .index_info__price
+                          = "¥#{product.price.to_s(:delimited)}"
+                        .index_info__box
+                          %i.far.fa-heart
+                            %span 99
+          - else
+            - child.children.each do |grandchild|
+              - grandchild.products.each do |product|
+                .item_box
+                  %section.items
+                    = link_to product_path(product.id) do
+                      - if product.trade_state == 1
+                        .sold_out
+                        .sold_out_text SOLD
+                      = image_tag "#{product.product_images.find_by(product_id: product.id).image}", class: "items_pict", alt: "商品画像1"
+                      .index_text
+                        %h4
+                          = product.product_name
+                        .index_info
+                          .index_info__price
+                            = "¥#{product.price.to_s(:delimited)}"
+                          .index_info__box
+                            %i.far.fa-heart
+                              %span 99
+= render partial: 'layouts/footer-top'
