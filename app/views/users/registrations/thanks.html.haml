@@ -30,7 +30,7 @@
       %p.new-users-text1 ありがとうございます。
       %p.new-users-text2 会員登録が完了しました。
       .action1
-        = link_to "メルカリをはじめる", 'users_path'
+        = link_to "メルカリをはじめる", user_path(current_user.id)
       .terms-text_down
       %img.foot_pict2{src: asset_path('footer_users.png'), alt: "heading"}
 = render partial: "layouts/single-footer"
