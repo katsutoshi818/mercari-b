@@ -102,7 +102,7 @@ end
   private
 
   def product_params
-    params.require(:product).permit(:product_name, :introduction, :product_state, :who_pays_shipping_fee, :prefecture_id, :days_to_ship, :price, :product_size_id).merge(category_id: params.require(:product)[:low_category_id], brand_id: @brand_id, seller_user_id: current_user.id, buyer_user_id: 1, trade_state: 1, way_to_ship: 1)
+    params.require(:product).permit(:product_name, :introduction, :product_state, :who_pays_shipping_fee, :prefecture_id, :days_to_ship, :price, :product_size_id).merge(category_id: params.require(:product)[:low_category_id], brand_id: @brand_id, seller_user_id: current_user.id, buyer_user_id: 1, trade_state: "buying", way_to_ship: "らくらくメルカリ便")
   end
 
   def image_params
