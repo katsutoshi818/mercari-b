@@ -39,18 +39,18 @@
                   %p.form-block__label
                     カテゴリー
                     %span.form-block__require 必須
-                = f.select :top_category_id, @top_category, {}, class: 'form-block__form--select category1', id: 'top_category'
+                = f.select :top_category_id, @top_category, {}, class: 'form-block__form--select top_category_val', id: 'top_category'
                 %i.fas.fa-chevron-down.select-arrow
               .form-block--select-append
-                = f.select :mid_category_id, @mid_category, {}, class: 'form-block__form--select category2', id: 'mid_category'
+                = f.select :mid_category_id, @mid_category, {}, class: 'form-block__form--select mid_category_val', id: 'mid_category'
                 %i.fas.fa-chevron-down.select-arrow
               .form-block--select-append
-                = f.select :low_category_id, @low_category, {}, class: 'form-block__form--select category3', id: 'low_category'
+                = f.select :low_category_id, @low_category, {}, class: 'form-block__form--select low_category_val', id: 'low_category'
                 %i.fas.fa-chevron-down.select-arrow
               %script
-                $('.category1').val("#{@category1.id}");
-                $('.category2').val("#{@category2.id}");
-                $('.category3').val("#{@category3.id}");
+                $('.top_category_val').val("#{@top_categories.id}");
+                $('.mid_category_val').val("#{@mid_categories.id}");
+                $('.low_category_val').val("#{@low_categories.id}");
               .form-block--select-append#size-form
                 = f.label :product_size_id, value: "サイズ"
                 %span.form-block__require 必須

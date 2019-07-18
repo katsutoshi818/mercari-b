@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
     Category.where("ancestry IS NULL").each do |category|
       @top_category <<  [category.category_name, category.id]
     end
-    @low_categories.children.each do |category|
+    @top_categories.children.each do |category|
       @mid_category  << [category.category_name, category.id]
     end
     @mid_categories.children.each do |category|
