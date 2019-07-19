@@ -205,7 +205,7 @@ $(document).on('turbolinks:load', function() {
         }
       }
     })
-
+    
     $('.edit-button-box__edit-btn').off().on('click', function() {
       var editImageId = $(this).attr("data-editimageid");
       var editForm = $(`#product_image${editImageId}`)
