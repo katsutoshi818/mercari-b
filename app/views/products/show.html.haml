@@ -1,7 +1,7 @@
 = render partial: 'layouts/header'
 .pankuzu
   - breadcrumb :show_product, @product, class: "pankuzu__text"
-  = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right')} "
+  = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right')}"
 %section.show_product
   %h3.show_product_name
     = @product.product_name

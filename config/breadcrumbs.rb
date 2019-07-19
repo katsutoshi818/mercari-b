@@ -9,6 +9,13 @@ crumb :show_product do |product|
 parent :root
 end
 
+# categories/show
+crumb :categoies_show do |category|
+  link "#{category.root.category_name}  #{
+    category.category_name}", ""
+parent :root
+end
+
 # product/search
 crumb :search_product do
   link "検索結果", product
