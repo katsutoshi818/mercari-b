@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :card_img, only: [:edit, :update]
   before_action :set_address, only: [:edit, :update]
+  before_action :set_avatar_img, only: [:index, :show]
 
   def index
     @products = Product.all
@@ -32,13 +33,13 @@ class ProductsController < ApplicationController
     @product_size = [["----", 0]]
 
     Category.where("ancestry IS NULL").each do |category|
-      @top_category <<  [category.category_name, category.id]
+      @top_category << [category.category_name, category.id]
     end
     @top_categories.children.each do |category|
-      @mid_category  << [category.category_name, category.id]
+      @mid_category << [category.category_name, category.id]
     end
     @mid_categories.children.each do |category|
-      @low_category  << [category.category_name, category.id]
+      @low_category << [category.category_name, category.id]
     end
     ProductSize.all.each do |size|
       @product_size << [size.size_text, size.id]
@@ -74,9 +75,9 @@ class ProductsController < ApplicationController
   end
   
   def update
+    if current_user.id == @product.seller_user_id
     @brand = Brand.new(brand_name: params.require(:product)[:brand_name], category_id: params.require(:product)[:low_category_id])
     @brand_id = @brand.brand_registration(@brand)
-    @product = Product.find(params[:id])
     Product.transaction do
       @product.update(product_params)
     end
@@ -85,21 +86,21 @@ class ProductsController < ApplicationController
         ProductImage.new({product_id: @product.id,image: image}).save!
       end
     end
-
-    if current_user.id == @product.id
-      if @product.update(buy_params)
-        Payjp::Charge.create(
-          amount: @product.price,
-          customer: @card.customer_id,
-          currency: 'jpy'
-          )
+  else
+    if @product.update(buy_params)
+      Payjp::Charge.create(
+        amount: @product.price,
+        customer: @card.customer_id,
+        currency: 'jpy'
+        )
+      else
+        if current_user.id == @product.id
+          redirect_to root_path
         else
-          flash[:alert] += '購入に失敗しました。'
-          render :edit
+        redirect_to edit_product_path(@product)
         end
       end
-
-    redirect_to root_path
+    end
   end
 
   def destroy
@@ -288,8 +289,7 @@ class ProductsController < ApplicationController
   end
 
   def card_img
-    if current_user.id == @product.id
-      if @card = Card.where(user_id: current_user.id).first
+    if @card = Card.where(user_id: current_user.id).first
       Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = customer.cards.retrieve(@card.card_id)
@@ -308,14 +308,21 @@ class ProductsController < ApplicationController
       when "Discover"
         @card_src = "discover.svg"
       end
-      else
-        redirect_to controller: "card", acttion: "show"
+    else
+      if current_user.id != @product.seller_user_id
+      redirect_to controller: "card", acttion: "show"
       end
     end
   end
 
   def set_address
     @address = Addressee.find_by(user_id: @product.seller_user_id)
+  end
+
+  def set_avatar_img
+    if user_signed_in?
+      @profile = Profile.find_by(id: current_user.id)
+    end
   end
 
 end

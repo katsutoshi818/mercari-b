@@ -17,8 +17,8 @@
           Googleで登録する
           .btn-box
             %i.fab.fa-google
-        = f.email_field :email, autofocus: true, autocomplete: "email", class: "input-default1"
-        = f.password_field :password, autocomplete: "current-password", class: "input-default1"
+        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "input-default1"
+        = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "input-default1"
         .rc-anchor1
           ロボット認証入ります。
         = f.submit "ログイン", class: "btn-signup"

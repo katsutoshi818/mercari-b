@@ -52,7 +52,10 @@
                   %span やることリスト
             %li.down_list_right.mypage
               = link_to user_path(current_user) do
-                %p.user-image
+                - if @profile.avatar.present?
+                  = image_tag "#{@profile.avatar}", class: "user-img"
+                - else
+                  %img{src: asset_path('cat1.png'), class: "user-img"}
                 %span マイページ
               .mypage-box.none
                 %h3.mypage-box__name #{current_user.nickname}さん
