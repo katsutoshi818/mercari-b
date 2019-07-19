@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :card_img, only: [:edit, :update]
   before_action :set_address, only: [:edit, :update]
-  before_action :set_avatar_img, only: [:index, :show]
+  before_action :set_avatar_img, only: [:index, :show, :search]
 
   def index
     @products = Product.all
