@@ -1,4 +1,7 @@
 = render partial: 'layouts/header'
+.pankuzu
+  - breadcrumb :categoies_show, @category, class: "pankuzu__text"
+  = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right')}"
 .categories_show_main
   .categories_show_contents
     .categoies_show_children
@@ -15,7 +18,7 @@
           .item_box
             %section.items
               = link_to product_path(product.id) do
-                - if product.trade_state == 1
+                - if product.trade_state == "buyed"
                   .sold_out
                   .sold_out_text SOLD
                 = image_tag "#{product.product_images.find_by(product_id: product.id).image}", class: "items_pict", alt: "商品画像1"

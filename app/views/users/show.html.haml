@@ -1,4 +1,7 @@
 = render partial: 'layouts/header'
+.pankuzu
+  - breadcrumb :user_show, @user, class: "pankuzu__text"
+  = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right')} "
 - if current_user.id == @user.id
   .main-profile
     .main-profile-box

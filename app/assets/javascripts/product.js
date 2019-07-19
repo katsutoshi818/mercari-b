@@ -54,7 +54,7 @@ $(document).on('turbolinks:load', function(){
       $(".category_index_children").empty();
       if (children.length !== 0) {
       children.forEach(function(child){
-      $(".category_index_children").append(`<div class = "category_box_children"><span>${child.category_name}</span></div>`)
+      $(".category_index_children").append(`<a href="/categories/${child.id}"><div class = "category_box_children"><span>${child.category_name}</span></div></a>`)
       })
       }
     })
@@ -81,7 +81,7 @@ $(document).on('turbolinks:load', function(){
       $(".category_index_grandchildren").empty();
       if (grandchildren.length !== 0) {
       grandchildren.forEach(function(grand){
-      $(".category_index_grandchildren").append(`<div class = "category_box_grandchildren"><span>${grand.category_name}</span></div>`)
+      $(".category_index_grandchildren").append(`<a href="/categories/${grand.id}"><div class = "category_box_grandchildren"><span>${grand.category_name}</span></div></a>`)
       })
       }
     })

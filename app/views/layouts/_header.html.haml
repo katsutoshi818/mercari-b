@@ -21,8 +21,9 @@
               .category_boxes
                 .category_index_parent.category_none
                   - @parents.each do |parent|
-                    .category_box
-                      = parent.category_name
+                    =link_to category_path(parent.id), class: "category_link_head" do
+                      .category_box
+                        = parent.category_name
                 .category_index_children.category_none
                 .category_index_grandchildren.category_none
           %li.down_list_left
