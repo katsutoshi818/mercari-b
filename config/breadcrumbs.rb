@@ -9,6 +9,13 @@ crumb :show_product do |product|
 parent :root
 end
 
+# categories/show
+crumb :categoies_show do |category|
+  link "#{category.root.category_name}  #{
+    category.category_name}", ""
+parent :root
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
