@@ -136,6 +136,9 @@
       .item_box
         %section.items
           = link_to "/products/#{product.id}" do
+            - if product.trade_state == "buyed"
+              .sold_out
+              .sold_out_text SOLD
             = image_tag "#{product.product_images.find_by(product_id: product.id).image}",size: "213*220", alt: "商品写真", class: "items__pict"
             .index_text
               %h4
@@ -156,6 +159,9 @@
       .item_box
         %section.items
           = link_to "/products/#{product.id}" do
+            - if product.trade_state == "buyed"
+              .sold_out
+              .sold_out_text SOLD
             = image_tag "#{product.product_images.find_by(product_id: product.id).image}",size: "213*220", alt: "商品写真", class: "items__pict"
             .index_text
               %h4
