@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :card_img, only: [:edit, :update]
   before_action :set_address, only: [:edit, :update]
+  before_action :set_avatar_img, only: [:index, :show]
 
   def index
     @products = Product.all
@@ -316,6 +317,12 @@ class ProductsController < ApplicationController
 
   def set_address
     @address = Addressee.find_by(user_id: @product.seller_user_id)
+  end
+
+  def set_avatar_img
+    if user_signed_in?
+      @profile = Profile.find_by(id: current_user.id)
+    end
   end
 
 end
