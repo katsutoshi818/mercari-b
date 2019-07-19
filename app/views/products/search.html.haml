@@ -127,14 +127,14 @@
                   .index_info_product_search
                     .index_info_product_search__price
                       = "¥#{product.price.to_s(:delimited)}"
-- if @top_category_id.present?
-  .instamce_list
-    %span.top_category_id{ value: "#{@top_category_id.id}"}
-      = "#{@top_category_id.id}"
-    %span.mid_category_id
-      = "#{@mid_category_id.id}"
-    .low_category_parent
-      - @low_category_id.each do |low_category|
-        %span{class: "a#{low_category.id}"}
-          = "#{low_category.id}"
+-# - if @top_category_id.present?
+-#   .instamce_list
+-#     %span.top_category_id{ value: "#{@top_category_id.id}"}
+-#       = "#{@top_category_id.id}"
+-#     %span.mid_category_id
+-#       = "#{@mid_category_id.id}"
+-#     .low_category_parent
+-#       - @low_category_id.each do |low_category|
+-#         %span{class: "a#{low_category.id}"}
+-#           = "#{low_category.id}"
 = render partial: 'layouts/footer-top'
