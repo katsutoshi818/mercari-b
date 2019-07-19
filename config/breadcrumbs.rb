@@ -16,6 +16,25 @@ crumb :categoies_show do |category|
 parent :root
 end
 
+# product/search
+crumb :search_product do
+  link "検索結果", product
+parent :root
+end
+
+# user/show
+crumb :user_show do |user|
+  link "マイページ", ""
+parent :root
+end
+
+# card/index
+crumb :card_index do
+  link "クレジットカード情報", ""
+parent :user_show
+end
+
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
