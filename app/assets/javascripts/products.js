@@ -97,7 +97,8 @@ $(document).on('turbolinks:load', function() {
           dataType: 'json'
         })
         .done(function(sizes) {
-          if (sizes !== 0) {
+          console.log(sizes)
+          if (sizes.length !== 0) {
             appendSizeForm(sizes);
           }
         })
