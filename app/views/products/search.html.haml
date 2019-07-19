@@ -1,4 +1,7 @@
 = render partial: 'layouts/header'
+.pankuzu
+  - breadcrumb :search_product, class: "pankuzu__text"
+  = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right')} "
 .products_search_main
   .products_search_side
     .sort_order_content
@@ -8,7 +11,7 @@
     .product_search_list
       %h3.product_search_list__text
         詳細検索
-      = form_with url: search_products_path, method: :get, local: true do |f|
+      = form_with url: search_products_path, method: :get, local: true, html: {id: 'search_start'} do |f|
         .product_search_list__form
           %label.product_search_list__form__label
             %i.fas.fa-plus
@@ -102,7 +105,7 @@
         .submit_box
           .search_word_reset
             %span クリア
-          = f.submit "完了", class: "search_submit"
+          = f.submit "完了", id: "search_button"
   .products_search_content
     .products_search_content_box
       %h2.products_search_content_box__keyword
