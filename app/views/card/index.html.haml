@@ -1,4 +1,7 @@
 = render partial: 'layouts/header'
+.pankuzu
+  - breadcrumb :card_index, class: "pankuzu__text"
+  = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right')} "
 .main-card
   .main-card-box
     = render partial: 'users/mypage-sidebar'
