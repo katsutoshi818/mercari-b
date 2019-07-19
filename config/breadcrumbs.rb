@@ -5,7 +5,7 @@ end
 # products/show
 crumb :show_product do |product|
   link "#{
-    product.product_name}", product
+    product.product_name}", ""
 parent :root
 end
 
@@ -18,7 +18,7 @@ end
 
 # product/search
 crumb :search_product do
-  link "検索結果", product
+  link "検索結果", ""
 parent :root
 end
 
