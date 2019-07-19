@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :set_category_brand, only: [:show, :profile, :logout, :identification, :deliver_address, :email, :card, :password]
+  before_action :set_avatar_img, only: [:profile, :deliver_address, :email, :password, :identification, :logout, :show]
 
   def index
   end
@@ -48,4 +49,11 @@ class UsersController < ApplicationController
       format.json
     end
   end
+
+  def set_avatar_img
+    if user_signed_in?
+      @profile = Profile.find_by(id: current_user.id)
+    end
+  end
+
 end
