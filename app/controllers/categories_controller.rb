@@ -49,7 +49,7 @@ class CategoriesController < ApplicationController
 
   def set_avatar_img
     if user_signed_in?
-      @profile = Profile.find_by(id: current_user.id)
+      @profile = Profile.find_by(user_id: current_user.id)
     end
   end
 
